@@ -20,43 +20,36 @@
 	class FrontpagesController extends CmsAppController {
 		public $name = 'Frontpages';
 
-		/**
-		* Helpers.
-		*
-		* @access public
-		* @var array
-		*/
-		public $helpers = array('Filter.Filter');
-
 		public function index() {
-			$this->paginate = array(
-				'fields' => array(
-					'Frontpage.id',
-					'Frontpage.content_id',
-					'Frontpage.ordering',
-					'Frontpage.created',
-					'Frontpage.modified'
-				),
-				'contain' => array(
-					'Content' => array(
-						'Author',
-						'Editor',
-						'Category',
-						'Feature',
-						'ContentComment'
+			$ids = $this->Frontpage->find(
+				'list',
+				array(
+					'fields' => array(
+						'Frontpage.id',
+						'Frontpage.id'
 					)
 				)
 			);
 
-			$frontpages = $this->paginate();
+			$contents = $this->Frontpage->Content->find(
+				'all',
+				array(
+					'conditions' => array(
+						'Content.id' => $ids
+					),
+					'contain' => array(
+						'Category',
+						'ContentComment'
+					),
+					'order' => $this->Frontpage->Content->_order
+				)
+			);
 
-			$this->set('frontpages', $frontpages);
-			$this->set('filterOptions', $this->Filter->filterOptions);
+			$this->set('contents', $contents);
+			$this->render('index', null, App::pluginPath('Cms').'views'.DS.'contents'.DS.'index.ctp');
 		}
 
 		public function admin_index() {
-			$this->Frontpage->recursive = 0;
-
 			$this->paginate = array(
 				'fields' => array(
 					'Frontpage.id',
@@ -90,15 +83,7 @@
 		}
 
 		public function admin_add() {
-			if (!empty($this->data)) {
-				$this->Frontpage->create();
-				if ($this->Frontpage->save($this->data)) {
-					$this->Session->setFlash(__('The frontpage has been saved', true));
-					$this->redirect(array('action' => 'index'));
-				}else {
-					$this->Session->setFlash(__('The frontpage could not be saved. Please, try again.', true));
-				}
-			}
+			parent::admin_add();
 
 			/**
 			* check what is already in the table so that the list only shows
@@ -110,9 +95,9 @@
 					'fields' => array(
 						'Frontpage.content_id',
 						'Frontpage.content_id'
-						)
 					)
-				);
+				)
+			);
 
 			/**
 			* only get the content itmes that are not being used.
@@ -122,9 +107,9 @@
 				array(
 					'conditions' => array(
 						'Content.id NOT IN ( ' . implode(',', ((!empty($content_ids)) ? $content_ids : array(0))) . ' )'
-						)
 					)
-				);
+				)
+			);
 
 			if (empty($contents)) {
 				$this->Session->setFlash(__('You have all the items on your home page.', true));

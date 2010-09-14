@@ -78,7 +78,14 @@
 		}
 
 		public function admin_index() {
-			$this->Content->recursive = 1;
+			$this->paginate = array(
+				'contain' => array(
+					'Category',
+					'Group',
+					'Layout'
+				)
+			);
+			
 			$this->Content->order = $this->Content->_order;
 			$contents = $this->paginate(null, $this->Filter->filter);
 

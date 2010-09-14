@@ -35,6 +35,8 @@
 		public function beforeFilter(){
 			parent::beforeFilter();
 
+			$this->helpers[] = 'Filter.Filter';
+
 			$this->addCss(
 				array(
 					'/cms/css/cms'
