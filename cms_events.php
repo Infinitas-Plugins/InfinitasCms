@@ -5,7 +5,12 @@
 				'name' => 'Cms',
 				'description' => 'Content Management',
 				'icon' => '/cms/img/icon.png',
-				'author' => 'Infinitas'
+				'author' => 'Infinitas',
+				'dashboard' => array(
+					'plugin' => 'cms',
+					'controller' => 'cms',
+					'action' => 'dashboard'
+				)
 			);
 		}
 		
