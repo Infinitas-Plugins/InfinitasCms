@@ -13,6 +13,17 @@
 				)
 			);
 		}
+
+		public function onAdminMenu(&$event){
+			$menu['main'] = array(
+				'Dashboard' => array('controller' => 'cms', 'action' => 'dashboard'),
+				'Content' => array('controller' => 'contents', 'action' => 'index'),
+				'Front Pages' => array('controller' => 'frontpages', 'action' => 'index'),
+				'Featured' => array('controller' => 'features', 'action' => 'index'),
+			);
+
+			return $menu;
+		}
 		
 		public function onSetupConfig(){
 			return Configure::load('cms.config');
