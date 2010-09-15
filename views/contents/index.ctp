@@ -49,7 +49,7 @@
 					echo $this->element(
 						'modules/comment',
 						array(
-							'plugin' => 'comment',
+							'plugin' => 'comments',
 							'content' => $content,
 							'modelName' => 'Content',
 							'foreign_id' => $content['Content']['id']
