@@ -25,7 +25,7 @@
                 'delete'
             )
         );
-        echo $this->Cms->adminIndexHead($this, $filterOptions, $massActions);
+	echo $this->Infinitas->adminIndexHead($filterOptions, $massActions);
 
 ?>
 <div class="table">
