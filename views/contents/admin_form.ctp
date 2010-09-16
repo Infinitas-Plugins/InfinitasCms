@@ -21,7 +21,7 @@
 <div class="contents form">
 	<?php
 		echo $this->Form->create('Content');
-        echo $this->Infinitas->adminEditHead($this);
+        echo $this->Infinitas->adminEditHead();
 	?>
 	<div style="width:75%; float:left;">
 	    <?php

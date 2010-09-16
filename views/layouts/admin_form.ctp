@@ -21,7 +21,7 @@
 <div class="contents form">
 	<?php
 	echo $this->Form->create('Layout');
-        echo $this->Infinitas->adminEditHead($this);	
+        echo $this->Infinitas->adminEditHead();	
 		echo $this->Form->input('id');
 		echo $this->Form->input('name', array('class' => 'title'));
 		echo $this->Form->input('css', array('class' => 'title'));

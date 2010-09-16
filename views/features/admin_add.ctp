@@ -21,7 +21,7 @@
 <div class="sections form">
     <?php
     echo $this->Form->create( 'Feature' );
-        echo $this->Infinitas->adminEditHead($this);    
+        echo $this->Infinitas->adminEditHead();    
         echo $this->Form->input( 'content_id', array( 'label' => __( 'Content Item', true ), 'type' => 'select', 'options' => $contents ) );
     echo $this->Form->end( );
 ?>
