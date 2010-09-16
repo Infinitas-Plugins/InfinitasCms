@@ -36,7 +36,7 @@
 
 		public $belongsTo = array(
 			'Author' => array(
-				'className' => 'Management.User',
+				'className' => 'Users.User',
 				'foreignKey' => 'created_by',
 				'fields' => array(
 					'Author.id',
@@ -44,7 +44,7 @@
 				)
 			),
 			'Editor' => array(
-				'className' => 'Management.User',
+				'className' => 'Users.User',
 				'foreignKey' => 'modified_by',
 				'fields' => array(
 					'Editor.id',
@@ -52,18 +52,10 @@
 				)
 			),
 			'Group' => array(
-				'className' => 'Management.Group',
+				'className' => 'Users.Group',
 				'fields' => array(
 					'Group.id',
 					'Group.name'
-				)
-			),
-			'Locker' => array(
-				'className' => 'Management.User',
-				'foreignKey' => 'locked_by',
-				'fields' => array(
-					'Locker.id',
-					'Locker.username'
 				)
 			),
 			'Layout' => array(

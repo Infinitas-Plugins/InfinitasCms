@@ -16,13 +16,5 @@
 		);
 
 		public $belongsTo = array(
-			'Locker' => array(
-				'className' => 'Management.User',
-				'foreignKey' => 'locked_by',
-				'fields' => array(
-					'Locker.id',
-					'Locker.username'
-				)
-			)
 		);
 	}
