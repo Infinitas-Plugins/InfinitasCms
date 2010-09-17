@@ -156,11 +156,7 @@
 			}
 
 			if (empty($this->data)) {
-				$this->data = $this->Content->lock(null, $id);
-				if ($this->data === false) {
-					$this->Session->setFlash(__('The content item is currently locked', true));
-					$this->redirect($this->referer());
-				}
+				$this->data = $this->Content->read(null, $id);
 			}
 
 			$groups = array(__('Public', true)) + $this->Content->Group->generatetreelist();
