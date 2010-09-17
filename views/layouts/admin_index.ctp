@@ -80,7 +80,7 @@
                 		<td class="status">
                 			<?php
                 			    echo $this->Infinitas->status( $layout['Layout']['active'] ),
-                    			    $this->Infinitas->locked( $layout, 'Layout' );
+                    			    $this->Locked->display($layout);
                 			?>
                 		</td>
                 	</tr>

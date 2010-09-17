@@ -117,7 +117,7 @@
                 			    echo $this->Cms->homePageItem($content),
                         			$this->Infinitas->featured($content),
                 			        $this->Infinitas->status($content['Content']['active'], $content['Content']['id']),
-                    			    $this->Infinitas->locked($content, 'Content' );
+                    			    $this->Locked->display($content);
                 			?>
                 		</td>
                 	</tr>

@@ -29,6 +29,8 @@
 	class Content extends CmsAppModel {
 		public $name = 'Content';
 
+		public $lockable = true;
+
 		public $_order = array(
 			'Category.title' => 'asc',
 			'Content.ordering' => 'asc'
