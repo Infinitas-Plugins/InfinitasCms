@@ -57,11 +57,7 @@
 				}
 			}
 			if (empty($this->data)) {
-				$this->data = $this->Layout->lock(null, $id);
-				if ($this->data === false) {
-					$this->Session->setFlash(__('The layout item is currently locked', true));
-					$this->redirect($this->referer());
-				}
+				$this->data = $this->Layout->read(null, $id);
 			}
 		}
 	}
