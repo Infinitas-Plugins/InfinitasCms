@@ -17,6 +17,7 @@
 	 * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
 	 * @since         0.5a
 	 */
+
 	$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
 		echo '<div class="before '.$_plugin.'">'.$_data.'</div>';

@@ -17,31 +17,26 @@
      * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
      * @since         0.5a
      */
-?>
-<div class="contents form">
-	<?php
-		echo $this->Form->create('Content');
-        echo $this->Infinitas->adminEditHead();
-	?>
-	<div style="width:75%; float:left;">
-	    <?php
-    		echo $this->Form->input('id');
-    		echo $this->Form->input('title', array('class' => 'title'));
-    		echo $this->Cms->wysiwyg('Content.body');
-	    ?>
-	</div>
-	<div style="width:20%; float:right;">
-	    <?php
+	echo $this->Form->create('Content');
+		echo $this->Infinitas->adminEditHead();?>
+		<fieldset>
+			<h1><?php echo __('Content', true); ?></h1><?php
+			echo $this->Form->input('id');
+			echo $this->Form->input('title', array('class' => 'title'));
+			echo $this->element('category_list', array('plugin' => 'Categories'));
+			echo $this->Cms->wysiwyg('Content.body'); ?>
+		</fieldset>
+		<fieldset>
+			<h1><?php echo __('Config', true); ?></h1><?php
 			echo $this->Form->input('active');
 			echo $this->Form->input('layout_id');
-			echo $this->element('category_list', array('plugin' => 'Categories'));
-    		echo $this->Form->input('group_id', array('label' => __( 'Min Group', true)));
-    		echo $this->Form->hidden('ContentConfig.id' );
-    		echo $this->Form->input('ContentConfig.author_alias' );
-    		echo $this->Form->input('ContentConfig.keywords' );
-    		echo $this->Form->input('ContentConfig.description', array('class'=>'title'));
-	    ?>
-	</div>
-	<div class="clr">&nbsp;</div>
-	<?php echo $this->Form->end( ); ?>
-</div>
+			echo $this->Form->input('group_id', array('label' => __('Min Group', true)));
+			echo $this->Form->hidden('ContentConfig.id');?>
+		</fieldset>
+		<fieldset>
+			<h1><?php echo __('Author', true); ?></h1><?php
+			echo $this->Form->input('ContentConfig.author_alias');
+			echo $this->Form->input('ContentConfig.keywords');
+			echo $this->Form->input('ContentConfig.description', array('class'=>'title')); ?>
+		</fieldset><?php
+	echo $this->Form->end();
