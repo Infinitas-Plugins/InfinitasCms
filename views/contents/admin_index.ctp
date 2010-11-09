@@ -98,7 +98,7 @@
                         	?>
                 		</td>
                 		<td>
-                			<?php echo $content['Group']['name']; ?>
+                			<?php echo $content['Group']['name'] ? $content['Group']['name'] : __('Public', true); ?>
                 		</td>
                 		<td>
                 			<?php echo $content['Layout']['name']; ?>
