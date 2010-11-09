@@ -63,7 +63,14 @@
 			'Layout' => array(
 				'className' => 'Cms.ContentLayout',
 				'foreignKey' => 'layout_id',
-				'counterCache' => true
+				'counterCache' => true,
+				'fields' => array(
+					'Layout.id',
+					'Layout.name',
+					'Layout.html',
+					'Layout.css',
+					'Layout.id',
+				)
 			)
 		);
 
@@ -151,21 +158,8 @@
 						'Content.active' => 1
 					),
 					'contain' => array(
-						'Layout' => array(
-							'fields' => array(
-								'Layout.id',
-								'Layout.html',
-								'Layout.css',
-								'Layout.id',
-							)
-						),
-						'Category' => array(
-							'fields' => array(
-								'Category.id',
-								'Category.title',
-								'Category.slug',
-							)
-						)
+						'Layout',
+						'Category'
 					)
 				)
 			);
