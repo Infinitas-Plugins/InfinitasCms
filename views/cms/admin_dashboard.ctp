@@ -13,6 +13,9 @@
 		<li>
 			<?php echo $this->Html->link(__('Pending', true), array('controller' => 'contents', 'action' => 'index', 'Content.active' => 0)); ?>
 		</li>
+		<li>
+			<?php echo $this->Html->link(__('Layouts', true), array('controller' => 'layouts', 'action' => 'index')); ?>
+		</li>
 	</ul>
 	<p class="info"><?php echo Configure::read('Cms.info.content'); ?></p>
 </div>
