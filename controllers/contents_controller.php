@@ -73,8 +73,7 @@
 				$this->redirect($this->referer());
 			}
 
-			$this->set('content', $this->Content->getContentPage($this->params['slug']));
-			$this->render('view');
+			$this->set('content', $this->Content->getContentPage($this->params['slug']));			
 		}
 
 		public function admin_index() {
@@ -112,10 +111,9 @@
 		public function admin_add() {
 			if (!empty($this->data)) {
 				$this->Content->create();
-
 				if ($data = $this->Content->saveAll($this->data) == true) {
 					if($this->data['Content']['active']){
-						$this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
+						//$this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
 					}
 
 					$this->Session->setFlash(__('The content has been saved', true));
@@ -142,7 +140,7 @@
 			if (!empty($this->data)) {
 				if ($data = $this->Content->saveAll($this->data) == true) {
 					if($this->data['Content']['active']){
-						$this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
+						// $this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
 					}
 
 					
