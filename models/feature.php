@@ -25,7 +25,14 @@
 		);
 
 		public $belongsTo = array(
-			'Cms.Content'
+			'Content' => array(
+				'className' => 'Cms.Content',
+				'fields' => array(
+					'Content.id',
+					'Content.title',
+					'Content.active',
+				)
+			)
 		);
 
 		public $noTrash = true;

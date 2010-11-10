@@ -70,44 +70,38 @@
                 ?>
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
                         <td><?php echo $this->Form->checkbox($content['Content']['id']); ?>&nbsp;</td>
+                		<td><?php echo $this->Html->adminQuickLink($content['Content']); ?>&nbsp;</td>
                 		<td>
                 			<?php
-                			    echo $this->Html->link(
-                			        $content['Content']['title'],
-                			        array(
-                    			        'controller' => 'contents',
-                    			        'action' => 'edit',
-                    			        $content['Content']['id']
-                    			    )
-                    			);
-                			?>
+								echo $this->Html->adminQuickLink(
+									$content['Category'],
+									array(
+										'plugin' => 'categories',
+										'controller' => 'categories'
+									),
+									'Category'
+								);
+                        	?>&nbsp;
+                		</td>
+                		<td>
+                			<?php echo $content['Group']['name'] ? $content['Group']['name'] : __('Public', true); ?>&nbsp;
                 		</td>
                 		<td>
                 			<?php
-								if(isset($content['Category']['title'])) {
-									echo $this->Html->link(
-										$content['Category']['title'],
-										array(
-											'plugin' => 'categories',
-											'controller' => 'categories',
-											'action' => 'edit',
-											$content['Category']['id']
-										)
-									);
-								}
-                        	?>
-                		</td>
-                		<td>
-                			<?php echo $content['Group']['name'] ? $content['Group']['name'] : __('Public', true); ?>
-                		</td>
-                		<td>
-                			<?php echo $content['Layout']['name']; ?>
+								echo $this->Html->adminQuickLink(
+									$content['Layout'],
+									array(
+										'controller' => 'layouts'
+									),
+									'Layout'
+								);
+							?>&nbsp;
                 		</td>
                 		<td style="text-align:center;">
-                			<?php echo $content['Content']['views']; ?>
+                			<?php echo $content['Content']['views']; ?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $this->Time->niceShort($content['Content']['modified']); ?>
+                			<?php echo $this->Time->niceShort($content['Content']['modified']); ?>&nbsp;
                 		</td>
                 		<td class="status">
                 			<?php echo $this->Cms->ordering($content['Content']['id'], $content['Content']['ordering'], 'Cms.Content'); ?>&nbsp;
@@ -118,7 +112,7 @@
                         			$this->Infinitas->featured($content),
                 			        $this->Infinitas->status($content['Content']['active'], $content['Content']['id']),
                     			    $this->Locked->display($content);
-                			?>
+                			?>&nbsp;
                 		</td>
                 	</tr>
                 <?php

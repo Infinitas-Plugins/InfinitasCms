@@ -24,30 +24,26 @@
 					'Feature.content_id',
 					'Feature.ordering',
 					'Feature.created'
-					),
+				),
 				'contain' => array(
-					'Content' => array(
-						'fields' => array(
-							'Content.id',
-							'Content.title',
-							'Content.active',
-						),
-						'Category' => array(
-							'fields' => array(
-								'Category.id',
-								'Category.title'
-							)
-						)
+					'Content' => array(						
+						'Category'
 					)
 				)
 			);
 
-			$features = $this->paginate();
+			$features = $this->paginate(null, $this->Filter->filterOptions);
+			$filterOptions = $this->Filter->filterOptions;
 
-			$this->set(compact('features'));
-			$this->set('filterOptions', $this->Filter->filterOptions);
+			$this->set(compact('features', 'filterOptions'));
 		}
 
+		/**
+		 * Create new featured items
+		 *
+		 * You can only add ones that dont exist, no point having 2 of the same,
+		 * If there is no more, it will just redirect back to where you were.
+		 */
 		public function admin_add() {
 			parent::admin_add();
 
@@ -78,8 +74,13 @@
 			);
 
 			if (empty($contents)) {
-				$this->Session->setFlash(__('You have already made all the content items featured.', true));
-				$this->redirect($this->referer());
+				$this->notice(
+					__('You have already made all the content items featured.', true),
+					array(
+						'level' => 'warning',
+						'redirect' => true
+					)
+				);
 			}
 
 			$this->set(compact('contents'));

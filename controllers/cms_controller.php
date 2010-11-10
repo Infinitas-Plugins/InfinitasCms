@@ -25,13 +25,13 @@
 
 		public $uses = array();
 
-		public function admin_dashboard(){
-		}
-
 		public function beforeFilter(){
 			parent::beforeFilter();
 			if($this->params['action'] != 'admin_dashboard'){
 				$this->redirect(array('action' => 'dashboard'));
 			}
+		}
+
+		public function admin_dashboard(){
 		}
 	}

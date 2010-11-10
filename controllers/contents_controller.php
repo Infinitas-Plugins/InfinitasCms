@@ -53,9 +53,6 @@
 				);
 			}
 
-			$this->paginate['contain'][] = 'Category';
-			$this->paginate['contain'][] = 'ContentComment';
-
 			$this->Content->order = $this->Content->_order;
 			$contents = $this->paginate();
 
@@ -102,9 +99,9 @@
 
 		public function admin_view($id = null) {
 			if (!$id) {
-				$this->Session->setFlash(__('Invalid content', true));
-				$this->redirect(array('action' => 'index'));
+				$this->Infinitas->noticeInvalidRecord();
 			}
+			
 			$this->set('content', $this->Content->read(null, $id));
 		}
 
@@ -116,17 +113,14 @@
 						//$this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
 					}
 
-					$this->Session->setFlash(__('The content has been saved', true));
-					$this->redirect(array('action' => 'index'));
+					$this->Infinitas->noticeSaved();
 				}
 
-				else {
-					$this->Session->setFlash(__('The content could not be saved. Please, try again.', true));
-				}
+				$this->Infinitas->noticeNotSaved();
 			}
 
 			//$categories = array(__('Please select', true)) + $this->Content->Category->generatetreelist();
-			$groups = array(__('Public', true)) + $this->Content->Group->generatetreelist();
+			$groups = array(0 => __('Public', true)) + $this->Content->Group->generatetreelist();
 			$layouts = $this->Content->Layout->find('list');
 			$this->set(compact('groups','layouts'));
 		}
@@ -143,14 +137,10 @@
 						// $this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
 					}
 
-					
-					$this->Session->setFlash(__('The content has been saved', true));
-					$this->redirect(array('action' => 'index'));
+					$this->Infinitas->noticeSaved();
 				}
-
-				else {
-					$this->Session->setFlash(__('The content could not be saved. Please, try again.', true));
-				}
+				
+				$this->Infinitas->noticeNotSaved();
 			}
 
 			if (empty($this->data)) {

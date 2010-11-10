@@ -14,13 +14,16 @@
 		 */
 		public $helpers = array('Filter.Filter');
 
+		/**
+		 * Its pointless trying to use a wysiwyg here, so we will just put if off
+		 * completely for the layouts.
+		 */
 		public function beforeRender(){
 			parent::beforeRender();
 			Configure::write('Wysiwyg.editor', 'text');
 		}
 
 		public function admin_index() {
-			$this->Layout->recursive = 1;
 			$layouts = $this->paginate(null, $this->Filter->filter);
 
 			$filterOptions = $this->Filter->filterOptions;
@@ -29,35 +32,5 @@
 			);
 
 			$this->set(compact('layouts','filterOptions'));
-		}
-
-		public function admin_add() {
-			if (!empty($this->data)) {
-				$this->Layout->create();
-				if ($this->Layout->saveAll($this->data)) {
-					$this->Session->setFlash(__('The layout has been saved', true));
-					$this->redirect(array('action' => 'index'));
-				}else {
-					$this->Session->setFlash(__('The layout could not be saved. Please, try again.', true));
-				}
-			}
-		}
-
-		public function admin_edit($id = null) {
-			if (!$id && empty($this->data)) {
-				$this->Session->setFlash(__('Invalid layout', true));
-				$this->redirect(array('action' => 'index'));
-			}
-			if (!empty($this->data)) {
-				if ($this->Layout->save($this->data)) {
-					$this->Session->setFlash(__('The layout has been saved', true));
-					$this->redirect(array('action' => 'index'));
-				}else {
-					$this->Session->setFlash(__('The layout could not be saved. Please, try again.', true));
-				}
-			}
-			if (empty($this->data)) {
-				$this->data = $this->Layout->read(null, $id);
-			}
 		}
 	}

@@ -20,6 +20,10 @@
 	class FrontpagesController extends CmsAppController {
 		public $name = 'Frontpages';
 
+		/**
+		 * Shows only the items that are set as frontpage items. It will just
+		 * render the main content index view as its the same data.
+		 */
 		public function index() {
 			$ids = $this->Frontpage->find(
 				'list',
@@ -46,7 +50,7 @@
 			);
 
 			$this->set('contents', $contents);
-			$this->render('index', null, App::pluginPath('Cms').'views'.DS.'contents'.DS.'index.ctp');
+			$this->render('index', null, App::pluginPath('Cms') . 'views' . DS . 'contents' . DS . 'index.ctp');
 		}
 
 		public function admin_index() {
@@ -60,6 +64,7 @@
 				),
 				'contain' => array(
 					'Content' => array(
+						// default has more items
 						'fields' => array(
 							'Content.id',
 							'Content.title',
@@ -71,15 +76,13 @@
 			);
 
 			$frontpages = $this->paginate();
-
-
+			
 			$filterOptions = $this->Filter->filterOptions;
 			$filterOptions['fields'] = array(
 				//@todo get related filter working
 			);
 
-			$this->set('frontpages', $frontpages);
-			$this->set('filterOptions', $filterOptions);
+			$this->set(compact('frontpages', 'filterOptions'));
 		}
 
 		public function admin_add() {
@@ -112,8 +115,13 @@
 			);
 
 			if (empty($contents)) {
-				$this->Session->setFlash(__('You have all the items on your home page.', true));
-				$this->redirect($this->referer());
+				$this->notice(
+					__('You have all the items on your home page.', true),
+					array(
+						'level' => 'warning',
+						'redirect' => true
+					)
+				);
 			}
 
 			$this->set(compact('contents'));
