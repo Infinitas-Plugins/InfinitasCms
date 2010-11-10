@@ -117,8 +117,22 @@
 					),
 				),
 				'category_id' => array(
-					'rule' => array('comparison', '>=', 1),
-					'message' => __('Please select a category', true)
+					'notEmpty' => array(
+						'rule' => 'notEmpty',
+						'message' => __('Please select a category', true)
+					)
+				),
+				'layout_id' => array(
+					'notEmpty' => array(
+						'rule' => 'notEmpty',
+						'message' => __('Please select a layout', true)
+					)
+				),
+				'group_id' => array(
+					'notEmpty' => array(
+						'rule' => 'notEmpty',
+						'message' => __('Please select the group this content is for', true)
+					)
 				),
 				'body' => array(
 					'notEmpty' => array(
