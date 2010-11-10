@@ -35,6 +35,28 @@
 			)
 		);
 
+		/**
+		 * dont send things to trash
+		 * @var bool
+		 */
 		public $noTrash = true;
+
+		/**
+		 * dont ask to confirm deletes
+		 * @var bool
+		 */
 		public $noConfirm = true;
+
+		public function  __construct($id = false, $table = null, $ds = null) {
+			parent::__construct($id, $table, $ds);
+
+			$this->validate = array(
+				'content_id' => array(
+					'notEmpty' => array(
+						'rule' => 'notEmpty',
+						'message' => __('Please select the content item that should be featured', true)
+					)
+				)
+			);
+		}
 	}
