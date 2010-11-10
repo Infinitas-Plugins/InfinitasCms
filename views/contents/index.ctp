@@ -27,44 +27,45 @@
 			echo '<div class="'.$_plugin.'">'.$_data.'</div>';
 		}
 		?></div>
-			<div class="wrapper">
-				<div class="introduction">
-					<h2>
-						<?php
-							$eventData = $this->Event->trigger('cms.slugUrl', array('type' => 'contents', 'data' => $content));
-							$urlArray = current($eventData['slugUrl']);
-							echo $this->Html->link(
-								$content['Content']['title'],
-								$urlArray
-							);
-						?><span><?php echo $this->Time->niceShort($content['Content']['created']); ?></span>
-					</h2>
-					<div class="body">
-						<?php
-							echo $this->Text->truncate($content['Content']['body'], 200, array('html' => true));
-						?>
-					</div>
+
+		<div class="wrapper">
+			<div class="introduction">
+				<h2>
+					<?php
+						$eventData = $this->Event->trigger('cms.slugUrl', array('type' => 'contents', 'data' => $content));
+						$urlArray = current($eventData['slugUrl']);
+						echo $this->Html->link(
+							$content['Content']['title'],
+							$urlArray
+						);
+					?><span><?php echo $this->Time->niceShort($content['Content']['created']); ?></span>
+				</h2>
+				<div class="body">
+					<?php
+						echo $this->Text->truncate($content['Content']['body'], 200, array('html' => true));
+					?>
 				</div>
-				<?php
-					echo $this->element(
-						'modules/comment',
-						array(
-							'plugin' => 'comments',
-							'content' => $content,
-							'modelName' => 'Content',
-							'foreign_id' => $content['Content']['id']
-						)
-					);
-				?>
 			</div>
-			<div class="afterEvent">
-				<?php
-					$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
-					foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data){
-						echo '<div class="'.$_plugin.'">'.$_data.'</div>';
-					}
-				?>
-			</div>
-		<?php
+			<?php
+				echo $this->element(
+					'modules/comment',
+					array(
+						'plugin' => 'comments',
+						'content' => $content,
+						'modelName' => 'Content',
+						'foreign_id' => $content['Content']['id']
+					)
+				);
+			?>
+		</div>
+
+		<div class="afterEvent">
+			<?php
+				$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
+				foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data){
+					echo '<div class="'.$_plugin.'">'.$_data.'</div>';
+				}
+			?>
+		</div> <?php
 	}
 ?>
