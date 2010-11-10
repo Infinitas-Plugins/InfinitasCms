@@ -17,12 +17,11 @@
      * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
      * @since         0.5a
      */
-?>
-<div class="sections form">
-    <?php
-    echo $this->Form->create( 'Feature' );
-        echo $this->Infinitas->adminEditHead();    
-        echo $this->Form->input( 'content_id', array( 'label' => __( 'Content Item', true ), 'type' => 'select', 'options' => $contents ) );
-    echo $this->Form->end( );
-?>
-</div>
+
+    echo $this->Form->create('Feature', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
+		echo $this->Infinitas->adminEditHead(); ?>
+		<fieldset>
+			<h1><?php echo __('Featured Page', true); ?></h1><?php
+			echo $this->Form->input('content_id', array('label' => __('Content Item', true), 'type' => 'select', 'options' => $contents)); ?>
+		</fieldset><?php
+    echo $this->Form->end();
