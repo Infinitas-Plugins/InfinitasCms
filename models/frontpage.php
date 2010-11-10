@@ -75,4 +75,17 @@
 				)
 			)
 		);
+
+		public function __construct($id = false, $table = null, $ds = null) {
+			parent::__construct($id, $table, $ds);
+
+			$this->validate = array(
+				'content_id' => array(
+					'notEmpty' => array(
+						'rule' => 'notEmpty',
+						'message' => __('Please select an item to be on the main cms page', true)
+					)
+				)
+			);
+		}
 	}

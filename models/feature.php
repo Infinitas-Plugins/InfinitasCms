@@ -31,6 +31,7 @@
 					'Content.id',
 					'Content.title',
 					'Content.active',
+					'Content.category_id',
 				)
 			)
 		);

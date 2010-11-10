@@ -4,14 +4,6 @@
 	class FeaturesController extends CmsAppController {
 		public $name = 'Features';
 
-		/**
-		* Helpers.
-		*
-		* @access public
-		* @var array
-		*/
-		public $helpers = array('Filter.Filter');
-
 		public function index() {
 			$this->Feature->recursive = 0;
 			$this->set('features', $this->paginate);
@@ -32,10 +24,9 @@
 				)
 			);
 
-			$features = $this->paginate(null, $this->Filter->filterOptions);
-			$filterOptions = $this->Filter->filterOptions;
+			$features = $this->paginate();
 
-			$this->set(compact('features', 'filterOptions'));
+			$this->set(compact('features'));
 		}
 
 		/**

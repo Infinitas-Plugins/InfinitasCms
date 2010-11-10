@@ -18,77 +18,67 @@
      * @since         0.5a
      */
 
-     echo $this->Form->create( 'Feature', array( 'url' => array( 'controller' => 'features', 'action' => 'mass', 'admin' => 'true' ) ) );
-        $massActions = $this->Cms->massActionButtons(
-            array(
-                'add',
-                'delete'
-            )
-        );
-	echo $this->Infinitas->adminIndexHead($filterOptions, $massActions);
-
+     echo $this->Form->create('Feature', array('action' => 'mass'));
+        $massActions = $this->Cms->massActionButtons(array('add', 'delete'));
+		echo $this->Infinitas->adminIndexHead(null, $massActions);
 ?>
 <div class="table">
     <table class="listing" cellpadding="0" cellspacing="0">
         <?php
             echo $this->Cms->adminTableHeader(
                 array(
-                    $this->Form->checkbox( 'all' ) => array(
+                    $this->Form->checkbox('all') => array(
                         'class' => 'first',
                         'style' => 'width:25px;'
                     ),
-                    $this->Paginator->sort( 'Content Item', 'Content.title' ),
-                    __( 'Category', true ),
-                    $this->Paginator->sort( 'created' ) => array(
+                    $this->Paginator->sort('Content Item', 'Content.title'),
+                    __('Category', true) => array(
                         'style' => 'width:100px;'
                     ),
-                    $this->Paginator->sort( 'ordering' ) => array(
+                    $this->Paginator->sort('created') => array(
+                        'style' => 'width:100px;'
+                    ),
+                    $this->Paginator->sort('ordering') => array(
                         'style' => 'width:50px;'
                     ),
-                    __( 'Status', true ) => array(
+                    __('Status', true) => array(
                         'style' => 'width:50px;'
                     )
                 )
             );
 
-            $i = 0;
-            foreach ( $features as $feature )
-            {
+            foreach ($features as $feature){
                 ?>
-                	<tr class="<?php echo $this->Cms->rowClass( $i ); ?>">
-                        <td><?php echo $this->Form->checkbox( $feature['Feature']['id'] ); ?>&nbsp;</td>
+                	<tr class="<?php echo $this->Cms->rowClass(); ?>">
+                        <td><?php echo $this->Form->checkbox($feature['Feature']['id']); ?>&nbsp;</td>
                 		<td>
-                			<?php echo $this->Html->link( $feature['Content']['title'], array('controller' => 'features', 'action' => 'view', $feature['Content']['id'])); ?>
+                			<?php echo $this->Html->adminQuickLink($feature['Content'], array('controller' => 'contents'), 'Content'); ?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $this->Html->link( $feature['Content']['Category']['title'], array( 'controller' => 'features', 'action' => 'edit', $feature['Content']['Category']['id'] ) ); ?>
+                			<?php echo $this->Html->adminQuickLink($feature['Content']['Category'], array('plugin' => 'categories', 'controller' => 'categories', 'action' => 'edit'), 'Category'); ?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $this->Time->niceShort( $feature['Feature']['created'] ); ?>
+                			<?php echo $this->Time->niceShort($feature['Feature']['created']); ?>&nbsp;
                 		</td>
                 		<td>
                 			<?php
                 			    echo $this->Cms->ordering(
                 			        $feature['Feature']['id'],
                 			        $feature['Feature']['ordering'],
-									'Feature',
-									$features
+									'Feature'
                 			    );
-                			?>
+                			?>&nbsp;
                 		</td>
                 		<td>
                 			<?php
-                			    echo $this->Infinitas->status( $feature['Content']['active'], $feature['Content']['id'], array( 'controller' => 'features', 'action' => 'toggle' ) );
-                			?>
+                			    echo $this->Infinitas->status($feature['Content']['active']);
+                			?>&nbsp;
                 		</td>
                 	</tr>
                 <?php
             }
         ?>
     </table>
-    <?php
-        echo $this->Form->end();
-
-    ?>
+    <?php echo $this->Form->end(); ?>
 </div>
 <?php echo $this->element('pagination/admin/navigation'); ?>

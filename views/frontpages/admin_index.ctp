@@ -18,15 +18,9 @@
      * @since         0.5a
      */
 
-    echo $this->Form->create('Frontpage', array('url' => array('controller' => 'frontpages', 'action' => 'mass', 'admin' => 'true')));
-        $massActions = $this->Cms->massActionButtons(
-            array(
-                'add',
-                'delete'
-            )
-        );
-	echo $this->Infinitas->adminIndexHead($filterOptions, $massActions);
-
+    echo $this->Form->create('Frontpage', array('action' => 'mass'));
+        $massActions = $this->Cms->massActionButtons(array('add', 'delete'));
+		echo $this->Infinitas->adminIndexHead(null, $massActions);
 ?>
 <div class="table">
     <table class="listing" cellpadding="0" cellspacing="0">

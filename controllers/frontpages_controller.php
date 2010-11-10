@@ -76,13 +76,8 @@
 			);
 
 			$frontpages = $this->paginate();
-			
-			$filterOptions = $this->Filter->filterOptions;
-			$filterOptions['fields'] = array(
-				//@todo get related filter working
-			);
 
-			$this->set(compact('frontpages', 'filterOptions'));
+			$this->set(compact('frontpages'));
 		}
 
 		public function admin_add() {
