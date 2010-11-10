@@ -119,9 +119,20 @@
 				$this->Infinitas->noticeNotSaved();
 			}
 
-			//$categories = array(__('Please select', true)) + $this->Content->Category->generatetreelist();
-			$groups = array(0 => __('Public', true)) + $this->Content->Group->generatetreelist();
 			$layouts = $this->Content->Layout->find('list');
+			if(empty($layouts)){
+				$this->notice(
+					__('You need to create some layouts before you can create content', true),
+					array(
+						'level' => 'warning',
+						'redirect' => array(
+							'controller' => 'layouts'
+						)
+					)
+				);
+			}
+			
+			$groups = array(0 => __('Public', true)) + $this->Content->Group->generatetreelist();
 			$this->set(compact('groups','layouts'));
 		}
 
