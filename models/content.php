@@ -31,8 +31,9 @@
 
 		public $lockable = true;
 
+		public $contentable = true;
+
 		public $_order = array(
-			'Category.title' => 'asc',
 			'Content.ordering' => 'asc'
 		);
 
@@ -51,25 +52,6 @@
 				'fields' => array(
 					'Editor.id',
 					'Editor.username'
-				)
-			),
-			'Group' => array(
-				'className' => 'Users.Group',
-				'fields' => array(
-					'Group.id',
-					'Group.name'
-				)
-			),
-			'Layout' => array(
-				'className' => 'Cms.ContentLayout',
-				'foreignKey' => 'layout_id',
-				'counterCache' => true,
-				'fields' => array(
-					'Layout.id',
-					'Layout.name',
-					'Layout.html',
-					'Layout.css',
-					'Layout.id',
 				)
 			)
 		);
@@ -153,31 +135,23 @@
 				array(
 					'fields' => array(
 						'Content.id',
-						'Content.title',
-						'Content.slug',
-						'Content.body',
-						'Content.group_id',
 						'Content.views',
 						'Content.active',
 						'Content.start',
 						'Content.end',
-						'Content.created',
-						'Content.modified',
-						'Content.layout_id',
 						'Content.rating',
 						'Content.rating_count',
 					),
 					'conditions' => array(
-						'Content.slug' => $slug,
+						'Content.id' => $this->getContentId($slug),
 						'Content.active' => 1
 					),
 					'contain' => array(
-						'Layout',
 						'Category'
 					)
 				)
 			);
 
 			return $content;
-		}		
+		}
 	}

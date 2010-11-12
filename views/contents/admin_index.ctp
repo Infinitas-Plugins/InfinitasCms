@@ -64,13 +64,11 @@
                 )
             );
 
-            $i = 0;
-            foreach ( $contents as $content )
-            {
+            foreach ($contents as $content){
                 ?>
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
                         <td><?php echo $this->Form->checkbox($content['Content']['id']); ?>&nbsp;</td>
-                		<td><?php echo $this->Html->adminQuickLink($content['Content']); ?>&nbsp;</td>
+                		<td><?php echo $this->Html->link($content['Content']['title'], array('action' => 'edit', $content['Content']['id'])); ?>&nbsp;</td>
                 		<td>
                 			<?php
 								echo $this->Html->adminQuickLink(
@@ -84,16 +82,21 @@
                         	?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $content['Group']['name'] ? $content['Group']['name'] : __('Public', true); ?>&nbsp;
+                			<?php 
+								echo isset($content['Group']['name']) && !empty($content['Group']['name'])
+									? $content['Group']['name']
+									: __('Public', true);
+							?>&nbsp;
                 		</td>
                 		<td>
                 			<?php
 								echo $this->Html->adminQuickLink(
 									$content['Layout'],
 									array(
-										'controller' => 'layouts'
+										'plugin' => 'contents',
+										'controller' => 'global_layouts'
 									),
-									'Layout'
+									'GlobalLayout'
 								);
 							?>&nbsp;
                 		</td>
@@ -104,7 +107,7 @@
                 			<?php echo $this->Time->niceShort($content['Content']['modified']); ?>&nbsp;
                 		</td>
                 		<td class="status">
-                			<?php echo $this->Cms->ordering($content['Content']['id'], $content['Content']['ordering'], 'Cms.Content'); ?>&nbsp;
+                			<?php echo $this->Infinitas->ordering($content['Content']['id'], $content['Content']['ordering'], 'Cms.Content'); ?>&nbsp;
                 		</td>
                 		<td class="status">
                 			<?php

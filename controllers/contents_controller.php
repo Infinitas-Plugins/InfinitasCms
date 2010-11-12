@@ -76,9 +76,7 @@
 		public function admin_index() {
 			$this->paginate = array(
 				'contain' => array(
-					'Category',
-					'Group',
-					'Layout'
+					'Category'
 				)
 			);
 			

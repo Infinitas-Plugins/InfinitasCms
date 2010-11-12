@@ -18,25 +18,14 @@
      * @since         0.5a
      */
 	echo $this->Form->create('Content', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
-		echo $this->Infinitas->adminEditHead();?>
+		echo $this->Infinitas->adminEditHead();
+		echo $this->element('content_form', array('plugin' => 'Contents')); ?>
 		<fieldset>
-			<h1><?php echo __('Content', true); ?></h1><?php
+			<h1><?php echo __('Other Info', true); ?></h1><?php
 			echo $this->Form->input('id');
-			echo $this->Form->input('title', array('class' => 'title'));
-			echo $this->element('category_list', array('plugin' => 'Categories'));
-			echo $this->Cms->wysiwyg('Content.body'); ?>
-		</fieldset>
-		<fieldset>
-			<h1><?php echo __('Config', true); ?></h1><?php
 			echo $this->Form->input('active');
-			echo $this->Form->input('layout_id');
-			echo $this->Form->input('group_id', array('label' => __('Min Group', true)));
-			echo $this->Form->hidden('ContentConfig.id');?>
-		</fieldset>
-		<fieldset>
-			<h1><?php echo __('Author', true); ?></h1><?php
-			echo $this->Form->input('ContentConfig.author_alias');
-			echo $this->Form->input('ContentConfig.keywords');
-			echo $this->Form->input('ContentConfig.description', array('class'=>'title')); ?>
+			echo $this->element('category_list', array('plugin' => 'Categories'));
+			echo $this->Form->hidden('ContentConfig.id');
+			echo $this->Form->input('ContentConfig.author_alias'); ?>
 		</fieldset><?php
 	echo $this->Form->end();
