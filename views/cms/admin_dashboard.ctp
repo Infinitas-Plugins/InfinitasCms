@@ -24,12 +24,6 @@
 			'description' => __('See what items are currently pending', true),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'contents', 'action' => 'index', 'Content.active' => 0)
-		),
-		array(
-			'name' => __('Layouts', true),
-			'description' => __('Manage the layouts for your pages', true),
-			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'layouts', 'action' => 'index')
 		)
 	);
 

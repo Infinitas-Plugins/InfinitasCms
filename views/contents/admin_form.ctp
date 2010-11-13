@@ -19,7 +19,7 @@
      */
 	echo $this->Form->create('Content', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead();
-		echo $this->element('content_form', array('plugin' => 'Contents')); ?>
+		echo $this->element('content_form', array('plugin' => 'contents')); ?>
 		<fieldset>
 			<h1><?php echo __('Other Info', true); ?></h1><?php
 			echo $this->Form->input('id');

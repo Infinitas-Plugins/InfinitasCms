@@ -68,7 +68,11 @@
                 ?>
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
                         <td><?php echo $this->Form->checkbox($content['Content']['id']); ?>&nbsp;</td>
-                		<td><?php echo $this->Html->link($content['Content']['title'], array('action' => 'edit', $content['Content']['id'])); ?>&nbsp;</td>
+                		<td>
+							<?php
+								echo $this->Html->link($content['Content']['title'], array('action' => 'edit', $content['Content']['id']));
+								echo $this->Html->adminPreview($content['Content']);
+							?>&nbsp;</td>
                 		<td>
                 			<?php
 								echo $this->Html->adminQuickLink(
