@@ -125,8 +125,8 @@
 			);
 		}
 
-		public function getContentPage($slug = null){
-			if (!$slug) {
+		public function getViewData($conditions = null){
+			if (!$conditions) {
 				return array();
 			}
 
@@ -142,10 +142,7 @@
 						'Content.rating',
 						'Content.rating_count',
 					),
-					'conditions' => array(
-						'Content.id' => $this->getContentId($slug),
-						'Content.active' => 1
-					),
+					'conditions' => $conditions,
 					'contain' => array(
 						'Category'
 					)

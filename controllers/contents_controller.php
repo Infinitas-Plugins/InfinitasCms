@@ -70,7 +70,14 @@
 				$this->redirect($this->referer());
 			}
 
-			$this->set('content', $this->Content->getContentPage($this->params['slug']));			
+			$content = $this->Content->getViewData(
+				array(
+					'Content.id' => $this->Content->getContentId($this->params['slug']),
+					'Content.active' => 1
+				)
+			);
+
+			$this->set('content', $content);
 		}
 
 		public function admin_index() {
