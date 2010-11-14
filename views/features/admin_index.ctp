@@ -52,7 +52,7 @@
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
                         <td><?php echo $this->Form->checkbox($feature['Feature']['id']); ?>&nbsp;</td>
                 		<td>
-                			<?php echo $this->Html->adminQuickLink($feature['Content'], array('controller' => 'contents'), 'Content'); ?>&nbsp;
+                			<?php echo $this->Html->link($feature['Content']['title'], array('controller' => 'contents', 'action' => 'edit', $feature['Content']['id'])); ?>&nbsp;
                 		</td>
                 		<td>
                 			<?php echo $this->Html->adminQuickLink($feature['Content']['Category'], array('plugin' => 'categories', 'controller' => 'categories', 'action' => 'edit'), 'Category'); ?>&nbsp;

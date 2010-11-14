@@ -29,7 +29,6 @@
 				'className' => 'Cms.Content',
 				'fields' => array(
 					'Content.id',
-					'Content.title',
 					'Content.active',
 					'Content.category_id',
 				)
@@ -48,7 +47,7 @@
 		 */
 		public $noConfirm = true;
 
-		public function  __construct($id = false, $table = null, $ds = null) {
+		public function __construct($id = false, $table = null, $ds = null) {
 			parent::__construct($id, $table, $ds);
 
 			$this->validate = array(

@@ -19,12 +19,17 @@
 				),
 				'contain' => array(
 					'Content' => array(						
-						'Category'
+						'Category',
+						'GlobalContent'
 					)
 				)
 			);
 
 			$features = $this->paginate();
+
+			foreach($features as $k => $feature){
+				$features[$k]['Content'] += $feature['Content']['GlobalContent'];
+			}
 
 			$this->set(compact('features'));
 		}

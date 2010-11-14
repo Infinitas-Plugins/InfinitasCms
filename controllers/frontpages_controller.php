@@ -67,15 +67,18 @@
 						// default has more items
 						'fields' => array(
 							'Content.id',
-							'Content.title',
 							'Content.active',
 						),
+						'GlobalContent',
 						'Category'
 					)
 				)
 			);
 
 			$frontpages = $this->paginate();
+			foreach($frontpages as $k => $frontpage){
+				$frontpages[$k]['Content'] += $frontpage['Content']['GlobalContent'];
+			}
 
 			$this->set(compact('frontpages'));
 		}
