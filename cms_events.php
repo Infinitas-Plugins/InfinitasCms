@@ -14,7 +14,7 @@
 			);
 		}
 
-		public function onAdminMenu(&$event){
+		public function onAdminMenu($event){
 			$menu['main'] = array(
 				'Dashboard' => array('controller' => 'cms', 'action' => 'dashboard'),
 				'Content' => array('controller' => 'contents', 'action' => 'index'),
@@ -42,7 +42,7 @@
 			);
 		}
 
-		public function onSlugUrl(&$event, $data){
+		public function onSlugUrl($event, $data){
 			$data['data'] = isset($data['data']) ? $data['data'] : $data;
 			$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
 			switch(strtolower($data['type'])){
