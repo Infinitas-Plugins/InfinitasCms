@@ -3,6 +3,8 @@
 	class FrontpageFixture extends CakeTestFixture {
 		var $name = 'Frontpage';
 
+		var $table = 'cms_frontpages';
+
 		var $fields = array(
 			'id' => array('type' => 'integer', 'null' => false, 'key' => 'primary'),
 			'content_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
