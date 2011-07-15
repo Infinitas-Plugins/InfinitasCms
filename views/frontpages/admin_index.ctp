@@ -52,7 +52,7 @@
             foreach ($frontpages as $frontpage){
                 ?>
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
-                        <td><?php echo $this->Form->checkbox($frontpage['Frontpage']['id']); ?>&nbsp;</td>
+                        <td><?php echo $this->Infinitas->massActionCheckBox($frontpage); ?>&nbsp;</td>
                 		<td>
                 			<?php echo $this->Html->link($frontpage['Content']['title'], array('controller' => 'contents', 'action' => 'view', $frontpage['Content']['id'])); ?>
                 		</td>

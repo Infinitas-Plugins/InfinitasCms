@@ -50,7 +50,7 @@
             foreach ($features as $feature){
                 ?>
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
-                        <td><?php echo $this->Form->checkbox($feature['Feature']['id']); ?>&nbsp;</td>
+                        <td><?php echo $this->Infinitas->massActionCheckBox($feature); ?>&nbsp;</td>
                 		<td>
                 			<?php echo $this->Html->link($feature['Content']['title'], array('controller' => 'contents', 'action' => 'edit', $feature['Content']['id'])); ?>&nbsp;
                 		</td>
