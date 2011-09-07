@@ -131,7 +131,9 @@
 					array(
 						'level' => 'warning',
 						'redirect' => array(
-							'controller' => 'layouts'
+							'controller' => 'global_layouts',
+							'plugin' => 'contents',
+							'action' => 'index'
 						)
 					)
 				);
