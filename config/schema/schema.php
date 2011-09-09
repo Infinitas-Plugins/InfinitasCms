@@ -1,6 +1,6 @@
 <?php 
 /* SVN FILE: $Id$ */
-/* Cms schema generated on: 2010-11-14 16:11:24 : 1289751204*/
+/* Cms schema generated on: 2011-09-09 13:09:45 : 1315570605*/
 class CmsSchema extends CakeSchema {
 	var $name = 'Cms';
 
@@ -28,7 +28,7 @@ class CmsSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 	var $features = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
+		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'content_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'ordering' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8),
 		'order_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
@@ -37,7 +37,7 @@ class CmsSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 	var $frontpages = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
+		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'content_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'ordering' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 5),
 		'order_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 3),
