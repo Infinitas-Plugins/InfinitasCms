@@ -25,8 +25,9 @@
 		 'allow_ratings' => true,
 		 'auto_redirect' => true,
 		 'info' => array(
-			 'content' => __('You can view the content on your site now using the list icons now. You can see everything or filter out active or disabled content also. You can add new content using the add icon.', true),
-			 'frontpages' => __('Cms front pages are the items that will show when a user visits the main url for your cms section of the site. This is normaly site.com/cms', true),
-			 'featured' => __('Featured items are just a way to make a content item stand out from the other content items that you have on your site.', true)
+			 'content' => __d('cms', 'You can view the content on your site now using the list icons now. You can see everything or filter out active or disabled content also. You can add new content using the add icon.', true),
+			 'frontpages' => __d('cms', 'Cms front pages are the items that will show when a user visits the main url for your cms section of the site. This is normaly site.com/cms', true),
+			 'featured' => __d('cms', 'Featured items are just a way to make a content item stand out from the other content items that you have on your site.', true),
+			 'config' => __d('cms', 'Configure and manage how your content is displayed. Create different SEO urls, manage images, restore trash and more', true)
 		 )
 	 );
