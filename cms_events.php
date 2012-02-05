@@ -60,4 +60,17 @@
 
 			return $url;
 		}
+
+		public function onSetupRoutes($event, $data = null) {
+			Router::connect(
+				'/admin/cms',
+				array(
+					'admin' => true,
+					'prefix' => 'admin',
+					'plugin' => 'cms',
+					'controller' => 'cms',
+					'action' => 'dashboard'
+				)
+			);
+		}
 	}
