@@ -55,7 +55,7 @@
                 			<?php echo $this->Html->link($feature['Content']['title'], array('controller' => 'contents', 'action' => 'edit', $feature['Content']['id'])); ?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $this->Html->adminQuickLink($feature['Content']['Category'], array('plugin' => 'categories', 'controller' => 'categories', 'action' => 'edit'), 'Category'); ?>&nbsp;
+                			<?php echo $this->Html->adminQuickLink($feature['Content']['GlobalCategory'], array('plugin' => 'contents', 'controller' => 'categories', 'action' => 'edit'), 'GlobalCategory'); ?>&nbsp;
                 		</td>
                 		<td>
                 			<?php echo $this->Time->niceShort($feature['Feature']['created']); ?>&nbsp;

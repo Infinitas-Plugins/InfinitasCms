@@ -16,7 +16,7 @@
 				$this->Html->link(
 					__('set some up', true ),
 					array(
-						'plugin' => 'blog',
+						'plugin' => 'contents',
 						'controller' => 'categories',
 						'action' => 'add'
 					)
@@ -29,7 +29,7 @@
 				$this->Html->link(
 					__('set some up', true ),
 					array(
-						'plugin' => 'blog',
+						'plugin' => 'contents',
 						'controller' => 'categories',
 						'action' => 'add'
 					)

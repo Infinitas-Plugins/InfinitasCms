@@ -19,7 +19,7 @@
 				),
 				'contain' => array(
 					'Content' => array(						
-						'Category',
+						'GlobalCategory',
 						'GlobalContent'
 					)
 				)

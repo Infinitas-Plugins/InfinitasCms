@@ -42,7 +42,7 @@
 						'Content.id' => $ids
 					),
 					'contain' => array(
-						'Category',
+						'GlobalCategory',
 						'ContentComment'
 					),
 					'order' => $this->Frontpage->Content->_order
@@ -70,7 +70,7 @@
 							'Content.active',
 						),
 						'GlobalContent',
-						'Category'
+						'GlobalCategory'
 					)
 				)
 			);

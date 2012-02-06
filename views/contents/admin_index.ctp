@@ -42,7 +42,7 @@
                         'style' => 'width:25px;'
                     ),
                     $this->Paginator->sort('title' ),
-                    $this->Paginator->sort('Category', 'Category.title'),
+                    $this->Paginator->sort('GlobalCategory', 'GlobalCategory.title'),
                     $this->Paginator->sort('Group', 'Group.name') => array(
                         'style' => 'width:100px;'
                     ),
@@ -76,12 +76,12 @@
                 		<td>
                 			<?php
 								echo $this->Html->adminQuickLink(
-									$content['Category'],
+									$content['GlobalCategory'],
 									array(
-										'plugin' => 'categories',
+										'plugin' => 'contents',
 										'controller' => 'categories'
 									),
-									'Category'
+									'GlobalCategory'
 								);
                         	?>&nbsp;
                 		</td>

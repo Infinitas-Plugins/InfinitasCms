@@ -144,7 +144,7 @@
 					),
 					'conditions' => $conditions,
 					'contain' => array(
-						'Category'
+						'GlobalCategory'
 					)
 				)
 			);

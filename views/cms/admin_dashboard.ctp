@@ -27,7 +27,7 @@
 			'name' => __('Categories', true),
 			'description' => __('Configure the categories for your content', true),
 			'icon' => '/categories/img/icon.png',
-			'dashboard' => array('plugin' => 'categories', 'controller' => 'categories', 'action' => 'index')
+			'dashboard' => array('plugin' => 'contents', 'controller' => 'categories', 'action' => 'index')
 		),
 		array(
 			'name' => __('List', true),
