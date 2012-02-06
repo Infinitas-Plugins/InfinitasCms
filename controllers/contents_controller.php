@@ -81,12 +81,6 @@
 		}
 
 		public function admin_index() {
-			$this->paginate = array(
-				'contain' => array(
-					'GlobalCategory'
-				)
-			);
-			
 			$this->Content->order = $this->Content->_order;
 			$contents = $this->paginate(null, $this->Filter->filter);
 
