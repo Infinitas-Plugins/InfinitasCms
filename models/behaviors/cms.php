@@ -8,6 +8,9 @@
 			if(empty($query['fields'])) {
 				$query['fields'] = array($Model->alias . '.*');
 			}
+			if(!is_array($query['fields'])) {
+				$query['fields'] = array($query['fields']);
+			}
 			
 			switch($Model->name) {
 				case 'Content':
