@@ -11,26 +11,12 @@
 
 		public function admin_index() {
 			$this->paginate = array(
-				'fields' => array(
-					'Feature.id',
-					'Feature.content_id',
-					'Feature.ordering',
-					'Feature.created'
-				),
-				'contain' => array(
-					'Content' => array(						
-						'GlobalCategory',
-						'GlobalContent'
-					)
+				'conditions' => array(
+					'Feature.id IS NOT NULL'
 				)
 			);
 
-			$features = $this->paginate();
-
-			foreach($features as $k => $feature){
-				$features[$k]['Content'] += $feature['Content']['GlobalContent'];
-			}
-
+			$features = $this->paginate('Content');
 			$this->set(compact('features'));
 		}
 

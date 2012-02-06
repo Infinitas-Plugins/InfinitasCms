@@ -55,30 +55,12 @@
 
 		public function admin_index() {
 			$this->paginate = array(
-				'fields' => array(
-					'Frontpage.id',
-					'Frontpage.content_id',
-					'Frontpage.ordering',
-					'Frontpage.created',
-					'Frontpage.modified'
-				),
-				'contain' => array(
-					'Content' => array(
-						// default has more items
-						'fields' => array(
-							'Content.id',
-							'Content.active',
-						),
-						'GlobalContent',
-						'GlobalCategory'
-					)
+				'conditions' => array(
+					'Frontpage.id IS NOT NULL'
 				)
 			);
 
-			$frontpages = $this->paginate();
-			foreach($frontpages as $k => $frontpage){
-				$frontpages[$k]['Content'] += $frontpage['Content']['GlobalContent'];
-			}
+			$frontpages = $this->paginate('Content');
 
 			$this->set(compact('frontpages'));
 		}

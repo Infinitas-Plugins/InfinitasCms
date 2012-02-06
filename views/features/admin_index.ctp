@@ -32,7 +32,7 @@
                         'style' => 'width:25px;'
                     ),
                     $this->Paginator->sort('Content Item', 'Content.title'),
-                    __('Category', true) => array(
+                    $this->Paginator->sort('Category', 'GlobalCategory.title') => array(
                         'style' => 'width:100px;'
                     ),
                     $this->Paginator->sort('created') => array(
@@ -52,28 +52,32 @@
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
                         <td><?php echo $this->Infinitas->massActionCheckBox($feature); ?>&nbsp;</td>
                 		<td>
-                			<?php echo $this->Html->link($feature['Content']['title'], array('controller' => 'contents', 'action' => 'edit', $feature['Content']['id'])); ?>&nbsp;
-                		</td>
-                		<td>
-                			<?php echo $this->Html->adminQuickLink($feature['Content']['GlobalCategory'], array('plugin' => 'contents', 'controller' => 'categories', 'action' => 'edit'), 'GlobalCategory'); ?>&nbsp;
-                		</td>
-                		<td>
-                			<?php echo $this->Time->niceShort($feature['Feature']['created']); ?>&nbsp;
-                		</td>
-                		<td>
                 			<?php
-                			    echo $this->Cms->ordering(
-                			        $feature['Feature']['id'],
-                			        $feature['Feature']['ordering'],
-									'Feature'
-                			    );
-                			?>&nbsp;
+								echo $this->Html->link(
+									$feature['Content']['title'],
+									array(
+										'controller' => 'contents',
+										'action' => 'edit',
+										$feature['Content']['id']
+									)
+								);
+							?>&nbsp;
                 		</td>
                 		<td>
-                			<?php
-                			    echo $this->Infinitas->status($feature['Content']['active']);
-                			?>&nbsp;
+							<?php
+								echo $this->Html->adminQuickLink(
+									$feature['GlobalCategory'],
+									array(
+										'plugin' => 'contents',
+										'controller' => 'global_categories',
+										'action' => 'edit'
+									)
+								);
+							?>&nbsp;
                 		</td>
+                		<td><?php echo $this->Time->niceShort($feature['Feature']['created']); ?>&nbsp;</td>
+                		<td><?php echo $this->Cms->ordering($feature['Feature']['id'], $feature['Feature']['ordering']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->status($feature['Content']['active']); ?>&nbsp;</td>
                 	</tr>
                 <?php
             }

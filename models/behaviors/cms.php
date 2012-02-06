@@ -1,10 +1,6 @@
 <?php
 	class CmsBehavior extends ModelBehavior {
 		public function beforeFind($Model, $query) {
-			if($Model->findQueryType == 'count'){
-				return $query;
-			}
-
 			if(empty($query['fields'])) {
 				$query['fields'] = array($Model->alias . '.*');
 			}
