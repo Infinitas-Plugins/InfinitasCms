@@ -56,6 +56,10 @@
 			)
 		);
 
+		public $actsAs = array(
+			'Cms.Cms'
+		);
+
 		public $hasOne = array(
 			/* making duplicate records.
 			'ContentConfig' => array(
