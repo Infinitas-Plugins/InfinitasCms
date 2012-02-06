@@ -105,19 +105,6 @@
 		}
 
 		public function admin_add() {
-			if (!empty($this->data)) {
-				$this->Content->create();
-				if ($data = $this->Content->saveAll($this->data) == true) {
-					if($this->data['Content']['active']){
-						//$this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
-					}
-
-					$this->Infinitas->noticeSaved();
-				}
-
-				$this->Infinitas->noticeNotSaved();
-			}
-
 			$layouts = $this->Content->Layout->find('list');
 			if(empty($layouts)){
 				$this->notice(
@@ -133,34 +120,10 @@
 				);
 			}
 			
-			$groups = array(0 => __('Public', true)) + $this->Content->Group->generatetreelist();
-			$this->set(compact('groups','layouts'));
+			parent::admin_add();
 		}
 
 		public function admin_edit($id = null) {
-			if (!$id && empty($this->data)) {
-				$this->Session->setFlash(__('Invalid content', true));
-				$this->redirect(array('action' => 'index'));
-			}
-
-			if (!empty($this->data)) {
-				if ($data = $this->Content->saveAll($this->data) == true) {
-					if($this->data['Content']['active']){
-						// $this->Event->trigger('cmsContentAdded', array('event' => $this->Event, 'data' => $data));
-					}
-
-					$this->Infinitas->noticeSaved();
-				}
-				
-				$this->Infinitas->noticeNotSaved();
-			}
-
-			if (empty($this->data)) {
-				$this->data = $this->Content->read(null, $id);
-			}
-
-			$groups = array(__('Public', true)) + $this->Content->Group->generatetreelist();
-			$layouts = $this->Content->Layout->find('list');
-			$this->set(compact('categories','groups','layouts'));
+			parent::admin_edit($id);
 		}
 	}
