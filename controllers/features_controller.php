@@ -29,10 +29,6 @@
 		public function admin_add() {
 			parent::admin_add();
 
-			/**
-			 * check what is already in the table so that the list only shows
-			 * what is available.
-			 */
 			$content_ids = $this->Feature->find(
 				'list',
 				array(
@@ -43,17 +39,16 @@
 				)
 			);
 
-			/**
-			 * only get the content itmes that are not being used.
-			 */
-			$contents = $this->Feature->Content->find(
-				'list',
-				array(
-					'conditions' => array(
-						'Content.id NOT IN ( ' . implode(',', ((!empty($content_ids)) ? $content_ids : array(0))) . ' )'
+			$conditions = array();
+			if($content_ids) {
+				$conditions = array(
+					'not' => array(
+						'Content.id ' => $content_ids
 					)
-				)
-			);
+				);
+			}
+
+			$contents = $this->Feature->Content->find('list', array('conditions' => $conditions));
 
 			if (empty($contents)) {
 				$this->notice(

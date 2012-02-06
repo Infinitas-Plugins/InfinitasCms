@@ -82,17 +82,19 @@
 				)
 			);
 
+			$conditions = array();
+			if($content_ids) {
+				$conditions = array(
+					'not' => array(
+						'Content.id ' => $content_ids
+					)
+				);
+			}
+
 			/**
 			* only get the content itmes that are not being used.
 			*/
-			$contents = $this->Frontpage->Content->find(
-				'list',
-				array(
-					'conditions' => array(
-						'Content.id NOT IN ( ' . implode(',', ((!empty($content_ids)) ? $content_ids : array(0))) . ' )'
-					)
-				)
-			);
+			$contents = $this->Frontpage->Content->find('list', array('conditions' => $conditions));
 
 			if (empty($contents)) {
 				$this->notice(

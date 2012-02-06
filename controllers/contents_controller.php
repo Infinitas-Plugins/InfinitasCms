@@ -89,7 +89,7 @@
 				'title',
 				'category_id' => array(null => __('All', true), null => __('Top Level Categories', true)) + $this->Content->generateCategoryList(),
 				'group_id' => array(null => __('Public', true)) + $this->Content->Group->find('list'),
-				'layout_id' => array(null => __('All', true)) + $this->Content->Layout->find('list'),
+				'layout_id' => array(null => __('All', true)) + $this->Content->GlobalContent->GlobalLayout->find('list'),
 				'active' => (array)Configure::read('CORE.active_options')
 			);
 
@@ -105,8 +105,7 @@
 		}
 
 		public function admin_add() {
-			$layouts = $this->Content->Layout->find('list');
-			if(empty($layouts)){
+			if(!$this->Content->hasLayouts()){
 				$this->notice(
 					__('You need to create some layouts before you can create content', true),
 					array(

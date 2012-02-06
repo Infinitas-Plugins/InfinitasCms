@@ -34,8 +34,8 @@
 
 		public function admin_dashboard(){
 			$Content = ClassRegistry::init('Cms.Content');
-
-			$requireSetup = count($Content->Layout->find('list')) >= 1;
+			
+			$requireSetup = count($Content->GlobalContent->GlobalLayout->find('list')) >= 1;
 			$this->set('requreSetup', $requireSetup);
 			$this->set('hasContent', $Content->find('count') >= 1);
 		}

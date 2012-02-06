@@ -54,7 +54,18 @@
                 	<tr class="<?php echo $this->Cms->rowClass(); ?>">
                         <td><?php echo $this->Infinitas->massActionCheckBox($frontpage); ?>&nbsp;</td>
                 		<td><?php echo $this->Html->link($frontpage['Content']['title'], array('controller' => 'contents', 'action' => 'view', $frontpage['Content']['id'])); ?>&nbsp;</td>
-                		<td><?php echo $this->Html->link($frontpage['GlobalCategory']['title'], array('plugin' => 'contents', 'controller' => 'global_categories', 'action' => 'edit', $frontpage['GlobalCategory']['id'])); ?>&nbsp;</td>
+                		<td>
+							<?php
+								echo $this->Html->adminQuickLink(
+									$frontpage['GlobalCategory'],
+									array(
+										'plugin' => 'contents',
+										'controller' => 'global_categories',
+										'action' => 'edit'
+									)
+								);
+							?>&nbsp;
+                		</td>
                 		<td><?php echo $this->Time->niceShort($frontpage['Frontpage']['created']); ?>&nbsp;</td>
                 		<td><?php echo $this->Time->niceShort($frontpage['Frontpage']['modified']); ?>&nbsp;</td>
                 		<td><?php echo $this->Infinitas->ordering($frontpage['Frontpage']['id'], $frontpage['Frontpage']['ordering']); ?>&nbsp;</td>
