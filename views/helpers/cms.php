@@ -35,13 +35,15 @@
 		 * @param string $model the current model
 		 * @return string some html for an icon
 		 */
-        public function homePageItem($record = array(), $model = 'Content'){
+        public function homePageItem($record = array(), $model = 'Frontpage'){
             if (empty($record)){
                 $this->errors[] = 'cant check nothing.';
                 return false;
             }
 
-            if (!empty($record['ContentFrontpage'])){
+			$record = array_filter($record[$model]);
+
+            if (!empty($record)){
                 return $this->Html->image(
                     $this->Image->getRelativePath('status', 'home'),
                     array(
