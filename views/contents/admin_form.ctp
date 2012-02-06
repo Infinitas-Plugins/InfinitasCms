@@ -24,7 +24,6 @@
 			<h1><?php echo __('Other Info', true); ?></h1><?php
 			echo $this->Form->input('id');
 			echo $this->Form->input('active');
-			echo $this->element('category_list', array('plugin' => 'Contents'));
 			echo $this->Form->hidden('ContentConfig.id');
 			echo $this->Form->input('ContentConfig.author_alias'); ?>
 		</fieldset><?php

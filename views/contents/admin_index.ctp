@@ -42,7 +42,7 @@
                         'style' => 'width:25px;'
                     ),
                     $this->Paginator->sort('title' ),
-                    $this->Paginator->sort('GlobalCategory', 'GlobalCategory.title'),
+                    $this->Paginator->sort('Category', 'GlobalCategory.title'),
                     $this->Paginator->sort('Group', 'Group.name') => array(
                         'style' => 'width:100px;'
                     ),
@@ -80,8 +80,7 @@
 									array(
 										'plugin' => 'contents',
 										'controller' => 'categories'
-									),
-									'GlobalCategory'
+									)
 								);
                         	?>&nbsp;
                 		</td>
