@@ -19,12 +19,21 @@
      */
 	echo $this->Form->create('Content', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead();
-		echo $this->element('content_form', array('plugin' => 'Contents')); ?>
-		<fieldset>
-			<h1><?php echo __('Other Info', true); ?></h1><?php
-			echo $this->Form->input('id');
-			echo $this->Form->input('active');
-			echo $this->Form->hidden('ContentConfig.id');
-			echo $this->Form->input('ContentConfig.author_alias'); ?>
-		</fieldset><?php
+
+		$tabs = array(
+			__d('contents', 'Content', true),
+			__d('cms', 'Status', true),
+			__d('contents', 'Author', true),
+			__d('cms', 'Other Data', true)
+		);
+		
+		$content = array(
+			$this->element('content_form', array('plugin' => 'Contents')),
+			implode('', array($this->Form->input('active'), $this->Html->datePicker(array('start_date', 'end_date'), 'Content', true))),
+			$this->element('author_form', array('plugin' => 'Contents')),
+			implode('', array($this->Form->input('id'),
+				$this->Form->hidden('ContentConfig.id'), $this->element('meta_form', array('plugin' => 'Contents'))))
+		);
+		
+		echo $this->Design->tabs($tabs, $content);
 	echo $this->Form->end();
