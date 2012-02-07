@@ -146,10 +146,7 @@
 						'Content.rating',
 						'Content.rating_count',
 					),
-					'conditions' => $conditions,
-					'contain' => array(
-						'GlobalCategory'
-					)
+					'conditions' => $conditions
 				)
 			);
 
