@@ -24,12 +24,6 @@
 	$links = array();
 	$links['main'] = array(
 		array(
-			'name' => __('Categories', true),
-			'description' => __('Configure the categories for your content', true),
-			'icon' => '/categories/img/icon.png',
-			'dashboard' => array('plugin' => 'contents', 'controller' => 'categories', 'action' => 'index')
-		),
-		array(
 			'name' => __('List', true),
 			'description' => __('View all your content pages', true),
 			'icon' => '/cms/img/icon.png',
@@ -54,54 +48,6 @@
 			'dashboard' => array('controller' => 'contents', 'action' => 'index', 'Content.active' => 0)
 		)
 	);
-
-	$links['config'] = array(
-		array(
-			'name' => __('Layouts', true),
-			'description' => __('Configure the layouts for your content', true),
-			'icon' => '/contents/img/icon.png',
-			'dashboard' => array('plugin' => 'contents', 'controller' => 'global_layouts', 'action' => 'index', 'GlobalLayout.model' => 'Cms')
-		),
-		array(
-			'name' => __('Routes', true),
-			'description' => __('Manage content routes', true),
-			'icon' => '/routes/img/icon.png',
-			'dashboard' => array('plugin' => 'routes', 'controller' => 'routes', 'action' => 'index', 'Route.plugin' => 'Cms')
-		),
-		array(
-			'name' => __('Modules', true),
-			'description' => __('Manage content modules', true),
-			'icon' => '/modules/img/icon.png',
-			'dashboard' => array('plugin' => 'modules', 'controller' => 'modules', 'action' => 'index', 'Module.plugin' => 'Cms')
-		),
-		array(
-			'name' => __('Assets', true),
-			'description' => __('Manage content assets', true),
-			'icon' => '/filemanager/img/icon.png',
-			'dashboard' => array('plugin' => 'filemanager', 'controller' => 'filemanager', 'action' => 'index', 'webroot', 'img')
-		),
-		array(
-			'name' => __('Locked', true),
-			'description' => __('Manage locked content', true),
-			'icon' => '/locks/img/icon.png',
-			'dashboard' => array('plugin' => 'locks', 'controller' => 'locks', 'action' => 'index', 'Lock.class' => 'Cms')
-		),
-		array(
-			'name' => __('Trash', true),
-			'description' => __('View / Restore previously removed content', true),
-			'icon' => '/trash/img/icon.png',
-			'dashboard' => array('plugin' => 'trash', 'controller' => 'trash', 'action' => 'index', 'Trash.model' => 'Cms')
-		)
-	);
-
-	if($this->Infinitas->hasPlugin('ViewCounter')) {
-		$links['config'][] =  array(
-			'name' => __('Views', true),
-			'description' => __d('cms', 'Track content popularity', true),
-			'icon' => '/view_counter/img/icon.png',
-			'dashboard' => array('plugin' => 'view_counter', 'controller' => 'view_counts', 'action' => 'reports', 'ViewCount.model' => 'Cms')
-		);
-	}
 
 	$links['front'] = array(
 		array(
@@ -138,12 +84,14 @@
 	<?php echo $this->Design->arrayToList(current($this->Menu->builDashboardLinks($links['main'], 'cms_main_icons')), 'icons'); ?>
 	<p class="info"><?php echo Configure::read('Cms.info.content'); ?></p>
 </div>
-<div class="dashboard grid_16">
-	<h1><?php __d('cms', 'Config / Data'); ?></h1>
-	<?php echo $this->Design->arrayToList(current($this->Menu->builDashboardLinks($links['config'], 'cms_config_icons')), 'icons'); ?>
-	<p class="info"><?php echo Configure::read('Cms.info.config'); ?></p>
-</div>
 <?php
+	echo $this->element(
+		'modules/admin/dashboard_links',
+		array(
+			'plugin' => 'contents'
+		)
+	);
+	
 	if(!$hasContent) { ?>
 		<div class="dashboard grid_16">
 			<h1><?php echo __d('cms', 'No Content', true); ?></h1>
