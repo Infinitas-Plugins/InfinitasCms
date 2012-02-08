@@ -81,14 +81,18 @@
 		}
 
 		public function admin_index() {
-			$this->Content->order = $this->Content->_order;
+			$this->Content->order = array_merge(
+				array('GlobalCategoryContent.title'),
+				$this->Content->_order
+			);
+
 			$contents = $this->paginate(null, $this->Filter->filter);
 
 			$filterOptions = $this->Filter->filterOptions;
 			$filterOptions['fields'] = array(
 				'title',
-				'category_id' => array(null => __('All', true), null => __('Top Level Categories', true)) + $this->Content->generateCategoryList(),
-				'group_id' => array(null => __('Public', true)) + $this->Content->Group->find('list'),
+				'category_id' => array(null => __('All', true), null => __('Top Level Categories', true)) + $this->Content->GlobalContent->find('categoryList'),
+				'group_id' => array(null => __('Public', true)) + $this->Content->GlobalContent->Group->find('list'),
 				'layout_id' => array(null => __('All', true)) + $this->Content->GlobalContent->GlobalLayout->find('list'),
 				'active' => (array)Configure::read('CORE.active_options')
 			);
