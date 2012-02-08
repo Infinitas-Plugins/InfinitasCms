@@ -45,6 +45,20 @@
 		public function onSlugUrl($event, $data){
 			$data['data'] = isset($data['data']) ? $data['data'] : $data;
 			$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
+
+			$categorySlug = 'news-feed';
+
+			if(!empty($data['data']['GlobalCategory']['slug'])) {
+				$categorySlug = $data['data']['GlobalCategory']['slug'];
+			}
+
+			else if(!empty($data['data']['Content']['GlobalCategory']['slug'])) {
+				$categorySlug = $data['data']['Content']['GlobalCategory']['slug'];
+			}
+			if(empty($data['data']['Content'])) {
+				$data['data']['Content'] = $data['data'];
+			}
+
 			switch(strtolower($data['type'])){
 				case 'contents':					
 					$url = array(
@@ -53,7 +67,7 @@
 						'action'     => 'view',
 						'id'         => $data['data']['Content']['id'],
 						'slug'       => $data['data']['Content']['slug'],
-						'category'   => isset($data['data']['GlobalCategory']['slug']) ? $data['data']['GlobalCategory']['slug'] : __('news-item',true)
+						'category'   => $categorySlug
 					);
 					break;
 			} // switch
