@@ -29,6 +29,8 @@
 		$content['Content']['modified'] = $this->Time->niceShort($content['Content']['modified']);
 	}
 
+	$content['Content']['author'] = $this->GlobalContents->author($content);
+
 	// need to overwrite the stuff in the viewVars for mustache 
 	$this->set('content', $content);
 
