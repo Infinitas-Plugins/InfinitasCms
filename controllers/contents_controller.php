@@ -66,7 +66,7 @@
 
 		public function view() {
 			if (!isset($this->params['slug'])) {
-				$this->Session->setFlash( __('Invalid content selected', true) );
+				$this->Infinitas->noticeInvalidRecord();
 				$this->redirect($this->referer());
 			}
 
