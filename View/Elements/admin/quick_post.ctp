@@ -5,7 +5,7 @@
 			echo $this->Form->input('category_id');
 			echo $this->Form->input('group_id', array('label' => __('Min Group')));
 			echo $this->Form->input('title', array('class' => 'title'));
-			echo $this->Core->wysiwyg('Content.body', array('toolbar' => 'AdminBasic'));
+			echo $this->Infinitas->wysiwyg('Content.body', array('toolbar' => 'AdminBasic'));
 			echo $this->Form->input('active' );
 		echo $this->Form->end(__('Save'));
 	}
