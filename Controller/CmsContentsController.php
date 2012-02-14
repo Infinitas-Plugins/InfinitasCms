@@ -26,10 +26,6 @@
 		*/
 		public $helpers = array('Filter.Filter');
 
-		public function beforeFilter(){
-			parent::beforeFilter();
-		}
-
 		public function index() {
 			if(isset($this->params['id'])){
 				$ids = $this->CmsContent->find(

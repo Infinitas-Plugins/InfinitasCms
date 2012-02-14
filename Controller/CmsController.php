@@ -25,9 +25,12 @@
 
 		public function beforeFilter(){
 			parent::beforeFilter();
+			
 			if($this->params['action'] != 'admin_dashboard'){
 				$this->redirect(array('action' => 'dashboard'));
 			}
+			
+			return true;
 		}
 
 		public function admin_dashboard(){
