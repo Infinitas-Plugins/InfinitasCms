@@ -25,10 +25,4 @@
 			// core
 			'Cms.Cms'
 		);
-
-		public $components = array(
-			'Filter.Filter' => array(
-				'actions' => array('admin_index')
-			)
-		);
 	}

@@ -18,14 +18,6 @@
 	*/
 
 	class CmsContentsController extends CmsAppController {
-		/**
-		* Helpers.
-		*
-		* @access public
-		* @var array
-		*/
-		public $helpers = array('Filter.Filter');
-
 		public function index() {
 			if(isset($this->params['id'])){
 				$ids = $this->CmsContent->find(
