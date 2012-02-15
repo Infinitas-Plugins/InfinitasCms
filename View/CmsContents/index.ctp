@@ -35,14 +35,14 @@
 						$eventData = $this->Event->trigger('cms.slugUrl', array('type' => 'contents', 'data' => $content));
 						$urlArray = current($eventData['slugUrl']);
 						echo $this->Html->link(
-							$content['Content']['title'],
+							$content['CmsContent']['title'],
 							$urlArray
 						);
-					?><span><?php echo $this->Time->niceShort($content['Content']['created']); ?></span>
+					?><span><?php echo $this->Time->niceShort($content['CmsContent']['created']); ?></span>
 				</h2>
 				<div class="body">
 					<?php
-						echo $this->Text->truncate($content['Content']['body'], 200, array('html' => true));
+						echo $this->Text->truncate($content['CmsContent']['body'], 200, array('html' => true));
 					?>
 				</div>
 			</div>
@@ -51,8 +51,8 @@
 					'Comments.modules/comment',
 					array(
 						'content' => $content,
-						'modelName' => 'Content',
-						'foreign_id' => $content['Content']['id']
+						'modelName' => 'CmsContent',
+						'foreign_id' => $content['CmsContent']['id']
 					)
 				);
 			?>

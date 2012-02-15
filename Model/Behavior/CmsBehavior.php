@@ -9,7 +9,7 @@
 			}
 			
 			switch($Model->name) {
-				case 'Content':
+				case 'CmsContent':
 					$query = $this->__contentBeforeFind($Model, $query);
 					break;
 			}

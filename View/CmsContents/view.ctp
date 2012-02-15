@@ -22,14 +22,14 @@
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
 		echo '<div class="before '.$_plugin.'">'.$_data.'</div>';
 	}
-	if(isset($content['Content']['created'])){
-		$content['Content']['created'] = $this->Time->niceShort($content['Content']['created']);
+	if(isset($content['CmsContent']['created'])){
+		$content['CmsContent']['created'] = $this->Time->niceShort($content['CmsContent']['created']);
 	}
-	if(isset($content['Content']['modified'])){
-		$content['Content']['modified'] = $this->Time->niceShort($content['Content']['modified']);
+	if(isset($content['CmsContent']['modified'])){
+		$content['CmsContent']['modified'] = $this->Time->niceShort($content['CmsContent']['modified']);
 	}
 
-	$content['Content']['author'] = $this->GlobalContents->author($content);
+	$content['CmsContent']['author'] = $this->GlobalContents->author($content);
 
 	// need to overwrite the stuff in the viewVars for mustache 
 	$this->set('content', $content);

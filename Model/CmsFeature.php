@@ -18,17 +18,15 @@
 	 */
 
 	class CmsFeature extends CmsAppModel {
-		public $order = array(
-			'Feature.ordering' => 'ASC'
-		);
+		public $order = array();
 
 		public $belongsTo = array(
-			'Content' => array(
-				'className' => 'Cms.Content',
+			'CmsContent' => array(
+				'className' => 'Cms.CmsContent',
 				'fields' => array(
-					'Content.id',
-					'Content.active',
-					'Content.category_id',
+					'CmsContent.id',
+					'CmsContent.active',
+					'CmsContent.category_id',
 				)
 			)
 		);
@@ -55,6 +53,10 @@
 						'message' => __('Please select the content item that should be featured')
 					)
 				)
+			);
+
+			$this->order = array(
+				$this->alias . '.ordering' => 'ASC'
 			);
 		}
 	}

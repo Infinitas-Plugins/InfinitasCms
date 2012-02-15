@@ -41,10 +41,7 @@
 		 * @access public
 		 * @var array
 		 */
-		public $order = array(
-			'Frontpage.order_id' => 'ASC',
-			'Frontpage.ordering' => 'ASC'
-		);
+		public $order = array();
 
 		/**
 		 * belongsTo relations
@@ -53,17 +50,17 @@
 		 * @var array
 		 */
 		public $belongsTo = array(
-			'Content' => array(
-				'className' => 'Cms.Content',
+			'CmsContent' => array(
+				'className' => 'Cms.CmsContent',
 				'fields' => array(
-					'Content.id',
-					'Content.title',
-					'Content.slug',
-					'Content.body',
-					'Content.active',
-					'Content.comment_count',
-					'Content.created',
-					'Content.modified'
+					'CmsContent.id',
+					'CmsContent.title',
+					'CmsContent.slug',
+					'CmsContent.body',
+					'CmsContent.active',
+					'CmsContent.comment_count',
+					'CmsContent.created',
+					'CmsContent.modified'
 				)
 			)
 		);
@@ -78,6 +75,11 @@
 						'message' => __('Please select an item to be on the main cms page')
 					)
 				)
+			);
+
+			$this->order = array(
+				$this->alias . '.order_id' => 'ASC',
+				$this->alias . '.ordering' => 'ASC'
 			);
 		}
 	}

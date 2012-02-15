@@ -27,25 +27,25 @@
 			'name' => __('List'),
 			'description' => __('View all your content pages'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'contents', 'action' => 'index')
+			'dashboard' => array('controller' => 'cms_contents', 'action' => 'index')
 		),
 		array(
 			'name' => __('Add'),
 			'description' => __('Create a new content page'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'contents', 'action' => 'add')
+			'dashboard' => array('controller' => 'cms_contents', 'action' => 'add')
 		),
 		array(
 			'name' => __('Active'),
 			'description' => __('See what items are currently active'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'contents', 'action' => 'index', 'Content.active' => 1)
+			'dashboard' => array('controller' => 'cms_contents', 'action' => 'index', 'CmsContent.active' => 1)
 		),
 		array(
 			'name' => __('Pending'),
 			'description' => __('See what items are currently pending'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'contents', 'action' => 'index', 'Content.active' => 0)
+			'dashboard' => array('controller' => 'cms_contents', 'action' => 'index', 'CmsContent.active' => 0)
 		)
 	);
 
@@ -54,13 +54,13 @@
 			'name' => __('List'),
 			'description' => __('View the pages currently set to show on the main page'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'frontpages', 'action' => 'index')
+			'dashboard' => array('controller' => 'cms_frontpages', 'action' => 'index')
 		),
 		array(
 			'name' => __('Add'),
 			'description' => __('Add some new pages to the main page'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'frontpages', 'action' => 'add')
+			'dashboard' => array('controller' => 'cms_frontpages', 'action' => 'add')
 		)
 	);
 
@@ -69,13 +69,13 @@
 			'name' => __('List'),
 			'description' => __('View the current featured items'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'features', 'action' => 'index')
+			'dashboard' => array('controller' => 'cms_features', 'action' => 'index')
 		),
 		array(
 			'name' => __('Add'),
 			'description' => __('Add some new featured items'),
 			'icon' => '/cms/img/icon.png',
-			'dashboard' => array('controller' => 'features', 'action' => 'add')
+			'dashboard' => array('controller' => 'cms_features', 'action' => 'add')
 		)
 	);
 ?>
@@ -85,12 +85,7 @@
 	<p class="info"><?php echo Configure::read('Cms.info.content'); ?></p>
 </div>
 <?php
-	echo $this->element(
-		'modules/admin/dashboard_links',
-		array(
-			'plugin' => 'contents'
-		)
-	);
+	echo $this->element('Contents.modules/admin/dashboard_links');
 	
 	if(!$hasContent) { ?>
 		<div class="dashboard grid_16">
@@ -113,9 +108,8 @@
 </div>
 <?php
 	echo $this->element(
-		'modules/admin/popular_items',
+		'ViewCounter.modules/admin/popular_items',
 		array(
-			'plugin' => 'view_counter',
-			'model' => 'Cms.content'
+			'model' => 'Cms.CmsContent'
 		)
 	);

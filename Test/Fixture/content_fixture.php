@@ -1,7 +1,7 @@
 <?php
 /* CmsContent Fixture generated on: 2010-08-17 14:08:56 : 1282055096 */
 class ContentFixture extends CakeTestFixture {
-	var $name = 'Content';
+	var $name = 'CmsContent';
 
 	var $table = 'cms_contents';
 

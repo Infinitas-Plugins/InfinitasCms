@@ -18,7 +18,7 @@
      * @since         0.5a
      */
 
-	echo $this->Form->create('Frontpage', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
+	echo $this->Form->create('CmsFrontpage', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead();?>
 		<fieldset>
 			<h1><?php echo __('Frontpage Item'); ?></h1><?php

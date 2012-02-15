@@ -1,6 +1,6 @@
 <?php
 	/* ContentFrontpage Test cases generated on: 2009-12-13 19:12:29 : 1260726929*/
-	App::import('Model', 'Cms.Frontpage');
+	App::import('Model', 'Cms.CmsFrontpage');
 
 	class FrontpageTestCase extends CakeTestCase
 	{
@@ -10,7 +10,7 @@
 	    );
 
 	    public function startTest(){
-	        $this->Frontpage = &ClassRegistry::init('Cms.Frontpage');
+	        $this->Frontpage = &ClassRegistry::init('Cms.CmsFrontpage');
 	    }
 
 		public function testSomething(){

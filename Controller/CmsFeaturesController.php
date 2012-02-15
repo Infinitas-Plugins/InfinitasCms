@@ -3,18 +3,18 @@
 	*/
 	class CmsFeaturesController extends CmsAppController {
 		public function index() {
-			$this->Feature->recursive = 0;
+			$this->CmsFeature->recursive = 0;
 			$this->set('features', $this->paginate);
 		}
 
 		public function admin_index() {
 			$this->paginate = array(
 				'conditions' => array(
-					'Feature.id IS NOT NULL'
+					$this->modelClass . '.id IS NOT NULL'
 				)
 			);
 
-			$features = $this->paginate('Content');
+			$features = $this->paginate('CmsContent');
 			$this->set(compact('features'));
 		}
 
@@ -27,12 +27,12 @@
 		public function admin_add() {
 			parent::admin_add();
 
-			$content_ids = $this->Feature->find(
+			$content_ids = $this->CmsFeature->find(
 				'list',
 				array(
 					'fields' => array(
-						'Feature.content_id',
-						'Feature.content_id'
+						$this->modelClass . '.content_id',
+						$this->modelClass . '.content_id'
 					)
 				)
 			);
@@ -41,12 +41,12 @@
 			if($content_ids) {
 				$conditions = array(
 					'not' => array(
-						'Content.id ' => $content_ids
+						'CmsContent.id ' => $content_ids
 					)
 				);
 			}
 
-			$contents = $this->Feature->Content->find('list', array('conditions' => $conditions));
+			$contents = $this->CmsFeature->CmsContent->find('list', array('conditions' => $conditions));
 
 			if (empty($contents)) {
 				$this->notice(

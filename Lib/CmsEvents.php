@@ -16,10 +16,10 @@
 
 		public function onAdminMenu($event){
 			$menu['main'] = array(
-				'Dashboard' => array('controller' => 'cms', 'action' => 'dashboard'),
-				'Content' => array('controller' => 'contents', 'action' => 'index'),
-				'Front Pages' => array('controller' => 'frontpages', 'action' => 'index'),
-				'Featured' => array('controller' => 'features', 'action' => 'index'),
+				'Dashboard' => array('plugin' => 'cms', 'controller' => 'cms', 'action' => 'dashboard'),
+				'Content' => array('plugin' => 'cms', 'controller' => 'cms_contents', 'action' => 'index'),
+				'Front Page' => array('plugin' => 'cms', 'controller' => 'cms_frontpages', 'action' => 'index'),
+				'Featured' => array('plugin' => 'cms', 'controller' => 'cms_features', 'action' => 'index'),
 			);
 
 			return $menu;
@@ -52,11 +52,11 @@
 				$categorySlug = $data['data']['GlobalCategory']['slug'];
 			}
 
-			else if(!empty($data['data']['Content']['GlobalCategory']['slug'])) {
-				$categorySlug = $data['data']['Content']['GlobalCategory']['slug'];
+			else if(!empty($data['data']['CmsContent']['GlobalCategory']['slug'])) {
+				$categorySlug = $data['data']['CmsContent']['GlobalCategory']['slug'];
 			}
-			if(empty($data['data']['Content'])) {
-				$data['data']['Content'] = $data['data'];
+			if(empty($data['data']['CmsContent'])) {
+				$data['data']['CmsContent'] = $data['data'];
 			}
 
 			switch(strtolower($data['type'])){
@@ -65,8 +65,8 @@
 						'plugin'     => 'cms',
 						'controller' => 'contents',
 						'action'     => 'view',
-						'id'         => $data['data']['Content']['id'],
-						'slug'       => $data['data']['Content']['slug'],
+						'id'         => $data['data']['CmsContent']['id'],
+						'slug'       => $data['data']['CmsContent']['slug'],
 						'category'   => $categorySlug
 					);
 					break;

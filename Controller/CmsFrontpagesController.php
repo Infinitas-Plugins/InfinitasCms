@@ -23,27 +23,23 @@
 		 * render the main content index view as its the same data.
 		 */
 		public function index() {
-			$ids = $this->Frontpage->find(
+			$ids = $this->CmsFrontpage->find(
 				'list',
 				array(
 					'fields' => array(
-						'Frontpage.id',
-						'Frontpage.id'
+						$this->modelClass . '.id',
+						$this->modelClass . '.id'
 					)
 				)
 			);
 
-			$contents = $this->Frontpage->Content->find(
+			$contents = $this->CmsFrontpage->CmsContent->find(
 				'all',
 				array(
 					'conditions' => array(
-						'Content.id' => $ids
+						'CmsContent.id' => $ids
 					),
-					'contain' => array(
-						'GlobalCategory',
-						'ContentComment'
-					),
-					'order' => $this->Frontpage->Content->_order
+					'order' => $this->CmsFrontpage->CmsContent->_order
 				)
 			);
 
@@ -54,11 +50,11 @@
 		public function admin_index() {
 			$this->paginate = array(
 				'conditions' => array(
-					'Frontpage.id IS NOT NULL'
+					$this->modelClass . '.id IS NOT NULL'
 				)
 			);
 
-			$frontpages = $this->paginate('Content');
+			$frontpages = $this->paginate('CmsContent');
 
 			$this->set(compact('frontpages'));
 		}
@@ -70,12 +66,12 @@
 			* check what is already in the table so that the list only shows
 			* what is available.
 			*/
-			$content_ids = $this->Frontpage->find(
+			$content_ids = $this->CmsFrontpage->find(
 				'list',
 				array(
 					'fields' => array(
-						'Frontpage.content_id',
-						'Frontpage.content_id'
+						$this->modelClass . '.content_id',
+						$this->modelClass . '.content_id'
 					)
 				)
 			);
@@ -84,7 +80,7 @@
 			if($content_ids) {
 				$conditions = array(
 					'not' => array(
-						'Content.id ' => $content_ids
+						'CmsContent.id ' => $content_ids
 					)
 				);
 			}
@@ -92,7 +88,7 @@
 			/**
 			* only get the content itmes that are not being used.
 			*/
-			$contents = $this->Frontpage->Content->find('list', array('conditions' => $conditions));
+			$contents = $this->CmsFrontpage->CmsContent->find('list', array('conditions' => $conditions));
 
 			if (empty($contents)) {
 				$this->notice(

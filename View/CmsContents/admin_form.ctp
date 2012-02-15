@@ -17,7 +17,7 @@
      * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
      * @since         0.5a
      */
-	echo $this->Form->create('Content', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
+	echo $this->Form->create('CmsContent', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead();
 
 		$tabs = array(
@@ -28,11 +28,11 @@
 		);
 		
 		$content = array(
-			$this->element('content_form', array('plugin' => 'Contents')),
-			implode('', array($this->Form->input('active'), $this->Html->datePicker(array('start_date', 'end_date'), 'Content', true))),
-			$this->element('author_form', array('plugin' => 'Contents')),
+			$this->element('Contents.content_form'),
+			implode('', array($this->Form->input('active'), $this->Html->datePicker(array('start_date', 'end_date'), 'CmsContent', true))),
+			$this->element('Contents.author_form'),
 			implode('', array($this->Form->input('id'),
-				$this->Form->hidden('ContentConfig.id'), $this->element('meta_form', array('plugin' => 'Contents'))))
+				$this->Form->hidden('ContentConfig.id'), $this->element('Contents.meta_form')))
 		);
 		
 		echo $this->Design->tabs($tabs, $content);

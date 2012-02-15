@@ -18,21 +18,21 @@
      * @since         0.5a
      */
 
-    echo $this->Form->create('Frontpage', array('action' => 'mass'));
-        $massActions = $this->Cms->massActionButtons(array('add', 'delete'));
+    echo $this->Form->create('CmsFrontpage', array('action' => 'mass'));
+        $massActions = $this->Infinitas->massActionButtons(array('add', 'delete'));
 		echo $this->Infinitas->adminIndexHead(null, $massActions);
 ?>
 <div class="table">
     <table class="listing" cellpadding="0" cellspacing="0">
         <?php
-            echo $this->Cms->adminTableHeader(
+            echo $this->Infinitas->adminTableHeader(
                 array(
                     $this->Form->checkbox('all') => array(
                         'class' => 'first',
                         'style' => 'width:25px;'
                     ),
-                    $this->Paginator->sort('Content Item', 'Content.title'),
-                    $this->Paginator->sort('Category', 'Category.title'),
+                    $this->Paginator->sort('CmsContent.title', 'Content Item'),
+                    $this->Paginator->sort('Category.title', 'Category'),
                     $this->Paginator->sort('created') => array(
                         'style' => 'width:100px;'
                     ),
@@ -49,11 +49,11 @@
             );
 
             $i = 0;
-            foreach ($frontpages as $frontpage){
+            foreach ($frontpages as $frontpage) {
                 ?>
-                	<tr class="<?php echo $this->Cms->rowClass(); ?>">
-                        <td><?php echo $this->Infinitas->massActionCheckBox($frontpage); ?>&nbsp;</td>
-                		<td><?php echo $this->Html->link($frontpage['Content']['title'], array('controller' => 'contents', 'action' => 'view', $frontpage['Content']['id'])); ?>&nbsp;</td>
+                	<tr class="<?php echo $this->Infinitas->rowClass(); ?>">
+                        <td><?php echo $this->Infinitas->massActionCheckBox($frontpage, array('model' => 'Frontpage')); ?>&nbsp;</td>
+                		<td><?php echo $this->Html->link($frontpage['CmsContent']['title'], array('controller' => 'cms_contents', 'action' => 'view', $frontpage['CmsContent']['id'])); ?>&nbsp;</td>
                 		<td>
 							<?php
 								echo $this->Html->adminQuickLink(
@@ -69,7 +69,7 @@
                 		<td><?php echo $this->Time->niceShort($frontpage['Frontpage']['created']); ?>&nbsp;</td>
                 		<td><?php echo $this->Time->niceShort($frontpage['Frontpage']['modified']); ?>&nbsp;</td>
                 		<td><?php echo $this->Infinitas->ordering($frontpage['Frontpage']['id'], $frontpage['Frontpage']['ordering']); ?>&nbsp;</td>
-                		<td><?php echo $this->Infinitas->status($frontpage['Content']['active']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->status($frontpage['CmsContent']['active']); ?>&nbsp;</td>
                 	</tr>
                 <?php
             }

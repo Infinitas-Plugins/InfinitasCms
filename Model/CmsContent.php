@@ -32,26 +32,7 @@
 		public $contentable = true;
 
 		public $_order = array(
-			'Content.ordering' => 'asc'
-		);
-
-		public $belongsTo = array(
-			'Author' => array(
-				'className' => 'Users.User',
-				'foreignKey' => 'created_by',
-				'fields' => array(
-					'Author.id',
-					'Author.username'
-				)
-			),
-			'Editor' => array(
-				'className' => 'Users.User',
-				'foreignKey' => 'modified_by',
-				'fields' => array(
-					'Editor.id',
-					'Editor.username'
-				)
-			)
+			'CmsContent.ordering' => 'asc'
 		);
 
 		public $actsAs = array(
@@ -65,14 +46,14 @@
 				'dependent' =>  true
 			),*/
 			'Feature' => array(
-				'className' => 'Cms.Feature',
+				'className' => 'Cms.CmsFeature',
 				'fields' => array(
 					'Feature.id'
 				),
 				'dependent' =>  true
 			),
 			'Frontpage' => array(
-				'className' => 'Cms.Frontpage',
+				'className' => 'Cms.CmsFrontpage',
 				'fields' => array(
 					'Frontpage.id'
 				),

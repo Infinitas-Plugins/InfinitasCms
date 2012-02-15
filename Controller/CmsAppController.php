@@ -31,24 +31,4 @@
 				'actions' => array('admin_index')
 			)
 		);
-
-		public function beforeFilter(){
-			parent::beforeFilter();
-
-			$this->helpers[] = 'Filter.Filter';
-
-			$this->addCss(
-				array(
-					'/cms/css/cms'
-				)
-			);
-
-			$this->addJs(
-				array(
-
-				)
-			);
-			
-			return true;
-		}
 	}

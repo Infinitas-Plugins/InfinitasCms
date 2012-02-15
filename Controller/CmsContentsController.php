@@ -32,17 +32,17 @@
 					'list',
 					array(
 						'fields' => array(
-							'Content.id', 'Content.id'
+							$this->modelClass . '.id', 'Content.id'
 						),
 						'conditions' => array(
-							'Content.category_id' => $this->params['id']
+							$this->modelClass . '.category_id' => $this->params['id']
 						)
 					)
 				);
 
 				$this->paginate = array(
 					'conditions' => array(
-						'Content.id' => $ids
+						$this->modelClass . '.id' => $ids
 					)
 				);
 			}
@@ -51,7 +51,7 @@
 			$contents = $this->paginate();
 
 			if(count($contents) == 1 && Configure::read('Cms.auto_redirect')){
-				$this->params['slug'] = $contents[0]['Content']['slug'];
+				$this->params['slug'] = $contents[0]['CmsContent']['slug'];
 				$this->view();
 			}
 
@@ -66,8 +66,8 @@
 
 			$content = $this->CmsContent->getViewData(
 				array(
-					//'CmsContent.id' => $this->CmsContent->getContentId($this->params['slug']),
-					'CmsContent.active' => 1
+					//$this->modelClass . '.id' => $this->CmsContent->getContentId($this->params['slug']),
+					$this->modelClass . '.active' => 1
 				)
 			);
 

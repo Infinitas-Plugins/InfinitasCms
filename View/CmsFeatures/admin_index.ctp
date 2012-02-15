@@ -18,21 +18,21 @@
      * @since         0.5a
      */
 
-     echo $this->Form->create('Feature', array('action' => 'mass'));
-        $massActions = $this->Cms->massActionButtons(array('add', 'delete'));
+     echo $this->Form->create('CmsFeature', array('action' => 'mass'));
+        $massActions = $this->Infinitas->massActionButtons(array('add', 'delete'));
 		echo $this->Infinitas->adminIndexHead(null, $massActions);
 ?>
 <div class="table">
     <table class="listing" cellpadding="0" cellspacing="0">
         <?php
-            echo $this->Cms->adminTableHeader(
+            echo $this->Infinitas->adminTableHeader(
                 array(
                     $this->Form->checkbox('all') => array(
                         'class' => 'first',
                         'style' => 'width:25px;'
                     ),
-                    $this->Paginator->sort('Content Item', 'Content.title'),
-                    $this->Paginator->sort('Category', 'GlobalCategory.title') => array(
+                    $this->Paginator->sort('CmsContent.title', 'Content Item'),
+                    $this->Paginator->sort('GlobalCategory.title', 'Category') => array(
                         'style' => 'width:100px;'
                     ),
                     $this->Paginator->sort('created') => array(
@@ -49,18 +49,11 @@
 
             foreach ($features as $feature){
                 ?>
-                	<tr class="<?php echo $this->Cms->rowClass(); ?>">
+                	<tr class="<?php echo $this->Infinitas->rowClass(); ?>">
                         <td><?php echo $this->Infinitas->massActionCheckBox($feature); ?>&nbsp;</td>
                 		<td>
                 			<?php
-								echo $this->Html->link(
-									$feature['Content']['title'],
-									array(
-										'controller' => 'contents',
-										'action' => 'edit',
-										$feature['Content']['id']
-									)
-								);
+								echo $this->Infinitas->adminQuickLink($feature['CmsContent']);
 							?>&nbsp;
                 		</td>
                 		<td>
@@ -76,8 +69,8 @@
 							?>&nbsp;
                 		</td>
                 		<td><?php echo $this->Time->niceShort($feature['Feature']['created']); ?>&nbsp;</td>
-                		<td><?php echo $this->Cms->ordering($feature['Feature']['id'], $feature['Feature']['ordering']); ?>&nbsp;</td>
-                		<td><?php echo $this->Infinitas->status($feature['Content']['active']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->ordering($feature['Feature']['id'], $feature['Feature']['ordering']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->status($feature['CmsContent']['active']); ?>&nbsp;</td>
                 	</tr>
                 <?php
             }

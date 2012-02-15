@@ -18,7 +18,7 @@
      * @since         0.5a
      */
 
-    echo $this->Form->create('Feature', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
+    echo $this->Form->create('CmsFeature', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead(); ?>
 		<fieldset>
 			<h1><?php echo __('Featured Page'); ?></h1><?php

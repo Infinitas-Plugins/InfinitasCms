@@ -18,8 +18,8 @@
      * @since         0.5a
      */
 
-    echo $this->Form->create('Content', array('url' => array('controller' => 'contents', 'action' => 'mass', 'admin' => 'true')));
-        $massActions = $this->Cms->massActionButtons(
+    echo $this->Form->create('CmsContent', array('action' => 'mass'));
+        $massActions = $this->Infinitas->massActionButtons(
             array(
                 'add',
                 'edit',
@@ -35,7 +35,7 @@
 <div class="table">
     <table class="listing" cellpadding="0" cellspacing="0">
         <?php
-            echo $this->Cms->adminTableHeader(
+            echo $this->Infinitas->adminTableHeader(
                 array(
                     $this->Form->checkbox('all') => array(
                         'class' => 'first',
@@ -66,12 +66,12 @@
 
             foreach ($contents as $content){
                 ?>
-                	<tr class="<?php echo $this->Cms->rowClass(); ?>">
+                	<tr class="<?php echo $this->Infinitas->rowClass(); ?>">
                         <td><?php echo $this->Infinitas->massActionCheckBox($content); ?>&nbsp;</td>
                 		<td>
 							<?php
-								echo $this->Html->link($content['Content']['title'], array('action' => 'edit', $content['Content']['id']));
-								echo $this->Html->adminPreview($content['Content']);
+								echo $this->Html->link($content['CmsContent']['title'], array('action' => 'edit', $content['CmsContent']['id']));
+								echo $this->Html->adminPreview($content['CmsContent']);
 							?>&nbsp;</td>
                 		<td>
                 			<?php
@@ -79,7 +79,7 @@
 									$content['GlobalCategory'],
 									array(
 										'plugin' => 'contents',
-										'controller' => 'categories'
+										'controller' => 'global_categories'
 									)
 								);
                         	?>&nbsp;
@@ -104,19 +104,19 @@
 							?>&nbsp;
                 		</td>
                 		<td style="text-align:center;">
-                			<?php echo $content['Content']['views']; ?>&nbsp;
+                			<?php echo $content['CmsContent']['views']; ?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $this->Time->niceShort($content['Content']['modified']); ?>&nbsp;
+                			<?php echo $this->Time->niceShort($content['CmsContent']['modified']); ?>&nbsp;
                 		</td>
                 		<td class="status">
-                			<?php echo $this->Infinitas->ordering($content['Content']['id'], $content['Content']['ordering'], 'Cms.Content'); ?>&nbsp;
+                			<?php echo $this->Infinitas->ordering($content['CmsContent']['id'], $content['CmsContent']['ordering'], 'Cms.CmsContent'); ?>&nbsp;
                 		</td>
                 		<td class="status">
                 			<?php
                 			    echo $this->Cms->homePageItem($content),
                         			$this->Infinitas->featured($content),
-                			        $this->Infinitas->status($content['Content']['active'], $content['Content']['id']),
+                			        $this->Infinitas->status($content['CmsContent']['active'], $content['CmsContent']['id']),
                     			    $this->Locked->display($content);
                 			?>&nbsp;
                 		</td>
