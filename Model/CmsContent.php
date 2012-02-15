@@ -136,13 +136,13 @@
 				'first',
 				array(
 					'fields' => array(
-						'Content.id',
-						'Content.views',
-						'Content.active',
-						'Content.start',
-						'Content.end',
-						'Content.rating',
-						'Content.rating_count',
+						$this->alias . '.id',
+						$this->alias . '.views',
+						$this->alias . '.active',
+						$this->alias . '.start',
+						$this->alias . '.end',
+						$this->alias . '.rating',
+						$this->alias . '.rating_count',
 					),
 					'conditions' => $conditions
 				)
