@@ -52,7 +52,7 @@
 
 		public function view() {
 			if (!isset($this->params['slug'])) {
-				$this->Infinitas->noticeInvalidRecord();
+				$this->notice('invalid');
 				$this->redirect($this->referer());
 			}
 
@@ -88,7 +88,7 @@
 
 		public function admin_view($id = null) {
 			if (!$id) {
-				$this->Infinitas->noticeInvalidRecord();
+				$this->notice('invalid');
 			}
 			
 			$this->set('content', $this->CmsContent->read(null, $id));
