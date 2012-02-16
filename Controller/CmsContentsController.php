@@ -19,7 +19,7 @@
 
 	class CmsContentsController extends CmsAppController {
 		public function index() {
-			if(isset($this->params['id'])){
+			if(isset($this->request->params['id'])){
 				$ids = $this->CmsContent->find(
 					'list',
 					array(
@@ -27,7 +27,7 @@
 							$this->modelClass . '.id', 'Content.id'
 						),
 						'conditions' => array(
-							$this->modelClass . '.category_id' => $this->params['id']
+							$this->modelClass . '.category_id' => $this->request->params['id']
 						)
 					)
 				);
@@ -43,7 +43,7 @@
 			$contents = $this->paginate();
 
 			if(count($contents) == 1 && Configure::read('Cms.auto_redirect')){
-				$this->params['slug'] = $contents[0]['CmsContent']['slug'];
+				$this->request->params['slug'] = $contents[0]['CmsContent']['slug'];
 				$this->view();
 			}
 
@@ -51,14 +51,14 @@
 		}
 
 		public function view() {
-			if (!isset($this->params['slug'])) {
+			if (!isset($this->request->params['slug'])) {
 				$this->notice('invalid');
 				$this->redirect($this->referer());
 			}
 
 			$content = $this->CmsContent->getViewData(
 				array(
-					//$this->modelClass . '.id' => $this->CmsContent->getContentId($this->params['slug']),
+					//$this->modelClass . '.id' => $this->CmsContent->getContentId($this->request->params['slug']),
 					$this->modelClass . '.active' => 1
 				)
 			);

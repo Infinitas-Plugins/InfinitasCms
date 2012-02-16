@@ -26,7 +26,7 @@
 		public function beforeFilter(){
 			parent::beforeFilter();
 			
-			if($this->params['action'] != 'admin_dashboard'){
+			if($this->request->params['action'] != 'admin_dashboard'){
 				$this->redirect(array('action' => 'dashboard'));
 			}
 			
