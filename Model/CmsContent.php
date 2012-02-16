@@ -45,17 +45,17 @@
 				'className' => 'Cms.ContentConfig',
 				'dependent' =>  true
 			),*/
-			'Feature' => array(
+			'CmsFeature' => array(
 				'className' => 'Cms.CmsFeature',
 				'fields' => array(
-					'Feature.id'
+					'CmsFeature.id'
 				),
 				'dependent' =>  true
 			),
-			'Frontpage' => array(
+			'CmsFrontpage' => array(
 				'className' => 'Cms.CmsFrontpage',
 				'fields' => array(
-					'Frontpage.id'
+					'CmsFrontpage.id'
 				),
 				'dependent' =>  true
 			)

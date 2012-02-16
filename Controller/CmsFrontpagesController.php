@@ -51,6 +51,17 @@
 			$this->paginate = array(
 				'conditions' => array(
 					$this->modelClass . '.id IS NOT NULL'
+				),
+				'joins' => array(
+					array(
+						'table' => 'cms_frontpages',
+						'alias' => 'CmsFrontpage',
+						'type' => 'LEFT',
+						'foreignKey' => false,
+						'conditions' => array(
+							'CmsFrontpage.content_id = CmsContent.id'
+						)
+					)
 				)
 			);
 

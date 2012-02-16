@@ -11,6 +11,17 @@
 			$this->paginate = array(
 				'conditions' => array(
 					$this->modelClass . '.id IS NOT NULL'
+				),
+				'joins' => array(
+					array(
+						'table' => 'cms_features',
+						'alias' => 'CmsFeature',
+						'type' => 'LEFT',
+						'foreignKey' => false,
+						'conditions' => array(
+							'CmsFeature.content_id = CmsContent.id'
+						)
+					)
 				)
 			);
 
