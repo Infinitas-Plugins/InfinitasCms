@@ -42,11 +42,11 @@
                         'style' => 'width:25px;'
                     ),
                     $this->Paginator->sort('title' ),
-                    $this->Paginator->sort('Category', 'GlobalCategory.title'),
-                    $this->Paginator->sort('Group', 'Group.name') => array(
+                    $this->Paginator->sort('GlobalCategory.title', __d('cms', 'Category')),
+                    $this->Paginator->sort('Group.name', __d('cms', 'Group')) => array(
                         'style' => 'width:100px;'
                     ),
-                    $this->Paginator->sort('Layout', 'Layout.name') => array(
+                    $this->Paginator->sort('Layout.name', __d('contents', 'Layout')) => array(
                         'style' => 'width:100px;'
                     ),
                     $this->Paginator->sort('views') => array(
