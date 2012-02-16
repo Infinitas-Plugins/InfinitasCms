@@ -31,8 +31,8 @@
                         'class' => 'first',
                         'style' => 'width:25px;'
                     ),
-                    $this->Paginator->sort('CmsContent.title', 'Content Item'),
-                    $this->Paginator->sort('GlobalCategory.title', 'Category') => array(
+                    $this->Paginator->sort('CmsContent.title', __d('contents', 'Content Item')),
+                    $this->Paginator->sort('GlobalCategory.title', __d('contents', 'Category')) => array(
                         'style' => 'width:100px;'
                     ),
                     $this->Paginator->sort('created') => array(
