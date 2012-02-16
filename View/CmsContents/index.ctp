@@ -32,7 +32,7 @@
 			<div class="introduction">
 				<h2>
 					<?php
-						$eventData = $this->Event->trigger('cms.slugUrl', array('type' => 'contents', 'data' => $content));
+						$eventData = $this->Event->trigger('Cms.slugUrl', array('type' => 'contents', 'data' => $content));
 						$urlArray = current($eventData['slugUrl']);
 						echo $this->Html->link(
 							$content['CmsContent']['title'],
