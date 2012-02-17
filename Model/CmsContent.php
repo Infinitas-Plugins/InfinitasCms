@@ -47,6 +47,7 @@
 			),*/
 			'CmsFeature' => array(
 				'className' => 'Cms.CmsFeature',
+				'foreignKey' => 'content_id',
 				'fields' => array(
 					'CmsFeature.id'
 				),
@@ -54,6 +55,7 @@
 			),
 			'CmsFrontpage' => array(
 				'className' => 'Cms.CmsFrontpage',
+				'foreignKey' => 'content_id',
 				'fields' => array(
 					'CmsFrontpage.id'
 				),
