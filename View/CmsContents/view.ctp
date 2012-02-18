@@ -17,6 +17,9 @@
 	 * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
 	 * @since         0.5a
 	 */
+if(empty($content)) {
+	$content = $cmsContent;
+}
 
 	$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
