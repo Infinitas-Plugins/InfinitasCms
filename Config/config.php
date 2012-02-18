@@ -29,5 +29,19 @@
 			 'frontpages' => __d('cms', 'Cms front pages are the items that will show when a user visits the main url for your cms section of the site. This is normaly site.com/cms'),
 			 'featured' => __d('cms', 'Featured items are just a way to make a content item stand out from the other content items that you have on your site.'),
 			 'config' => __d('cms', 'Configure and manage how your content is displayed. Create different SEO urls, manage images, restore trash and more')
-		 )
+		 ),
+		 'slugUrl' => array(
+			 'contents' => array(
+				 'Content.id' => 'id',
+				 'CmsContent.id' => 'id',
+				 'Content.slug' => 'slug',
+				 'CmsContent.slug' => 'slug',
+				 'GlobalCategory.slug' => 'category',
+				 'url' => array(
+					 'plugin' => 'cms',
+					 'controller' => 'cms_contents',
+					 'action' => 'view'
+				 )
+			 ),
+		 ),
 	 );

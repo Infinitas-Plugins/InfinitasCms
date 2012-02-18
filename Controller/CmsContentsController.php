@@ -58,7 +58,7 @@
 
 			$content = $this->CmsContent->getViewData(
 				array(
-					//$this->modelClass . '.id' => $this->CmsContent->getContentId($this->request->params['slug']),
+					'GlobalContent.slug' => $this->request->params['slug'],
 					$this->modelClass . '.active' => 1
 				)
 			);

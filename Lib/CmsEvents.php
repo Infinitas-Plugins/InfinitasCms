@@ -46,33 +46,7 @@
 			$data['data'] = isset($data['data']) ? $data['data'] : $data;
 			$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
 
-			$categorySlug = 'news-feed';
-
-			if(!empty($data['data']['GlobalCategory']['slug'])) {
-				$categorySlug = $data['data']['GlobalCategory']['slug'];
-			}
-
-			else if(!empty($data['data']['CmsContent']['GlobalCategory']['slug'])) {
-				$categorySlug = $data['data']['CmsContent']['GlobalCategory']['slug'];
-			}
-			if(empty($data['data']['CmsContent'])) {
-				$data['data']['CmsContent'] = $data['data'];
-			}
-
-			switch(strtolower($data['type'])){
-				case 'contents':					
-					$url = array(
-						'plugin'     => 'cms',
-						'controller' => 'contents',
-						'action'     => 'view',
-						'id'         => $data['data']['CmsContent']['id'],
-						'slug'       => $data['data']['CmsContent']['slug'],
-						'category'   => $categorySlug
-					);
-					break;
-			} // switch
-
-			return $url;
+			return parent::onSlugUrl($event, $data['data'], $data['type']);
 		}
 
 		public function onSetupRoutes($event, $data = null) {
