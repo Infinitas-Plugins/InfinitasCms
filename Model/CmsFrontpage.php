@@ -52,6 +52,7 @@
 		public $belongsTo = array(
 			'CmsContent' => array(
 				'className' => 'Cms.CmsContent',
+				'foreignKey' => 'content_id',
 				'fields' => array(
 					'CmsContent.id',
 					'CmsContent.title',
