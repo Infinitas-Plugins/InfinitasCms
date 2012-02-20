@@ -64,6 +64,14 @@
 			);
 
 			$this->set('content', $content);
+			
+			$url = $this->Event->trigger('Cms.slugUrl', array('type' => 'contents', 'data' => $content));
+			$this->set('seoCanonicalUrl', current($url['slugUrl']));
+			$this->set('seoContentIndex', Configure::read('Cms.robots.index.index'));
+			$this->set('seoContentFollow', Configure::read('Cms.robots.index.follow'));
+			$this->set('title_for_layout', $content['CmsContent']['title']);
+			Configure::write('Website.keywords', $content['CmsContent']['meta_keywords']);
+			Configure::write('Website.description', $content['CmsContent']['meta_description']);
 		}
 
 		public function admin_index() {
