@@ -1,8 +1,8 @@
 <?php
 /* Contents Test cases generated on: 2009-12-13 19:12:00 : 1260726840*/
-App::import('Controller', 'Contents');
+App::uses('CmsController', 'Cms.Controller');
 
-class TestContentsController extends ContentsController {
+class TestCmsController extends CmsController {
 	var $autoRender = false;
 
 	function redirect($url, $status = null, $exit = true) {
@@ -10,12 +10,17 @@ class TestContentsController extends ContentsController {
 	}
 }
 
-class ContentsControllerTestCase extends CakeTestCase {
-	var $fixtures = array('app.content', 'app.category', 'app.section', 'app.content_frontpage');
+class CmsControllerTest extends CakeTestCase {
+	var $fixtures = array(
+		'plugin.cms.cms_content',
+		'plugin.contents.global_category',
+		'plugin.cms.cms_frontpage',
+		'plugin.configs.config'
+	);
 
 	function startTest() {
-		$this->Contents =& new TestContentsController();
-		$this->Contents->constructClasses();
+		$this->Cms =& new TestCmsController();
+		$this->Cms->constructClasses();
 	}
 
 	function endTest() {

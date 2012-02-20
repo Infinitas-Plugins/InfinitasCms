@@ -1,7 +1,7 @@
 <?php
 /* CmsFeature Fixture generated on: 2010-08-17 14:08:59 : 1282055099 */
-class FeatureFixture extends CakeTestFixture {
-	var $name = 'Feature';
+class CmsFeatureFixture extends CakeTestFixture {
+	var $name = 'CmsFeature';
 
 	var $table = 'cms_features';
 

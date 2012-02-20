@@ -1,7 +1,7 @@
 <?php
 	/* ContentFrontpage Fixture generated on: 2009-12-13 19:12:29 : 1260726929 */
-	class FrontpageFixture extends CakeTestFixture {
-		var $name = 'Frontpage';
+	class CmsFrontpageFixture extends CakeTestFixture {
+		var $name = 'CmsFrontpage';
 
 		var $table = 'cms_frontpages';
 

@@ -1,8 +1,8 @@
 <?php
-/* Sections Test cases generated on: 2009-12-13 19:12:35 : 1260725975*/
-App::import('Controller', 'Sections');
+/* ContentFrontpages Test cases generated on: 2009-12-13 19:12:17 : 1260726977*/
+App::uses('CmsFrontpagesController', 'Cms.Controller');
 
-class TestSectionsController extends SectionsController {
+class TestCmsFrontpagesController extends CmsFrontpagesController {
 	var $autoRender = false;
 
 	function redirect($url, $status = null, $exit = true) {
@@ -10,16 +10,21 @@ class TestSectionsController extends SectionsController {
 	}
 }
 
-class SectionsControllerTestCase extends CakeTestCase {
-	var $fixtures = array('app.section', 'app.category');
+class CmsFrontpagesControllerTest extends CakeTestCase {
+	var $fixtures = array(
+		'plugin.cms.cms_frontpage',
+		'plugin.cms.cms_content',
+		'plugin.contents.global_category',
+		'plugin.configs.config'
+	);
 
 	function startTest() {
-		$this->Sections =& new TestSectionsController();
-		$this->Sections->constructClasses();
+		$this->CmsFrontpages =& new TestCmsFrontpagesController();
+		$this->CmsFrontpages->constructClasses();
 	}
 
 	function endTest() {
-		unset($this->Sections);
+		unset($this->CmsFrontpages);
 		ClassRegistry::flush();
 	}
 
