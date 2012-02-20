@@ -1,24 +1,24 @@
 <?php
 	/* ContentFrontpage Test cases generated on: 2009-12-13 19:12:29 : 1260726929*/
-	App::import('Model', 'Cms.CmsFrontpage');
+	App::uses('CmsFrontpage', 'Cms.Model');
 
-	class FrontpageTestCase extends CakeTestCase
+	class CmsFrontpageTestCase extends CakeTestCase
 	{
 		public $fixtures = array(
-			'plugin.cms.content',
-			'plugin.cms.frontpage',
+			'plugin.cms.cms_content',
+			'plugin.cms.cms_frontpage',
 	    );
 
 	    public function startTest(){
-	        $this->Frontpage = &ClassRegistry::init('Cms.CmsFrontpage');
+	        $this->CmsFrontpage = &ClassRegistry::init('Cms.CmsFrontpage');
 	    }
 
 		public function testSomething(){
-			$this->assert(true, true);
+			$this->assertTrue(true);
 		}
 
 	    public function endTest(){
-	        unset( $this->Frontpage );
+	        unset( $this->CmsFrontpage );
 	        ClassRegistry::flush();
 	    }
 	}
