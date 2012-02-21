@@ -37,6 +37,7 @@
 				 'Content.slug' => 'slug',
 				 'CmsContent.slug' => 'slug',
 				 'GlobalCategory.slug' => 'category',
+				 'ParentCategory.slug' => 'category',
 				 'url' => array(
 					 'plugin' => 'cms',
 					 'controller' => 'cms_contents',
