@@ -32,7 +32,7 @@
 					)
 				);
 
-				$this->paginate = array(
+				$this->Paginator->settings = array(
 					'conditions' => array(
 						$this->modelClass . '.id' => $ids
 					)
@@ -40,14 +40,14 @@
 			}
 
 			$this->CmsContent->order = $this->CmsContent->_order;
-			$contents = $this->paginate();
+			$contents = $this->Paginator->paginate();
 
 			if(count($contents) == 1 && Configure::read('Cms.auto_redirect')){
 				$this->request->params['slug'] = $contents[0]['CmsContent']['slug'];
 				$this->view();
 			}
 
-			$this->set('contents', $this->paginate());
+			$this->set('contents', $this->Paginator->paginate());
 		}
 
 		public function view() {
@@ -80,7 +80,7 @@
 				$this->CmsContent->_order
 			);
 
-			$contents = $this->paginate(null, $this->Filter->filter);
+			$contents = $this->Paginator->paginate(null, $this->Filter->filter);
 
 			$filterOptions = $this->Filter->filterOptions;
 			$filterOptions['fields'] = array(

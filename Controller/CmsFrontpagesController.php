@@ -48,7 +48,7 @@
 		}
 
 		public function admin_index() {
-			$this->paginate = array(
+			$this->Paginator->settings = array(
 				'conditions' => array(
 					$this->modelClass . '.id IS NOT NULL'
 				),
@@ -65,7 +65,7 @@
 				)
 			);
 
-			$frontpages = $this->paginate('CmsContent');
+			$frontpages = $this->Paginator->paginate('CmsContent');
 
 			$this->set(compact('frontpages'));
 		}
