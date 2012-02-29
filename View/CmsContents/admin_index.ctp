@@ -64,10 +64,15 @@
                 )
             );
 
-            foreach ($contents as $content){
-                ?>
-                	<tr class="<?php echo $this->Infinitas->rowClass(); ?>">
-                        <td><?php echo $this->Infinitas->massActionCheckBox($content); ?>&nbsp;</td>
+            foreach ($contents as $content) {
+				$rowClass = $this->Infinitas->rowClass(); ?>
+                	<tr class="parent <?php echo $rowClass; ?>">
+                        <td>
+							<?php 
+								echo '<span class="toggle"><a href="#">+</a></span>',
+								$this->Infinitas->massActionCheckBox($content); 
+							?>&nbsp;
+						</td>
                 		<td>
 							<?php
 								echo $this->Html->link($content['CmsContent']['title'], array('action' => 'edit', $content['CmsContent']['id']));
@@ -121,6 +126,17 @@
                 			?>&nbsp;
                 		</td>
                 	</tr>
+					<tr class="details <?php echo $rowClass; ?>">
+						<td colspan="100">
+							<?php 
+								echo $this->element('Contents.expanded/body', array('data' => $content['CmsContent']));
+								echo $this->element('Contents.expanded/seo', array('data' => $content['CmsContent']));
+								echo $this->element('Contents.expanded/image', array('data' => $content['CmsContent']));
+								echo $this->element('Contents.expanded/views', array('data' => $content['CmsContent'], 'model' => 'Cms.CmsContent'));
+								echo $this->element('Cms.expanded/dates', array('data' => $content['CmsContent']));
+							?>
+						</td>
+					</tr>
                 <?php
             }
         ?>
