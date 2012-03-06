@@ -1,17 +1,14 @@
-<?php 
-/* SVN FILE: $Id$ */
-/* Cms schema generated on: 2011-09-09 13:09:45 : 1315570605*/
+<?php
 class CmsSchema extends CakeSchema {
-	var $name = 'Cms';
 
-	function before($event = array()) {
+	public function before($event = array()) {
 		return true;
 	}
 
-	function after($event = array()) {
+	public function after($event = array()) {
 	}
 
-	var $contents = array(
+	public $cms_contents = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'ordering' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 8),
 		'views' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 9, 'key' => 'index'),
@@ -27,7 +24,7 @@ class CmsSchema extends CakeSchema {
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'category_id' => array('column' => 'category_id', 'unique' => 0), 'most_views' => array('column' => array('views', 'id'), 'unique' => 0), 'active' => array('column' => array('active', 'ordering'), 'unique' => 0)),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
-	var $features = array(
+	public $cms_features = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'content_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'ordering' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8),
@@ -36,7 +33,7 @@ class CmsSchema extends CakeSchema {
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
-	var $frontpages = array(
+	public $cms_frontpages = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'content_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'ordering' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 5),
@@ -47,4 +44,3 @@ class CmsSchema extends CakeSchema {
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 }
-?>

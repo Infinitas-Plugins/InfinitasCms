@@ -1,32 +1,38 @@
 <?php
-class R4ce00aa475bc4c48a24f120b6318cd70 extends CakeRelease {
+	/**
+	 * Infinitas Releas
+	 *
+	 * Auto generated database update
+	 */
+	 
+	class R4f5638dfdb784f56acd04a836318cd70 extends CakeRelease {
 
-/**
- * Migration description
- *
- * @var string
- * @access public
- */
-	public $description = 'Migration for Cms version 0.1';
+	/**
+	* Migration description
+	*
+	* @var string
+	* @access public
+	*/
+		public $description = 'Migration for Cms version 0.9';
 
-/**
- * Plugin name
- *
- * @var string
- * @access public
- */
-	public $plugin = 'Cms';
+	/**
+	* Plugin name
+	*
+	* @var string
+	* @access public
+	*/
+		public $plugin = 'Cms';
 
-/**
- * Actions to be performed
- *
- * @var array $migration
- * @access public
- */
-	public $migration = array(
-		'up' => array(
+	/**
+	* Actions to be performed
+	*
+	* @var array $migration
+	* @access public
+	*/
+		public $migration = array(
+			'up' => array(
 			'create_table' => array(
-				'contents' => array(
+				'cms_contents' => array(
 					'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 					'ordering' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 8),
 					'views' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 9, 'key' => 'index'),
@@ -47,8 +53,8 @@ class R4ce00aa475bc4c48a24f120b6318cd70 extends CakeRelease {
 					),
 					'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB'),
 				),
-				'features' => array(
-					'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
+				'cms_features' => array(
+					'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 					'content_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 					'ordering' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8),
 					'order_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
@@ -58,8 +64,8 @@ class R4ce00aa475bc4c48a24f120b6318cd70 extends CakeRelease {
 					),
 					'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB'),
 				),
-				'frontpages' => array(
-					'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
+				'cms_frontpages' => array(
+					'id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 					'content_id' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 					'ordering' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 5),
 					'order_id' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 3),
@@ -74,32 +80,31 @@ class R4ce00aa475bc4c48a24f120b6318cd70 extends CakeRelease {
 		),
 		'down' => array(
 			'drop_table' => array(
-				'contents', 'features', 'frontpages'
+				'cms_contents', 'cms_features', 'cms_frontpages'
 			),
 		),
-	);
+		);
 
 	
-/**
- * Before migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function before($direction) {
-		return true;
-	}
+	/**
+	* Before migration callback
+	*
+	* @param string $direction, up or down direction of migration process
+	* @return boolean Should process continue
+	* @access public
+	*/
+		public function before($direction) {
+			return true;
+		}
 
-/**
- * After migration callback
- *
- * @param string $direction, up or down direction of migration process
- * @return boolean Should process continue
- * @access public
- */
-	public function after($direction) {
-		return true;
+	/**
+	* After migration callback
+	*
+	* @param string $direction, up or down direction of migration process
+	* @return boolean Should process continue
+	* @access public
+	*/
+		public function after($direction) {
+			return true;
+		}
 	}
-}
-?>
