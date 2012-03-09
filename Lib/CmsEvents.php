@@ -1,5 +1,5 @@
 <?php
-	final class CmsEvents extends AppEvents{
+	final class CmsEvents extends AppEvents {
 		public function onPluginRollCall(){
 			return array(
 				'name' => 'Cms',
@@ -23,10 +23,6 @@
 			);
 
 			return $menu;
-		}
-		
-		public function onSetupConfig(){
-			return Configure::load('Cms.config');
 		}
 		
 		public function onSetupCache(){
