@@ -30,6 +30,8 @@
 			 'featured' => __d('cms', 'Featured items are just a way to make a content item stand out from the other content items that you have on your site.'),
 			 'config' => __d('cms', 'Configure and manage how your content is displayed. Create different SEO urls, manage images, restore trash and more')
 		 ),
+		 'time_format' => 'jS M Y',
+		 'preview' => 400, // the length of the text to show on index pages
 		 'slugUrl' => array(
 			 'contents' => array(
 				 'Content.id' => 'id',
