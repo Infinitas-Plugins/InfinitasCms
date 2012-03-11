@@ -19,22 +19,10 @@
 
 	class CmsContentsController extends CmsAppController {
 		public function index() {
-			if(isset($this->request->params['id'])){
-				$ids = $this->CmsContent->find(
-					'list',
-					array(
-						'fields' => array(
-							$this->modelClass . '.id', 'Content.id'
-						),
-						'conditions' => array(
-							$this->modelClass . '.category_id' => $this->request->params['id']
-						)
-					)
-				);
-
+			if(!empty($this->request->params['category'])) {
 				$this->Paginator->settings = array(
 					'conditions' => array(
-						$this->modelClass . '.id' => $ids
+						'GlobalCategoryContent.slug' => $this->request->params['category']
 					)
 				);
 			}
