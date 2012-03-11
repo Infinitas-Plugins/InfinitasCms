@@ -18,53 +18,69 @@
      * @since         0.5a
      */
 
-	$i = 0;
-	foreach($contents as $content){
-		$content['Author']['username'] = $content['Editor']['username'] = 'Admin';
-		$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
-		?><div class="beforeEvent"><?php
-		foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
-			echo '<div class="'.$_plugin.'">'.$_data.'</div>';
-		}
-		?></div>
-
-		<div class="wrapper">
-			<div class="introduction">
-				<h2>
-					<?php
-						$eventData = $this->Event->trigger('Cms.slugUrl', array('type' => 'contents', 'data' => $content));
-						$urlArray = current($eventData['slugUrl']);
-						echo $this->Html->link(
-							$content['CmsContent']['title'],
-							$urlArray
-						);
-					?><span><?php echo $this->Time->niceShort($content['CmsContent']['created']); ?></span>
-				</h2>
-				<div class="body">
-					<?php
-						echo $this->Text->truncate($content['CmsContent']['body'], 200, array('html' => true));
-					?>
-				</div>
-			</div>
-			<?php
-				echo $this->element(
-					'Comments.modules/comment',
-					array(
-						'content' => $content,
-						'modelName' => 'CmsContent',
-						'foreign_id' => $content['CmsContent']['id']
-					)
-				);
-			?>
-		</div>
-
-		<div class="afterEvent">
-			<?php
-				$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
-				foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data){
-					echo '<div class="'.$_plugin.'">'.$_data.'</div>';
-				}
-			?>
-		</div> <?php
+	if(empty($globalLayoutTemplate)) {
+		throw new Exception('Template was not loaded, make sure one exists');
 	}
-?>
+
+	$firstPage = false;
+	$mainPageCheck = empty($this->request->params['tag']) && empty($this->request->params['named']['page']) || (!empty($this->request->params['named']['page']) && $this->request->params['named']['page'] == 1);
+	if($mainPageCheck) {
+		$firstPage = true;
+	}
+
+	//echo $this->ModuleLoader->loadDirect('Tags.tag_data', array('tagData' => $tagData));
+	
+    foreach($contents as $k => &$content) {
+		$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
+		$content['CmsContent']['events_before'] = '';
+		foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
+			$content['CmsContent']['events_before'] .= '<div class="'.$_plugin.'">'.$_data.'</div>';
+		}
+
+		$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
+		$content['CmsContent']['events_after'] = '';
+		foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data){
+			$content['CmsContent']['events_after'] .= '<div class="'.$_plugin.'">'.$_data.'</div>';
+		}
+
+		$eventData = $this->Event->trigger('Cms.slugUrl', array('type' => 'contents', 'data' => $content));
+		$url = InfinitasRouter::url(current($eventData['slugUrl']), true);
+		$content['CmsContent']['title_link'] = $this->Html->link($content['CmsContent']['title'], $url);
+		$content['CmsContent']['url'] = $url;
+
+		$content['CmsContent']['created'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['created']);
+		$content['CmsContent']['modified'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['modified']);
+
+		if(!($firstPage && $k === 0)) {
+			$content['CmsContent']['body'] = $this->Text->truncate($content['CmsContent']['body'], Configure::read('Cms.preview'), array('html' => true));
+		}
+
+		$content['CmsContent']['module_comments'] = $this->ModuleLoader->loadDirect(
+			'Comments.comment',
+			array(
+				'content' => $content,
+				'modelName' => 'CmsContent',
+				'foreign_id' => $content['CmsContent']['id']
+			)
+		);
+
+
+		$content['CmsContent']['module_tags_list'] = $this->TagCloud->tagList($content, ',');
+		$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect(
+			'Cms.post_tag_cloud',
+			array(
+				'tags' => $content['GlobalTagged'],
+				'title' => 'Tags'
+			)
+		);
+
+		$content['CmsContent']['author_link'] = $this->GlobalContents->author($content);
+		$content['CmsContent']['module_comment_count'] = sprintf(__d('comments', '%d Comments'), $content['CmsContent']['comment_count']);
+    }
+	
+	if(count($contents) > 0) {
+		$this->set('contents', $contents);
+		$this->set('paginationNavigation', $this->element('pagination/navigation'));
+	}
+	
+	echo $this->GlobalContents->renderTemplate($globalLayoutTemplate);

@@ -25,12 +25,9 @@ if(empty($content)) {
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
 		echo '<div class="before '.$_plugin.'">'.$_data.'</div>';
 	}
-	if(isset($content['CmsContent']['created'])){
-		$content['CmsContent']['created'] = $this->Time->niceShort($content['CmsContent']['created']);
-	}
-	if(isset($content['CmsContent']['modified'])){
-		$content['CmsContent']['modified'] = $this->Time->niceShort($content['CmsContent']['modified']);
-	}
+	
+	$content['CmsContent']['created'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['created']);
+	$content['CmsContent']['modified'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['modified']);
 
 	$content['CmsContent']['author'] = $this->GlobalContents->author($content);
 
