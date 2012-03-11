@@ -21,14 +21,6 @@
 	if(empty($globalLayoutTemplate)) {
 		throw new Exception('Template was not loaded, make sure one exists');
 	}
-
-	$firstPage = false;
-	$mainPageCheck = empty($this->request->params['tag']) && empty($this->request->params['named']['page']) || (!empty($this->request->params['named']['page']) && $this->request->params['named']['page'] == 1);
-	if($mainPageCheck) {
-		$firstPage = true;
-	}
-
-	//echo $this->ModuleLoader->loadDirect('Tags.tag_data', array('tagData' => $tagData));
 	
     foreach($contents as $k => &$content) {
 		$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
@@ -50,10 +42,6 @@
 
 		$content['CmsContent']['created'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['created']);
 		$content['CmsContent']['modified'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['modified']);
-
-		if(!($firstPage && $k === 0)) {
-			$content['CmsContent']['body'] = $this->Text->truncate($content['CmsContent']['body'], Configure::read('Cms.preview'), array('html' => true));
-		}
 
 		$content['CmsContent']['module_comments'] = $this->ModuleLoader->loadDirect(
 			'Comments.comment',

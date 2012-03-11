@@ -29,7 +29,29 @@ if(empty($content)) {
 	$content['CmsContent']['created'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['created']);
 	$content['CmsContent']['modified'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['modified']);
 
-	$content['CmsContent']['author'] = $this->GlobalContents->author($content);
+	$content['CmsContent']['module_tags_list'] = $this->TagCloud->tagList($content, ',');
+	$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect(
+		'Cms.post_tag_cloud',
+		array(
+			'tags' => $content['GlobalTagged'],
+			'title' => 'Tags'
+		)
+	);
+
+	$content['CmsContent']['author_link'] = $this->GlobalContents->author($content);
+	$content['CmsContent']['module_comment_count'] = $this->Html->link(
+		sprintf(__d('comments', '%d Comments'), count($content['CmsContentComment'])),
+		'#comments-top'
+	);
+
+	$content['CmsContent']['module_comments'] = $this->element(
+		'Comments.modules/comment',
+		array(
+			'content' => $content,
+			'modelName' => 'CmsContent',
+			'foreign_id' => $content['CmsContent']['id']
+		)
+	);
 
 	// need to overwrite the stuff in the viewVars for mustache 
 	$this->set('content', $content);
