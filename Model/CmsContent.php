@@ -109,6 +109,16 @@
 				),
 			);
 		}
+		
+		public function afterFind($results, $primary = false) {
+			switch($this->findQueryType) {
+				case 'first':
+					$results = $this->attachComments($results);
+					break;
+			}
+			
+			return $results;
+		}
 
 		public function getViewData($conditions = null){
 			if (!$conditions) {
