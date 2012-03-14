@@ -46,5 +46,14 @@
 					 'action' => 'view'
 				 )
 			 ),
+			 'tag' => array(
+				 'tag' => 'tag',
+				 'category' => 'category',
+				 'url' => array(
+					 'plugin' => 'cms',
+					 'controller' => 'cms_contents',
+					 'action' => 'index'
+				 )
+			 ),
 		 ),
 	 );
