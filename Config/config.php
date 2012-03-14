@@ -32,6 +32,11 @@
 		 ),
 		 'time_format' => 'jS M Y',
 		 'preview' => 400, // the length of the text to show on index pages
+		 'meta' => array(
+			 'keywords' => 'infinitas cms plugin,cakephp powered cms,php cms software',
+			 'description' => 'The Infinitas cms plugin is designed for building powerful flexible content management systems running on the Infinitas platform. For more information see http://infinitas-cms.org',
+			 'title' => ''
+		 ),
 		 'slugUrl' => array(
 			 'contents' => array(
 				 'Content.id' => 'id',
