@@ -33,7 +33,7 @@
 			}
 			
 			if(!empty($this->request->params['tag'])) {
-				$titleForLayout = sprintf(__d('blog', '%s related to %s'), $titleForLayout, $this->request->params['tag']);
+				$titleForLayout = sprintf(__d('cms', '%s related to %s'), $titleForLayout, $this->request->params['tag']);
 				
 				$this->Paginator->settings['joins'][] = array(
 					'table' => 'global_tagged',
@@ -63,10 +63,19 @@
 				$this->request->params['slug'] = $contents[0]['CmsContent']['slug'];
 				$this->view();
 			}
+			
+			$contents = $this->Paginator->paginate();
+			if(!empty($this->request->params['category']) && count($contents)) {
+				if(!empty($contents[0]['GlobalCategory']['meta_keywords'])) {
+					$this->set('seoMetaKeywords', $contents[0]['GlobalCategory']['meta_keywords']);
+				}
+				
+				if(!empty($contents[0]['GlobalCategory']['meta_description'])) {
+					$this->set('seoMetaDescription', $contents[0]['GlobalCategory']['meta_description']);
+				}
+			}
 
-			$this->set('contents', $this->Paginator->paginate());
-			$this->set('seoContentIndex', Configure::read('Blog.robots.index.index'));
-			$this->set('seoContentFollow', Configure::read('Blog.robots.index.follow'));
+			$this->set('contents', $contents);
 			$this->set('seoCanonicalUrl', $url);
 			$this->set('title_for_layout', $titleForLayout);
 		}
@@ -87,12 +96,11 @@
 			$this->set('content', $content);
 			
 			$url = $this->Event->trigger('Cms.slugUrl', array('type' => 'contents', 'data' => $content));
-			$this->set('seoCanonicalUrl', current($url['slugUrl']));
-			$this->set('seoContentIndex', Configure::read('Cms.robots.index.index'));
-			$this->set('seoContentFollow', Configure::read('Cms.robots.index.follow'));
+			$this->set('seoCanonicalUrl', $url['slugUrl']['Cms']);
 			$this->set('title_for_layout', $content['CmsContent']['title']);
-			Configure::write('Website.keywords', $content['CmsContent']['meta_keywords']);
-			Configure::write('Website.description', $content['CmsContent']['meta_description']);
+			
+			$this->set('seoMetaDescription', $content['CmsContent']['meta_description']);
+			$this->set('seoMetaKeywords', $content['CmsContent']['meta_keywords']);
 		}
 
 		public function admin_index() {
