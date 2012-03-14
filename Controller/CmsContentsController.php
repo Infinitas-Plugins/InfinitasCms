@@ -19,12 +19,41 @@
 
 	class CmsContentsController extends CmsAppController {
 		public function index() {
+			$titleForLayout = null;
+			$this->Paginator->settings = array(
+				'conditions' => array(),
+				'joins' => array()
+			);
+			$url = array();
+			
 			if(!empty($this->request->params['category'])) {
-				$this->Paginator->settings = array(
+				$this->Paginator->settings['conditions']['GlobalCategoryContent.slug'] = $this->request->params['category'];
+				$titleForLayout = sprintf(__d('cms', 'Content filed under %s'), $this->request->params['category']);
+				$url['category'] = $this->request->params['category'];
+			}
+			
+			if(!empty($this->request->params['tag'])) {
+				$titleForLayout = sprintf(__d('blog', '%s related to %s'), $titleForLayout, $this->request->params['tag']);
+				
+				$this->Paginator->settings['joins'][] = array(
+					'table' => 'global_tagged',
+					'alias' => 'GlobalTagged',
+					'type' => 'LEFT',
 					'conditions' => array(
-						'GlobalCategoryContent.slug' => $this->request->params['category']
+						'GlobalTagged.foreign_key = GlobalContent.id'
 					)
 				);
+				$this->Paginator->settings['joins'][] = array(
+					'table' => 'global_tags',
+					'alias' => 'GlobalTag',
+					'type' => 'LEFT',
+					'conditions' => array(
+						'GlobalTag.id = GlobalTagged.tag_id'
+					)
+				);
+				
+				$this->Paginator->settings['conditions']['GlobalTag.keyname'] = $this->request->params['tag'];
+				$url['tag'] = $this->request->params['tag'];
 			}
 
 			$this->CmsContent->order = $this->CmsContent->_order;
