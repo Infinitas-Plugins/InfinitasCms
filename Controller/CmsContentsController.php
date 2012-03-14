@@ -65,6 +65,10 @@
 			}
 
 			$this->set('contents', $this->Paginator->paginate());
+			$this->set('seoContentIndex', Configure::read('Blog.robots.index.index'));
+			$this->set('seoContentFollow', Configure::read('Blog.robots.index.follow'));
+			$this->set('seoCanonicalUrl', $url);
+			$this->set('title_for_layout', $titleForLayout);
 		}
 
 		public function view() {
