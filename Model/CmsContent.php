@@ -38,6 +38,10 @@
 		public $actsAs = array(
 			'Cms.Cms'
 		);
+		
+		public $findMethods = array(
+			'latest' => true
+		);
 
 		public $hasOne = array(
 			/* making duplicate records.
@@ -142,5 +146,41 @@
 			);
 
 			return $content;
+		}
+		
+		/**
+		 * @brief get the latest content (by category if required)
+		 * 
+		 * @access public
+		 * 
+		 * @code
+		 *	$this->CmsContents->find('latest'); // latest row 
+		 *	$this->CmsContents->find('latest', 'my-category'); // latest row in the 'my-category' section
+		 * @nocode
+		 * 
+		 * @see Model::find() for custom cakephp finds
+		 * 
+		 * @param type $state
+		 * @param type $query
+		 * @param type $results
+		 * 
+		 * @return array  
+		 */
+		public function _findLatest($state, $query, $results = array()) {
+			if ($state === 'before') {
+				if(!empty($query[0])) {
+					$query['conditions']['GlobalCategoryContent.slug'] = $query[0];
+				}
+				unset($query[0]);
+				
+				$query['limit'] = 1;
+				$query['order'] = array(
+					'GlobalContent.created' => 'desc'
+				);
+
+				return $query;
+			}
+
+			return current($results);
 		}
 	}
