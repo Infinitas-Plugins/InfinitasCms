@@ -57,4 +57,32 @@
 				)
 			);
 		}
+		
+		public function onRouteParse($event, $data) {
+			$return = null;
+			
+			if($data['action'] == 'comment') {
+				unset($data['category'], $data['slug']);
+				return $data;
+			}
+			
+			if(!empty($data['category'])) {
+				$return = ClassRegistry::init('Cms.CmsContent')->GlobalContent->find(
+					'count',
+					array(
+						'conditions' => array(
+							'GlobalContent.slug' => $data['category']
+						)
+					)
+				);
+			
+				if($return > 0) {
+					return $data;
+				}
+				
+				return false;
+			}
+			
+			return $data;
+		}
 	}
