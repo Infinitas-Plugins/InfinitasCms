@@ -75,12 +75,14 @@
 						)
 					)
 				);
+			
+				if($return > 0) {
+					return $data;
+				}
+				
+				return false;
 			}
 			
-			if($return > 0) {
-				return $data;
-			}
-			
-			return false;
+			return $data;
 		}
 	}

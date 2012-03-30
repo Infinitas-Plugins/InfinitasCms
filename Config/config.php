@@ -41,8 +41,10 @@
 			 'contents' => array(
 				 'Content.id' => 'id',
 				 'CmsContent.id' => 'id',
+				 'GlobalContent.id' => 'id',
 				 'Content.slug' => 'slug',
 				 'CmsContent.slug' => 'slug',
+				 'GlobalContent.slug' => 'slug',
 				 'GlobalCategory.slug' => 'category',
 				 'ParentCategory.slug' => 'category',
 				 'url' => array(
