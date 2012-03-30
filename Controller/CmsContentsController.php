@@ -28,12 +28,12 @@
 			
 			if(!empty($this->request->params['category'])) {
 				$this->Paginator->settings['conditions']['GlobalCategoryContent.slug'] = $this->request->params['category'];
-				$titleForLayout = sprintf(__d('cms', 'Content filed under %s'), $this->request->params['category']);
+				$titleForLayout = sprintf(__d('cms', 'Filed under %s'), $this->request->params['category']);
 				$url['category'] = $this->request->params['category'];
 			}
 			
 			if(!empty($this->request->params['tag'])) {
-				$titleForLayout = sprintf(__d('cms', '%s related to %s'), $titleForLayout, $this->request->params['tag']);
+				$titleForLayout = sprintf(__d('cms', '%s :: %s'), $titleForLayout, $this->request->params['tag']);
 				
 				$this->Paginator->settings['joins'][] = array(
 					'table' => 'global_tagged',
