@@ -17,7 +17,7 @@
      * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
      * @since         0.5a
      */
-	echo $this->Form->create('CmsContent', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
+	echo $this->Form->create('CmsContent', array('type' => 'file', 'inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead();
 
 		$tabs = array(
