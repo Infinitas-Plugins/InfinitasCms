@@ -92,6 +92,10 @@
 					$this->modelClass . '.active' => 1
 				)
 			);
+			
+			if(empty($content)) {
+				throw new NotFoundException();
+			}
 
 			$this->set('content', $content);
 			
