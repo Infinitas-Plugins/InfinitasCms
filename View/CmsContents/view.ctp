@@ -17,9 +17,10 @@
 	 * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
 	 * @since         0.5a
 	 */
-if(empty($content)) {
-	$content = $cmsContent;
-}
+
+	if(empty($content)) {
+		$content = $cmsContent;
+	}
 
 	$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
@@ -37,6 +38,20 @@ if(empty($content)) {
 			'title' => 'Tags'
 		)
 	);
+	
+	$eventData = $this->Event->trigger(
+		'Contents.slugUrl', 
+		array(
+			'type' => 'category', 
+			'data' => array(
+				'GlobalCategory' => $content['GlobalCategory']
+			)
+		)
+	);
+	$url = InfinitasRouter::url(current($eventData['slugUrl']));
+	
+	$content['CmsContent']['category_title_link'] = $this->Html->link($content['CmsContent']['title'], $url);
+	$content['CmsContent']['category_url'] = $url;
 
 	$content['CmsContent']['author_link'] = $this->GlobalContents->author($content);
 	$content['CmsContent']['module_comment_count'] = $this->Html->link(
