@@ -19,7 +19,7 @@ class CmsControllerTest extends CakeTestCase {
 	);
 
 	function startTest() {
-		$this->Cms =& new TestCmsController();
+		$this->Cms = new TestCmsController();
 		$this->Cms->constructClasses();
 	}
 

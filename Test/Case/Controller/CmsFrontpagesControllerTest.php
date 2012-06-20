@@ -19,7 +19,7 @@ class CmsFrontpagesControllerTest extends CakeTestCase {
 	);
 
 	function startTest() {
-		$this->CmsFrontpages =& new TestCmsFrontpagesController();
+		$this->CmsFrontpages = new TestCmsFrontpagesController();
 		$this->CmsFrontpages->constructClasses();
 	}
 
