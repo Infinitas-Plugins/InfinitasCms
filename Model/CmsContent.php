@@ -124,7 +124,7 @@
 			return $results;
 		}
 
-		public function getViewData($conditions = null){
+		public function getViewData($conditions = null) {
 			if (!$conditions) {
 				return array();
 			}

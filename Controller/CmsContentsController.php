@@ -59,7 +59,7 @@
 			$this->CmsContent->order = $this->CmsContent->_order;
 			$contents = $this->Paginator->paginate();
 
-			if(count($contents) == 1 && Configure::read('Cms.auto_redirect')){
+			if(count($contents) == 1 && Configure::read('Cms.auto_redirect')) {
 				$this->request->params['slug'] = $contents[0]['CmsContent']['slug'];
 				$this->view();
 			}
@@ -136,7 +136,7 @@
 		}
 
 		public function admin_add() {
-			if(!$this->CmsContent->hasLayouts()){
+			if(!$this->CmsContent->hasLayouts()) {
 				$this->notice(
 					__('You need to create some layouts before you can create content'),
 					array(

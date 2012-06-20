@@ -1,6 +1,6 @@
 <?php
 	final class CmsEvents extends AppEvents {
-		public function onPluginRollCall(){
+		public function onPluginRollCall() {
 			return array(
 				'name' => 'Cms',
 				'description' => 'Content Management',
@@ -14,7 +14,7 @@
 			);
 		}
 
-		public function onAdminMenu($event){
+		public function onAdminMenu($event) {
 			$menu['main'] = array(
 				'Dashboard' => array('plugin' => 'cms', 'controller' => 'cms', 'action' => 'dashboard'),
 				'Content' => array('plugin' => 'cms', 'controller' => 'cms_contents', 'action' => 'index'),
@@ -25,7 +25,7 @@
 			return $menu;
 		}
 		
-		public function onSetupCache(){
+		public function onSetupCache() {
 			return array(
 				'name' => 'cms',
 				'config' => array(
@@ -38,7 +38,7 @@
 			);
 		}
 
-		public function onSlugUrl($event, $data){
+		public function onSlugUrl($event, $data) {
 			$data['data'] = isset($data['data']) ? $data['data'] : $data;
 			$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
 

@@ -9,15 +9,15 @@
 			'plugin.cms.cms_frontpage',
 	    );
 
-	    public function startTest(){
+	    public function startTest() {
 	        $this->CmsFrontpage = &ClassRegistry::init('Cms.CmsFrontpage');
 	    }
 
-		public function testSomething(){
+		public function testSomething() {
 			$this->assertTrue(true);
 		}
 
-	    public function endTest(){
+	    public function endTest() {
 	        unset( $this->CmsFrontpage );
 	        ClassRegistry::flush();
 	    }

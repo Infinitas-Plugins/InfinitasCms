@@ -10,7 +10,7 @@
 		echo $this->Form->end(__('Save'));
 	}
 	else{
-		if (empty($categories)){
+		if (empty($categories)) {
 			$links[] = sprintf(
 				__('No categories found, %s', true ),
 				$this->Html->link(
@@ -23,7 +23,7 @@
 				)
 			);
 		}
-		if (empty($layouts)){
+		if (empty($layouts)) {
 			$links[] = sprintf(
 				__('No layouts found, %s', true ),
 				$this->Html->link(
