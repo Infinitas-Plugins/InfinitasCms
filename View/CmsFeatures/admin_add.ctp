@@ -21,7 +21,7 @@
     echo $this->Form->create('CmsFeature', array('inputDefaults' => array('empty' => Configure::read('Website.empty_select'))));
 		echo $this->Infinitas->adminEditHead(); ?>
 		<fieldset>
-			<h1><?php echo __('Featured Page'); ?></h1><?php
-			echo $this->Form->input('content_id', array('label' => __('Content Item'), 'type' => 'select', 'options' => $contents)); ?>
+			<h1><?php echo __d('cms', 'Featured Page'); ?></h1><?php
+			echo $this->Form->input('content_id', array('label' => __d('cms', 'Content Item'), 'type' => 'select', 'options' => $contents)); ?>
 		</fieldset><?php
     echo $this->Form->end();

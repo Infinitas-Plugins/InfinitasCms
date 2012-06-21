@@ -47,8 +47,8 @@
                 return $this->Html->image(
                     $this->Image->getRelativePath('status', 'home'),
                     array(
-                        'alt'   => __('Yes'),
-                        'title' => __('Home page item'),
+                        'alt'   => __d('cms', 'Yes'),
+                        'title' => __d('cms', 'Home page item'),
                         'width' => '16px'
                     )
                 );
@@ -57,8 +57,8 @@
             return $this->Html->image(
                 $this->Image->getRelativePath('status', 'not-home'),
                 array(
-                    'alt'   => __('No'),
-                    'title' => __('Not on home page'),
+                    'alt'   => __d('cms', 'No'),
+                    'title' => __d('cms', 'Not on home page'),
                     'width' => '16px'
                 )
             );

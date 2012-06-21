@@ -51,7 +51,8 @@
 				'content_id' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please select the content item that should be featured')
+						'required' => true,
+						'message' => __d('cms', 'Please select the content item that should be featured')
 					)
 				)
 			);

@@ -118,9 +118,9 @@
 			$filterOptions = $this->Filter->filterOptions;
 			$filterOptions['fields'] = array(
 				'title',
-				'category_id' => array(null => __('All'), null => __('Top Level Categories')) + $this->CmsContent->GlobalContent->find('categoryList'),
-				'group_id' => array(null => __('Public')) + $this->CmsContent->GlobalContent->Group->find('list'),
-				'layout_id' => array(null => __('All')) + $this->CmsContent->GlobalContent->GlobalLayout->find('list'),
+				'category_id' => array(null => __d('cms', 'All'), null => __d('cms', 'Top Level Categories')) + $this->CmsContent->GlobalContent->find('categoryList'),
+				'group_id' => array(null => __d('cms', 'Public')) + $this->CmsContent->GlobalContent->Group->find('list'),
+				'layout_id' => array(null => __d('cms', 'All')) + $this->CmsContent->GlobalContent->GlobalLayout->find('list'),
 				'active' => (array)Configure::read('CORE.active_options')
 			);
 
@@ -138,7 +138,7 @@
 		public function admin_add() {
 			if(!$this->CmsContent->hasLayouts()) {
 				$this->notice(
-					__('You need to create some layouts before you can create content'),
+					__d('cms', 'You need to create some layouts before you can create content'),
 					array(
 						'level' => 'warning',
 						'redirect' => array(

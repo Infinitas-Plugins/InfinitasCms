@@ -1,24 +1,68 @@
 <?php
-	/* ContentFrontpage Test cases generated on: 2009-12-13 19:12:29 : 1260726929*/
-	App::uses('CmsFrontpage', 'Cms.Model');
+App::uses('CmsFrontpage', 'Cms.Model');
 
-	class CmsFrontpageTestCase extends CakeTestCase
-	{
-		public $fixtures = array(
-			'plugin.cms.cms_content',
-			'plugin.cms.cms_frontpage',
-	    );
+/**
+ * CmsFrontpage Test Case
+ *
+ */
+class CmsFrontpageTest extends CakeTestCase {
 
-	    public function startTest() {
-	        $this->CmsFrontpage = &ClassRegistry::init('Cms.CmsFrontpage');
-	    }
+/**
+ * Fixtures
+ *
+ * @var array
+ */
+	public $fixtures = array(
+		'plugin.cms.cms_frontpage',
+		'plugin.cms.cms_content',
+		'plugin.cms.cms_feature'
+	);
 
-		public function testSomething() {
-			$this->assertTrue(true);
-		}
-
-	    public function endTest() {
-	        unset( $this->CmsFrontpage );
-	        ClassRegistry::flush();
-	    }
+/**
+ * setUp method
+ *
+ * @return void
+ */
+	public function setUp() {
+		parent::setUp();
+		$this->CmsFrontpage = ClassRegistry::init('Cms.CmsFrontpage');
 	}
+
+/**
+ * tearDown method
+ *
+ * @return void
+ */
+	public function tearDown() {
+		unset($this->CmsFrontpage);
+
+		parent::tearDown();
+	}
+
+/**
+ * @brief test validation
+ */
+	public function testValidation() {
+		$expected = false;
+		$result = $this->CmsFrontpage->save(array());
+		$this->assertEquals($expected, $result);
+
+		$expected = array('content_id' => array('Please select an item to be on the main cms page'));
+		$result = $this->CmsFrontpage->validationErrors;
+		$this->assertEquals($expected, $result);
+
+		$date = date('Y-m-d H:i:s');
+		$expected = array('CmsFrontpage' => array('id' => '2', 'content_id' => 2, 'modified' => $date, 'created' => $date));
+		$result = $this->CmsFrontpage->save(array('modified' => $date, 'created' => $date, 'content_id' => 2));
+		$this->assertEquals($expected, $result);
+	}
+
+/**
+ * @brief test behaviors
+ */
+	public function testBehaviors() {
+		$expected = false;
+		$result = in_array('Thrashable', $this->CmsFrontpage->Behaviors->attached());
+		$this->assertEquals($expected, $result, 'Thrash should not be attached to this model');
+	}
+}
