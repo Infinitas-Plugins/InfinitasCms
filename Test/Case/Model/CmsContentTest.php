@@ -21,7 +21,13 @@ class CmsContentTest extends CakeTestCase {
 		'plugin.contents.global_tagged',
 		'plugin.contents.global_content',
 		'plugin.contents.global_layout',
-		'plugin.contents.global_category'
+		'plugin.contents.global_category',
+		'plugin.locks.global_lock',
+		'plugin.management.ticket',
+		'plugin.users.user',
+		'plugin.users.group',
+		'plugin.installer.plugin',
+		'plugin.view_counter.view_counter_view'
 	);
 
 /**
