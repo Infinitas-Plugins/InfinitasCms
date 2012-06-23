@@ -52,7 +52,7 @@ class CmsFeatureTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$date = date('Y-m-d H:i:s');
-		$expected = array('CmsFeature' => array('id' => '2', 'content_id' => 2, 'created' => $date));
+		$expected = array('CmsFeature' => array('id' => '2', 'content_id' => 2, 'ordering' => 2, 'created' => $date));
 		$result = $this->CmsFeature->save(array('created' => $date, 'content_id' => 2));
 		$this->assertEquals($expected, $result);
 	}

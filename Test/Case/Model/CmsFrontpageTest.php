@@ -52,7 +52,7 @@ class CmsFrontpageTest extends CakeTestCase {
 		$this->assertEquals($expected, $result);
 
 		$date = date('Y-m-d H:i:s');
-		$expected = array('CmsFrontpage' => array('id' => '2', 'content_id' => 2, 'modified' => $date, 'created' => $date));
+		$expected = array('CmsFrontpage' => array('id' => '2', 'content_id' => 2, 'modified' => $date, 'created' => $date, 'ordering' => 2));
 		$result = $this->CmsFrontpage->save(array('modified' => $date, 'created' => $date, 'content_id' => 2));
 		$this->assertEquals($expected, $result);
 	}
