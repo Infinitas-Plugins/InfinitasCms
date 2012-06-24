@@ -71,7 +71,7 @@
 		/**
 		 * Construct for validation.
 		 *
-		 * This is used to make the validation messages run through __()
+		 * This is used to make the validation messages run through __d('cms', )
 		 *
 		 * @param mixed $id
 		 * @param mixed $table
@@ -84,31 +84,31 @@
 				'title' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please enter the title of your page')
+						'message' => __d('cms', 'Please enter the title of your page')
 					),
 				),
 				'category_id' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please select a category')
+						'message' => __d('cms', 'Please select a category')
 					)
 				),
 				'layout_id' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please select a layout')
+						'message' => __d('cms', 'Please select a layout')
 					)
 				),
 				'group_id' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please select the group this content is for')
+						'message' => __d('cms', 'Please select the group this content is for')
 					)
 				),
 				'body' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please enter some text for the body')
+						'message' => __d('cms', 'Please enter some text for the body')
 					),
 				),
 			);
@@ -124,7 +124,7 @@
 			return $results;
 		}
 
-		public function getViewData($conditions = null){
+		public function getViewData($conditions = null) {
 			if (!$conditions) {
 				return array();
 			}

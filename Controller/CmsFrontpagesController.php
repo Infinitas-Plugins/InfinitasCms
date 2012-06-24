@@ -103,7 +103,7 @@
 
 			if (empty($contents)) {
 				$this->notice(
-					__('You have all the items on your home page.'),
+					__d('cms', 'You have all the items on your home page.'),
 					array(
 						'level' => 'warning',
 						'redirect' => true

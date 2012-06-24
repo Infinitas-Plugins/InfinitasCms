@@ -24,26 +24,26 @@
 	$links = array();
 	$links['main'] = array(
 		array(
-			'name' => __('List'),
-			'description' => __('View all your content pages'),
+			'name' => __d('cms', 'List'),
+			'description' => __d('cms', 'View all your content pages'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_contents', 'action' => 'index')
 		),
 		array(
-			'name' => __('Add'),
-			'description' => __('Create a new content page'),
+			'name' => __d('cms', 'Add'),
+			'description' => __d('cms', 'Create a new content page'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_contents', 'action' => 'add')
 		),
 		array(
-			'name' => __('Active'),
-			'description' => __('See what items are currently active'),
+			'name' => __d('cms', 'Active'),
+			'description' => __d('cms', 'See what items are currently active'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_contents', 'action' => 'index', 'CmsContent.active' => 1)
 		),
 		array(
-			'name' => __('Pending'),
-			'description' => __('See what items are currently pending'),
+			'name' => __d('cms', 'Pending'),
+			'description' => __d('cms', 'See what items are currently pending'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_contents', 'action' => 'index', 'CmsContent.active' => 0)
 		)
@@ -51,14 +51,14 @@
 
 	$links['front'] = array(
 		array(
-			'name' => __('List'),
-			'description' => __('View the pages currently set to show on the main page'),
+			'name' => __d('cms', 'List'),
+			'description' => __d('cms', 'View the pages currently set to show on the main page'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_frontpages', 'action' => 'index')
 		),
 		array(
-			'name' => __('Add'),
-			'description' => __('Add some new pages to the main page'),
+			'name' => __d('cms', 'Add'),
+			'description' => __d('cms', 'Add some new pages to the main page'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_frontpages', 'action' => 'add')
 		)
@@ -66,14 +66,14 @@
 
 	$links['featured'] = array(
 		array(
-			'name' => __('List'),
-			'description' => __('View the current featured items'),
+			'name' => __d('cms', 'List'),
+			'description' => __d('cms', 'View the current featured items'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_features', 'action' => 'index')
 		),
 		array(
-			'name' => __('Add'),
-			'description' => __('Add some new featured items'),
+			'name' => __d('cms', 'Add'),
+			'description' => __d('cms', 'Add some new featured items'),
 			'icon' => '/cms/img/icon.png',
 			'dashboard' => array('controller' => 'cms_features', 'action' => 'add')
 		)

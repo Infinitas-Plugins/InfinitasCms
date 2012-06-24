@@ -23,7 +23,7 @@
 	}
 
 	$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
-	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
+	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data) {
 		echo '<div class="before '.$_plugin.'">'.$_data.'</div>';
 	}
 	
@@ -71,7 +71,7 @@
 	// need to overwrite the stuff in the viewVars for mustache 
 	$this->set('content', $content);
 
-	if(!empty($content['Layout']['css'])){
+	if(!empty($content['Layout']['css'])) {
 		?><style type="text/css"><?php echo $content['Layout']['css']; ?></style><?php
 	}
 
@@ -80,6 +80,6 @@
 
 	
 	$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
-	foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data){
+	foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data) {
 		echo '<div class="after '.$_plugin.'">'.$_data.'</div>';
 	}

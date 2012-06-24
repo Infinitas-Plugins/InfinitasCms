@@ -61,7 +61,7 @@
 
 			if (empty($contents)) {
 				$this->notice(
-					__('You have already made all the content items featured.'),
+					__d('cms', 'You have already made all the content items featured.'),
 					array(
 						'level' => 'warning',
 						'redirect' => true

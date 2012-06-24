@@ -42,7 +42,7 @@
                     $this->Paginator->sort('ordering') => array(
                         'style' => 'width:50px;'
                     ),
-                    __('Status') => array(
+                    __d('cms', 'Status') => array(
                         'style' => 'width:50px;'
                     )
                 )

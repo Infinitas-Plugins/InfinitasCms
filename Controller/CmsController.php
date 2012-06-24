@@ -23,17 +23,17 @@
 	class CmsController extends CmsAppController {
 		public $uses = array();
 
-		public function beforeFilter(){
+		public function beforeFilter() {
 			parent::beforeFilter();
 			
-			if($this->request->params['action'] != 'admin_dashboard'){
+			if($this->request->params['action'] != 'admin_dashboard') {
 				$this->redirect(array('action' => 'dashboard'));
 			}
 			
 			return true;
 		}
 
-		public function admin_dashboard(){
+		public function admin_dashboard() {
 			$Content = ClassRegistry::init('Cms.CmsContent');
 			
 			$requireSetup = count($Content->GlobalContent->GlobalLayout->find('list')) >= 1;

@@ -73,7 +73,8 @@
 				'content_id' => array(
 					'notEmpty' => array(
 						'rule' => 'notEmpty',
-						'message' => __('Please select an item to be on the main cms page')
+						'required' => true,
+						'message' => __d('cms', 'Please select an item to be on the main cms page')
 					)
 				)
 			);

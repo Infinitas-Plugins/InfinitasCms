@@ -35,20 +35,20 @@
 		 * @param string $model the current model
 		 * @return string some html for an icon
 		 */
-        public function homePageItem($record = array(), $model = 'Frontpage'){
-            if (empty($record)){
+        public function homePageItem($record = array(), $model = 'Frontpage') {
+            if (empty($record)) {
                 $this->errors[] = 'cant check nothing.';
                 return false;
             }
 
 			$record = array_filter($record[$model]);
 
-            if (!empty($record)){
+            if (!empty($record)) {
                 return $this->Html->image(
                     $this->Image->getRelativePath('status', 'home'),
                     array(
-                        'alt'   => __('Yes'),
-                        'title' => __('Home page item'),
+                        'alt'   => __d('cms', 'Yes'),
+                        'title' => __d('cms', 'Home page item'),
                         'width' => '16px'
                     )
                 );
@@ -57,8 +57,8 @@
             return $this->Html->image(
                 $this->Image->getRelativePath('status', 'not-home'),
                 array(
-                    'alt'   => __('No'),
-                    'title' => __('Not on home page'),
+                    'alt'   => __d('cms', 'No'),
+                    'title' => __d('cms', 'Not on home page'),
                     'width' => '16px'
                 )
             );

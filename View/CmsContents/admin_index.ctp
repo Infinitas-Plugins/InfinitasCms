@@ -58,7 +58,7 @@
                     $this->Paginator->sort('ordering') => array(
                         'style' => 'width:50px;'
                     ),
-                    __('Status') => array(
+                    __d('cms', 'Status') => array(
                         'style' => 'width:100px;'
                     )
                 )
@@ -93,7 +93,7 @@
                 			<?php 
 								echo isset($content['Group']['name']) && !empty($content['Group']['name'])
 									? $content['Group']['name']
-									: __('Public');
+									: __d('cms', 'Public');
 							?>&nbsp;
                 		</td>
                 		<td>

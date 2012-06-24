@@ -25,13 +25,13 @@
     foreach($contents as $k => &$content) {
 		$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
 		$content['CmsContent']['events_before'] = '';
-		foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data){
+		foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data) {
 			$content['CmsContent']['events_before'] .= '<div class="'.$_plugin.'">'.$_data.'</div>';
 		}
 
 		$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
 		$content['CmsContent']['events_after'] = '';
-		foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data){
+		foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data) {
 			$content['CmsContent']['events_after'] .= '<div class="'.$_plugin.'">'.$_data.'</div>';
 		}
 
