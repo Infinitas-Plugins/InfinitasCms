@@ -1,30 +1,33 @@
 <?php
-/* CmsFeature Fixture generated on: 2010-08-17 14:08:59 : 1282055099 */
+/**
+ * @brief fixture file for CmsFeature tests.
+ *
+ * @package Cms.Fixture
+ * @since 0.9b1
+ */
 class CmsFeatureFixture extends CakeTestFixture {
-	var $name = 'CmsFeature';
+	public $name = 'CmsFeature';
+	public $table = 'cms_features';
 
-	var $table = 'cms_features';
-
-	var $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10, 'key' => 'primary'),
-		'content_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
-		'ordering' => array('type' => 'integer', 'null' => false, 'default' => '0'),
-		'order_id' => array('type' => 'integer', 'null' => false, 'default' => '1'),
-		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
-		'created_by' => array('type' => 'integer', 'null' => false, 'default' => NULL),
-		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
+	public $fields = array(
+		'id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'content_id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
+		'ordering' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8),
+		'order_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
+		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
+		'indexes' => array(
+			'PRIMARY' => array('column' => 'id', 'unique' => 1)
+		),
 		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'InnoDB')
 	);
 
-	var $records = array(
+	public $records = array(
 		array(
-			'id' => 1,
-			'content_id' => 1,
+			'id' => 'cms-feature-1',
+			'content_id' => 'cms-content-1',
 			'ordering' => 1,
 			'order_id' => 1,
-			'created' => '2010-01-04 21:49:03',
-			'created_by' => 0
+			'created' => '2010-01-04 21:49:03'
 		),
 	);
 }
-?>
