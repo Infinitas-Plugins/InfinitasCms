@@ -28,4 +28,8 @@ class CmsBehaviorTest extends CakeTestCase {
 		parent::tearDown();
 	}
 
+	public function testSomething() {
+		
+	}
+
 }

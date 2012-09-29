@@ -14,18 +14,17 @@ class CmsContentsControllerTest extends ControllerTestCase {
  */
 	public $fixtures = array(
 		'plugin.cms.cms_content',
-		'plugin.cms.global_category',
-		'plugin.cms.group',
-		'plugin.cms.global_content',
-		'plugin.cms.global_layout',
-		'plugin.cms.theme',
-		'plugin.cms.user',
-		'plugin.cms.global_tagged',
-		'plugin.cms.global_tag',
-		'plugin.cms.view_counter_view',
-		'plugin.cms.infinitas_comment',
-		'plugin.cms.infinitas_comment_attribute',
-		'plugin.cms.infinitas_comment_attributes'
+		'plugin.contents.global_category',
+		'plugin.contents.global_content',
+		'plugin.contents.global_layout',
+		'plugin.contents.global_tagged',
+		'plugin.contents.global_tag',
+		'plugin.users.group',
+		'plugin.themes.theme',
+		'plugin.users.user',
+		'plugin.view_counter.view_counter_view',
+		'plugin.comments.infinitas_comment',
+		'plugin.comments.infinitas_comment_attribute'
 	);
 
 /**
