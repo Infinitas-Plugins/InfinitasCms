@@ -1,5 +1,10 @@
 <?php
-final class CmsEvents extends AppEvents {
+class CmsEvents extends AppEvents {
+/**
+ * @brief get the plugin details
+ *
+ * @return array
+ */
 	public function onPluginRollCall() {
 		return array(
 			'name' => 'Cms',
@@ -8,15 +13,22 @@ final class CmsEvents extends AppEvents {
 			'author' => 'Infinitas',
 			'dashboard' => array(
 				'plugin' => 'cms',
-				'controller' => 'cms',
+				'controller' => 'cms_contents',
 				'action' => 'dashboard'
 			)
 		);
 	}
 
-	public function onAdminMenu($event) {
+/**
+ * @brief the admin menu
+ *
+ * @param type $event
+ *
+ * @return array
+ */
+	public function onAdminMenu(Event $Event) {
 		$menu['main'] = array(
-			'Dashboard' => array('plugin' => 'cms', 'controller' => 'cms', 'action' => 'dashboard'),
+			'Dashboard' => array('plugin' => 'cms', 'controller' => 'cms_contents', 'action' => 'dashboard'),
 			'Content' => array('plugin' => 'cms', 'controller' => 'cms_contents', 'action' => 'index'),
 			'Front Page' => array('plugin' => 'cms', 'controller' => 'cms_frontpages', 'action' => 'index'),
 			'Featured' => array('plugin' => 'cms', 'controller' => 'cms_features', 'action' => 'index'),
@@ -25,6 +37,11 @@ final class CmsEvents extends AppEvents {
 		return $menu;
 	}
 
+/**
+ * @brief set up cache for the plugin
+ *
+ * @return array
+ */
 	public function onSetupCache() {
 		return array(
 			'name' => 'cms',
@@ -38,27 +55,50 @@ final class CmsEvents extends AppEvents {
 		);
 	}
 
-	public function onSlugUrl($event, $data) {
+/**
+ * @brief generate url slugs
+ *
+ * @param Event $event
+ * @param array $data
+ *
+ * @return array
+ */
+	public function onSlugUrl(Event $Event, $data) {
 		$data['data'] = isset($data['data']) ? $data['data'] : $data;
 		$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
 
 		return parent::onSlugUrl($event, $data['data'], $data['type']);
 	}
 
-	public function onSetupRoutes($event, $data = null) {
+/**
+ * @brief a hard coded url for the cms dashboard
+ *
+ * @param Event $event
+ */
+	public function onSetupRoutes(Event $Event) {
 		InfinitasRouter::connect(
 			'/admin/cms',
 			array(
 				'admin' => true,
 				'prefix' => 'admin',
 				'plugin' => 'cms',
-				'controller' => 'cms',
+				'controller' => 'cms_contents',
 				'action' => 'dashboard'
 			)
 		);
 	}
 
-	public function onRouteParse($event, $data) {
+/**
+ * @brief parse a route and check if its belongs to the cms plugin
+ *
+ * return false if not a cms route, or the array if it is
+ *
+ * @param Event $event
+ * @param array $data
+ *
+ * @return boolean|array
+ */
+	public function onRouteParse(Event $Event, $data) {
 		$return = null;
 
 		if($data['action'] == 'comment') {
