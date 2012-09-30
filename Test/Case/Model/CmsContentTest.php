@@ -23,7 +23,7 @@ class CmsContentTest extends CakeTestCase {
 		'plugin.contents.global_layout',
 		'plugin.contents.global_category',
 		'plugin.comments.infinitas_comment',
-		'plugin.locks.global_lock',
+		'plugin.locks.lock',
 		'plugin.management.ticket',
 		'plugin.users.user',
 		'plugin.users.group',
