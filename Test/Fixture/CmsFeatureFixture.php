@@ -13,7 +13,7 @@ class CmsFeatureFixture extends CakeTestFixture {
 		'id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'key' => 'primary', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'content_id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'ordering' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8),
-		'order_id' => array('type' => 'integer', 'null' => false, 'default' => '0'),
+		'order_id' => array('type' => 'string', 'null' => false, 'default' => '0', 'length' => 36),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'indexes' => array(
 			'PRIMARY' => array('column' => 'id', 'unique' => 1)

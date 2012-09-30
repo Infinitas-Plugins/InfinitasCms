@@ -18,7 +18,7 @@ class CmsContentFixture extends CakeTestFixture {
 		'end' => array('type' => 'datetime', 'null' => true, 'default' => null),
 		'created_by' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'modified_by' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'category_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'key' => 'index', 'length' => 6),
+		'category_id' => array('type' => 'string', 'null' => false, 'default' => null, 'length' => 36, 'key' => 'index', 'length' => 6),
 		'rating' => array('type' => 'float', 'null' => false, 'default' => '0.00', 'length' => '3,2'),
 		'rating_count' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 5),
 		'comment_count' => array('type' => 'integer', 'null' => true, 'default' => '0', 'length' => 5),
