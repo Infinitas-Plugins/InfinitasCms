@@ -68,9 +68,9 @@
 				$rowClass = $this->Infinitas->rowClass(); ?>
                 	<tr class="parent <?php echo $rowClass; ?>">
                         <td>
-							<?php 
+							<?php
 								echo '<span class="toggle"><a href="#">+</a></span>',
-								$this->Infinitas->massActionCheckBox($content); 
+								$this->Infinitas->massActionCheckBox($content);
 							?>&nbsp;
 						</td>
                 		<td>
@@ -90,7 +90,7 @@
                         	?>&nbsp;
                 		</td>
                 		<td>
-                			<?php 
+                			<?php
 								echo isset($content['Group']['name']) && !empty($content['Group']['name'])
 									? $content['Group']['name']
 									: __d('cms', 'Public');
@@ -120,7 +120,7 @@
                 		<td class="status">
                 			<?php
                 			    echo $this->Cms->homePageItem($content),
-                        			$this->Infinitas->featured($content),
+                        			$this->Cms->featuredItem($content),
                 			        $this->Infinitas->status($content['CmsContent']['active'], $content['CmsContent']['id']),
                     			    $this->Locked->display($content);
                 			?>&nbsp;
@@ -128,7 +128,7 @@
                 	</tr>
 					<tr class="details <?php echo $rowClass; ?>">
 						<td colspan="100">
-							<?php 
+							<?php
 								echo $this->element('Contents.expanded/body', array('data' => $content['CmsContent']));
 								echo $this->element('Contents.expanded/seo', array('data' => $content['CmsContent']));
 								echo $this->element('Contents.expanded/image', array('data' => $content['CmsContent']));
