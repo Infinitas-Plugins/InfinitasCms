@@ -112,7 +112,7 @@
                 			<?php echo $content['CmsContent']['views']; ?>&nbsp;
                 		</td>
                 		<td>
-                			<?php echo $this->Time->niceShort($content['CmsContent']['modified']); ?>&nbsp;
+                			<?php echo $this->Infinitas->date($content['CmsContent']['modified']); ?>&nbsp;
                 		</td>
                 		<td class="status">
                 			<?php echo $this->Infinitas->ordering($content['CmsContent']['id'], $content['CmsContent']['ordering'], 'Cms.CmsContent'); ?>&nbsp;

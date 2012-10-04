@@ -68,7 +68,7 @@
 								);
 							?>&nbsp;
                 		</td>
-                		<td><?php echo $this->Time->niceShort($feature['Feature']['created']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->date($feature['Feature']['created']); ?>&nbsp;</td>
                 		<td><?php echo $this->Infinitas->ordering($feature['Feature']['id'], $feature['Feature']['ordering']); ?>&nbsp;</td>
                 		<td><?php echo $this->Infinitas->status($feature['CmsContent']['active']); ?>&nbsp;</td>
                 	</tr>

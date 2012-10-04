@@ -66,8 +66,8 @@
 								);
 							?>&nbsp;
                 		</td>
-                		<td><?php echo $this->Time->niceShort($frontpage['Frontpage']['created']); ?>&nbsp;</td>
-                		<td><?php echo $this->Time->niceShort($frontpage['Frontpage']['modified']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->date($frontpage['Frontpage']['created']); ?>&nbsp;</td>
+                		<td><?php echo $this->Infinitas->date($frontpage['Frontpage']['modified']); ?>&nbsp;</td>
                 		<td><?php echo $this->Infinitas->ordering($frontpage['Frontpage']['id'], $frontpage['Frontpage']['ordering']); ?>&nbsp;</td>
                 		<td><?php echo $this->Infinitas->status($frontpage['CmsContent']['active']); ?>&nbsp;</td>
                 	</tr>
