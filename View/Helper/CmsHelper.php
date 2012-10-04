@@ -44,8 +44,9 @@ class CmsHelper extends AppHelper {
 		$record = array_filter($record[$model]);
 
 		if (!empty($record)) {
-			return $this->Html->image(
-				$this->Image->getRelativePath('status', 'home'),
+			return $this->Image->image(
+				'status',
+				'home',
 				array(
 					'alt'   => __d('cms', 'Yes'),
 					'title' => __d('cms', 'Home page item'),
@@ -54,8 +55,9 @@ class CmsHelper extends AppHelper {
 			);
 		}
 
-		return $this->Html->image(
-			$this->Image->getRelativePath('status', 'not-home'),
+		return $this->Image->image(
+			'status',
+			'not-home',
 			array(
 				'alt'   => __d('cms', 'No'),
 				'title' => __d('cms', 'Not on home page'),
@@ -77,8 +79,9 @@ class CmsHelper extends AppHelper {
 	public function featuredItem($record = array(), $model = 'Feature') {
 		$record = array_filter($record[$model]);
 		if (empty($record)) {
-			return $this->Html->image(
-				$this->Image->getRelativePath('status', 'not-featured'),
+			return $this->Image->image(
+				'status',
+				'not-featured',
 				array(
 					'alt'   => __d('cms', 'No'),
 					'title' => __d('cms', 'Not a featured item'),
@@ -87,8 +90,9 @@ class CmsHelper extends AppHelper {
 			);
 		}
 
-		return $this->Html->image(
-			$this->Image->getRelativePath('status', 'featured'),
+		return $this->Image->image(
+			'status',
+			'featured',
 			array(
 				'alt'   => __d('cms', 'Yes'),
 				'title' => __d('cms', 'Featured Item'),
