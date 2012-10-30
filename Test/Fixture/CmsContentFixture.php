@@ -11,7 +11,7 @@ class CmsContentFixture extends CakeTestFixture {
 
 	public $fields = array(
 		'id' => array('type' => 'string', 'null' => false, 'default' => null, 'key' => 'primary', 'length' => 36, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
-		'ordering' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 8),
+		'ordering' => array('type' => 'integer', 'null' => false, 'default' => '1', 'length' => 8),
 		'views' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 9, 'key' => 'index'),
 		'active' => array('type' => 'boolean', 'null' => false, 'default' => '0', 'key' => 'index'),
 		'start' => array('type' => 'datetime', 'null' => true, 'default' => null),
