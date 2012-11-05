@@ -67,7 +67,7 @@ class CmsEvents extends AppEvents {
 		$data['data'] = isset($data['data']) ? $data['data'] : $data;
 		$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
 
-		return parent::onSlugUrl($event, $data['data'], $data['type']);
+		return parent::onSlugUrl($Event, $data['data'], $data['type']);
 	}
 
 /**
