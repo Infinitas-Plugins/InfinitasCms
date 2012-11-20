@@ -19,62 +19,61 @@
      */
 
     echo $this->Form->create('CmsFrontpage', array('action' => 'mass'));
-        $massActions = $this->Infinitas->massActionButtons(array('add', 'delete'));
-		echo $this->Infinitas->adminIndexHead(null, $massActions);
+		echo $this->Infinitas->adminIndexHead(null, array(
+			'add', 'delete'
+		));
 ?>
-<div class="table">
-    <table class="listing" cellpadding="0" cellspacing="0">
-        <?php
-            echo $this->Infinitas->adminTableHeader(
-                array(
-                    $this->Form->checkbox('all') => array(
-                        'class' => 'first',
-                        'style' => 'width:25px;'
-                    ),
-                    $this->Paginator->sort('CmsContent.title', __d('contents', 'Content Item')),
-                    $this->Paginator->sort('GlobalCategory.title', __d('contents', 'Category')),
-                    $this->Paginator->sort('created') => array(
-                        'style' => 'width:100px;'
-                    ),
-                    $this->Paginator->sort('modified') => array(
-                        'style' => 'width:100px;'
-                    ),
-                    $this->Paginator->sort('ordering') => array(
-                        'style' => 'width:50px;'
-                    ),
-                    __d('cms', 'Status') => array(
-                        'style' => 'width:50px;'
-                    )
-                )
-            );
+<table class="listing">
+	<?php
+		echo $this->Infinitas->adminTableHeader(array(
+			$this->Form->checkbox('all') => array(
+				'class' => 'first'
+			),
+			$this->Paginator->sort('CmsContent.title', __d('contents', 'Content Item')),
+			$this->Paginator->sort('GlobalCategory.title', __d('contents', 'Category')),
+			$this->Paginator->sort('created') => array(
+				'style' => 'width:100px;'
+			),
+			$this->Paginator->sort('modified') => array(
+				'style' => 'width:100px;'
+			),
+			$this->Paginator->sort('ordering') => array(
+				'style' => 'width:50px;'
+			),
+			__d('cms', 'Status') => array(
+				'style' => 'width:50px;'
+			)
+		));
 
-            $i = 0;
-            foreach ($frontpages as $frontpage) {
-                ?>
-                	<tr class="<?php echo $this->Infinitas->rowClass(); ?>">
-                        <td><?php echo $this->Infinitas->massActionCheckBox($frontpage, array('model' => 'Frontpage')); ?>&nbsp;</td>
-                		<td><?php echo $this->Html->link($frontpage['CmsContent']['title'], array('controller' => 'cms_contents', 'action' => 'view', $frontpage['CmsContent']['id'])); ?>&nbsp;</td>
-                		<td>
-							<?php
-								echo $this->Html->adminQuickLink(
-									$frontpage['GlobalCategory'],
-									array(
-										'plugin' => 'contents',
-										'controller' => 'global_categories',
-										'action' => 'edit'
-									)
-								);
-							?>&nbsp;
-                		</td>
-                		<td><?php echo $this->Infinitas->date($frontpage['Frontpage']['created']); ?>&nbsp;</td>
-                		<td><?php echo $this->Infinitas->date($frontpage['Frontpage']['modified']); ?>&nbsp;</td>
-                		<td><?php echo $this->Infinitas->ordering($frontpage['Frontpage']['id'], $frontpage['Frontpage']['ordering']); ?>&nbsp;</td>
-                		<td><?php echo $this->Infinitas->status($frontpage['CmsContent']['active']); ?>&nbsp;</td>
-                	</tr>
-                <?php
-            }
-        ?>
-    </table>
-    <?php echo $this->Form->end(); ?>
-</div>
-<?php echo $this->element('pagination/admin/navigation'); ?>
+		foreach ($frontpages as $frontpage) { ?>
+			<tr>
+				<td><?php echo $this->Infinitas->massActionCheckBox($frontpage, array('model' => 'Frontpage')); ?>&nbsp;</td>
+				<td>
+					<?php
+						echo $this->Html->link($frontpage['CmsContent']['title'], array(
+							'controller' => 'cms_contents',
+							'action' => 'edit',
+							$frontpage['CmsContent']['id']
+						));
+					?>&nbsp;
+				</td>
+				<td>
+					<?php
+						echo $this->Html->adminQuickLink($frontpage['GlobalCategory'], array(
+							'plugin' => 'contents',
+							'controller' => 'global_categories',
+							'action' => 'edit'
+						));
+					?>&nbsp;
+				</td>
+				<td><?php echo $this->Infinitas->date($frontpage['Frontpage']['created']); ?></td>
+				<td><?php echo $this->Infinitas->date($frontpage['Frontpage']['modified']); ?></td>
+				<td><?php echo $this->Infinitas->ordering($frontpage['Frontpage']['id'], $frontpage['Frontpage']['ordering']); ?>&nbsp;</td>
+				<td><?php echo $this->Infinitas->status($frontpage['CmsContent']['active']); ?>&nbsp;</td>
+			</tr> <?php
+		}
+	?>
+</table>
+<?php
+	echo $this->Form->end();
+	echo $this->element('pagination/admin/navigation');
