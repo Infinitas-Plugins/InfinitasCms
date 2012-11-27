@@ -5,7 +5,7 @@ class CmsEvents extends AppEvents {
  *
  * @return array
  */
-	public function onPluginRollCall() {
+	public function onPluginRollCall(Event $Event) {
 		return array(
 			'name' => 'Cms',
 			'description' => 'Content Management',
@@ -42,7 +42,7 @@ class CmsEvents extends AppEvents {
  *
  * @return array
  */
-	public function onSetupCache() {
+	public function onSetupCache(Event $Event) {
 		return array(
 			'name' => 'cms',
 			'config' => array(
@@ -63,7 +63,7 @@ class CmsEvents extends AppEvents {
  *
  * @return array
  */
-	public function onSlugUrl(Event $Event, $data) {
+	public function onSlugUrl(Event $Event, $data = null, $type = null) {
 		$data['data'] = isset($data['data']) ? $data['data'] : $data;
 		$data['type'] = isset($data['type']) ? $data['type'] : 'contents';
 
@@ -98,7 +98,7 @@ class CmsEvents extends AppEvents {
  *
  * @return boolean|array
  */
-	public function onRouteParse(Event $Event, $data) {
+	public function onRouteParse(Event $Event, $data = null) {
 		$return = null;
 
 		if($data['action'] == 'comment') {
@@ -125,4 +125,5 @@ class CmsEvents extends AppEvents {
 
 		return $data;
 	}
+
 }

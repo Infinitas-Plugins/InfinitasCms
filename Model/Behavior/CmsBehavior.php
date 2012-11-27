@@ -1,23 +1,23 @@
 <?php
 	class CmsBehavior extends ModelBehavior {
-		public function beforeFind($Model, $query) {
+		public function beforeFind(Model $Model, $query) {
 			if(empty($query['fields'])) {
 				$query['fields'] = array($Model->alias . '.*');
 			}
 			if(!is_array($query['fields'])) {
 				$query['fields'] = array($query['fields']);
 			}
-			
+
 			switch($Model->name) {
 				case 'CmsContent':
 					$query = $this->__contentBeforeFind($Model, $query);
 					break;
 			}
-			
+
 			return $query;
 		}
 
-		private function __contentBeforeFind($Model, $query) {
+		private function __contentBeforeFind(Model $Model, $query) {
 			$query['joins'][] = array(
 				'table' => 'cms_features',
 				'alias' => 'Feature',
@@ -35,7 +35,7 @@
 					'Frontpage.content_id = ' . $Model->alias . '.' . $Model->primaryKey,
 				)
 			);
-			
+
 			$query['fields'] = array_merge(
 				$query['fields'],
 				array(
@@ -43,7 +43,7 @@
 					'Frontpage.*',
 				)
 			);
-			
+
 			return $query;
 		}
 	}

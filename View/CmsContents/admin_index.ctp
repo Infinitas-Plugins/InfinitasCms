@@ -31,34 +31,31 @@
 ?>
 <table class="listing">
 	<?php
-		echo $this->Infinitas->adminTableHeader(
-			array(
-				$this->Form->checkbox('all') => array(
-					'class' => 'first',
-					'style' => 'width:25px;'
-				),
-				$this->Paginator->sort('title' ),
-				$this->Paginator->sort('GlobalCategory.title', __d('cms', 'Category')),
-				$this->Paginator->sort('Group.name', __d('cms', 'Group')) => array(
-					'style' => 'width:100px;'
-				),
-				$this->Paginator->sort('Layout.name', __d('contents', 'Layout')) => array(
-					'style' => 'width:100px;'
-				),
-				$this->Paginator->sort('views') => array(
-					'style' => 'width:35px;'
-				),
-				$this->Paginator->sort('modified') => array(
-					'style' => 'width:100px;'
-				),
-				$this->Paginator->sort('ordering') => array(
-					'style' => 'width:50px;'
-				),
-				__d('cms', 'Status') => array(
-					'style' => 'width:100px;'
-				)
+		echo $this->Infinitas->adminTableHeader(array(
+			$this->Form->checkbox('all') => array(
+				'class' => 'first'
+			),
+			$this->Paginator->sort('title' ),
+			$this->Paginator->sort('GlobalCategory.title', __d('cms', 'Category')),
+			$this->Paginator->sort('Group.name', __d('cms', 'Group')) => array(
+				'style' => 'width:100px;'
+			),
+			$this->Paginator->sort('Layout.name', __d('contents', 'Layout')) => array(
+				'style' => 'width:100px;'
+			),
+			$this->Paginator->sort('views') => array(
+				'style' => 'width:35px;'
+			),
+			$this->Paginator->sort('modified') => array(
+				'class' => 'date'
+			),
+			$this->Paginator->sort('ordering') => array(
+				'style' => 'width:50px;'
+			),
+			__d('cms', 'Status') => array(
+				'style' => 'width:100px;'
 			)
-		);
+		));
 
 		foreach ($contents as $content) { ?>
 			<tr class="parent">
@@ -104,7 +101,7 @@
 						);
 					?>&nbsp;
 				</td>
-				<td style="text-align:center;">
+				<td>
 					<?php echo $this->Design->count($content['CmsContent']['views']); ?>&nbsp;
 				</td>
 				<td><?php echo $this->Infinitas->date($content['CmsContent']['modified']); ?></td>
