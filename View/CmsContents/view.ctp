@@ -26,30 +26,30 @@
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data) {
 		echo '<div class="before '.$_plugin.'">'.$_data.'</div>';
 	}
-	
+
 	$content['CmsContent']['created'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['created']);
 	$content['CmsContent']['modified'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['modified']);
 
-	$content['CmsContent']['module_tags_list'] = $this->TagCloud->tagList($content, ',');
-	$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect(
-		'Cms.post_tag_cloud',
-		array(
-			'tags' => $content['GlobalTagged'],
-			'title' => 'Tags'
-		)
-	);
-	
+	$content['CmsContent']['module_tags_list'] = $this->ModuleLoader->loadDirect('Contents.tag_cloud', array(
+		'tags' => $content['GlobalTagged'],
+		'box' => false
+	));
+	$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect('Contents.tag_cloud', array(
+		'tags' => $content['GlobalTagged'],
+		'title' => 'Tags'
+	));
+
 	$eventData = $this->Event->trigger(
-		'Contents.slugUrl', 
+		'Contents.slugUrl',
 		array(
-			'type' => 'category', 
+			'type' => 'category',
 			'data' => array(
 				'GlobalCategory' => $content['GlobalCategory']
 			)
 		)
 	);
 	$url = InfinitasRouter::url(current($eventData['slugUrl']));
-	
+
 	$content['CmsContent']['category_title_link'] = $this->Html->link($content['CmsContent']['title'], $url);
 	$content['CmsContent']['category_url'] = $url;
 
@@ -68,7 +68,7 @@
 		)
 	);
 
-	// need to overwrite the stuff in the viewVars for mustache 
+	// need to overwrite the stuff in the viewVars for mustache
 	$this->set('content', $content);
 
 	if(!empty($content['Layout']['css'])) {
@@ -78,7 +78,7 @@
 	// render the content template
 	echo $content['Layout']['html'];
 
-	
+
 	$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
 	foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data) {
 		echo '<div class="after '.$_plugin.'">'.$_data.'</div>';

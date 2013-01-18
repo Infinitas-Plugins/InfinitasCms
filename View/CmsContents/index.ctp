@@ -21,7 +21,7 @@
 	if(empty($globalLayoutTemplate)) {
 		throw new Exception('Template was not loaded, make sure one exists');
 	}
-	
+
     foreach($contents as $k => &$content) {
 		$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
 		$content['CmsContent']['events_before'] = '';
@@ -43,32 +43,28 @@
 		$content['CmsContent']['created'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['created']);
 		$content['CmsContent']['modified'] = CakeTime::format(Configure::read('Cms.time_format'), $content['CmsContent']['modified']);
 
-		$content['CmsContent']['module_comments'] = $this->ModuleLoader->loadDirect(
-			'Comments.comment',
-			array(
-				'content' => $content,
-				'modelName' => 'CmsContent',
-				'foreign_id' => $content['CmsContent']['id']
-			)
-		);
+		$content['CmsContent']['module_comments'] = $this->ModuleLoader->loadDirect('Comments.comment', array(
+			'content' => $content,
+			'modelName' => 'CmsContent',
+			'foreign_id' => $content['CmsContent']['id']
+		));
 
-
-		$content['CmsContent']['module_tags_list'] = $this->TagCloud->tagList($content, ',');
-		$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect(
-			'Cms.post_tag_cloud',
-			array(
-				'tags' => $content['GlobalTagged'],
-				'title' => 'Tags'
-			)
-		);
+		$content['CmsContent']['module_tags_list'] = $this->ModuleLoader->loadDirect('Contents.tag_cloud', array(
+			'tags' => $content['GlobalTagged'],
+			'box' => false
+		));
+		$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect('Contents.tag_cloud', array(
+			'tags' => $content['GlobalTagged'],
+			'title' => 'Tags'
+		));
 
 		$content['CmsContent']['author_link'] = $this->GlobalContents->author($content);
 		$content['CmsContent']['module_comment_count'] = sprintf(__d('comments', '%d Comments'), $content['CmsContent']['comment_count']);
     }
-	
+
 	if(count($contents) > 0) {
 		$this->set('contents', $contents);
 		$this->set('paginationNavigation', $this->element('pagination/navigation'));
 	}
-	
+
 	echo $this->GlobalContents->renderTemplate($globalLayoutTemplate);
