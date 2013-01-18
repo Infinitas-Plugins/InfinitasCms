@@ -131,7 +131,7 @@ class CmsContentsController extends CmsAppController {
 	public function admin_index() {
 		$this->CmsContent->order = array_merge(
 			array('GlobalCategoryContent.title'),
-			$this->CmsContent->_order
+			$this->CmsContent->order
 		);
 
 		$contents = $this->Paginator->paginate(null, $this->Filter->filter);
