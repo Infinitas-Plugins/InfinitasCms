@@ -1,25 +1,22 @@
 <?php
 /**
- * Comment Template.
+ * CmsContentsController
  *
- * @todo Implement .this needs to be sorted out.
- *
- * Copyright (c) 2009 Carl Sutton ( dogmatic69 )
- *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
- * @filesource
  * @copyright Copyright (c) 2009 Carl Sutton ( dogmatic69 )
  * @link http://infinitas-cms.org
- * @package sort
- * @subpackage sort.comments
+ * @package Cms.Controller
  * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  * @since 0.5a
+ *
+ * @author Carl Sutton <dogmatic69@gmail.com>
  */
 
 class CmsContentsController extends CmsAppController {
+
 /**
- * @brief frontend index action
+ * frontend index action
+ *
+ * @return void
  */
 	public function index() {
 		$titleForLayout = null;
@@ -29,13 +26,13 @@ class CmsContentsController extends CmsAppController {
 		);
 		$url = array();
 
-		if(!empty($this->request->params['category'])) {
+		if (!empty($this->request->params['category'])) {
 			$this->Paginator->settings['conditions']['GlobalCategoryContent.slug'] = $this->request->params['category'];
 			$titleForLayout = sprintf(__d('cms', 'Filed under %s'), $this->request->params['category']);
 			$url['category'] = $this->request->params['category'];
 		}
 
-		if(!empty($this->request->params['tag'])) {
+		if (!empty($this->request->params['tag'])) {
 			$titleForLayout = sprintf(__d('cms', '%s :: %s'), $titleForLayout, $this->request->params['tag']);
 
 			$this->Paginator->settings['joins'][] = array(
@@ -62,18 +59,18 @@ class CmsContentsController extends CmsAppController {
 		$this->CmsContent->order = $this->CmsContent->_order;
 		$contents = $this->Paginator->paginate();
 
-		if(count($contents) == 1 && Configure::read('Cms.auto_redirect')) {
+		if (count($contents) == 1 && Configure::read('Cms.auto_redirect')) {
 			$this->request->params['slug'] = $contents[0]['CmsContent']['slug'];
 			$this->view();
 		}
 
 		$contents = $this->Paginator->paginate();
-		if(!empty($this->request->params['category']) && count($contents)) {
-			if(!empty($contents[0]['GlobalCategory']['meta_keywords'])) {
+		if (!empty($this->request->params['category']) && count($contents)) {
+			if (!empty($contents[0]['GlobalCategory']['meta_keywords'])) {
 				$this->set('seoMetaKeywords', $contents[0]['GlobalCategory']['meta_keywords']);
 			}
 
-			if(!empty($contents[0]['GlobalCategory']['meta_description'])) {
+			if (!empty($contents[0]['GlobalCategory']['meta_description'])) {
 				$this->set('seoMetaDescription', $contents[0]['GlobalCategory']['meta_description']);
 			}
 		}
@@ -84,9 +81,9 @@ class CmsContentsController extends CmsAppController {
 	}
 
 /**
- * @brief frontend view action
+ * frontend view action
  *
- * @throws NotFoundException
+ * @return void
  */
 	public function view() {
 		if (!isset($this->request->params['slug'])) {
@@ -94,15 +91,13 @@ class CmsContentsController extends CmsAppController {
 			$this->redirect($this->referer());
 		}
 
-		$content = $this->CmsContent->getViewData(
-			array(
-				'GlobalContent.slug' => $this->request->params['slug'],
-				$this->modelClass . '.active' => 1
-			)
-		);
+		$content = $this->CmsContent->getViewData(array(
+			'GlobalContent.slug' => $this->request->params['slug'],
+			$this->modelClass . '.active' => 1
+		));
 
-		if(empty($content)) {
-			throw new NotFoundException();
+		if (empty($content)) {
+			return $this->notice(new NotFoundException());
 		}
 
 		$this->set('content', $content);
@@ -116,7 +111,9 @@ class CmsContentsController extends CmsAppController {
 	}
 
 /**
- * @brief admin dashboard
+ * admin dashboard
+ *
+ * @return void
  */
 	public function admin_dashboard() {
 		$Content = ClassRegistry::init('Cms.CmsContent');
@@ -127,7 +124,9 @@ class CmsContentsController extends CmsAppController {
 	}
 
 /**
- * @brief admin index
+ * admin index
+ *
+ * @return void
  */
 	public function admin_index() {
 		$this->CmsContent->order = array_merge(
@@ -150,9 +149,11 @@ class CmsContentsController extends CmsAppController {
 	}
 
 /**
- * @brief admin view
+ * admin view
  *
  * @param string $id
+ *
+ * @return void
  */
 	public function admin_view($id = null) {
 		if (!$id) {
@@ -163,12 +164,14 @@ class CmsContentsController extends CmsAppController {
 	}
 
 /**
- * @brief admin add
+ * admin add
  *
  * Check there is layouts available before trying to add content
+ *
+ * @return void
  */
 	public function admin_add() {
-		if(!$this->CmsContent->hasLayouts()) {
+		if (!$this->CmsContent->hasLayouts()) {
 			$this->notice(
 				__d('cms', 'You need to create some layouts before you can create content'),
 				array(

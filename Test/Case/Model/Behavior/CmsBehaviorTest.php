@@ -5,6 +5,7 @@ App::uses('CmsBehavior', 'Cms.Model/Behavior');
  * CmsBehavior Test Case
  *
  */
+
 class CmsBehaviorTest extends CakeTestCase {
 
 /**
@@ -29,7 +30,5 @@ class CmsBehaviorTest extends CakeTestCase {
 	}
 
 	public function testSomething() {
-		
 	}
-
 }

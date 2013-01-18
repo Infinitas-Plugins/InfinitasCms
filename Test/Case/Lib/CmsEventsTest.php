@@ -1,15 +1,6 @@
 <?php
-App::uses('CmsEvents', 'Cms.Lib');
-class CmsEventsTest extends CakeTestCase {
-	public function setUp() {
-		parent::setUp();
-	}
+App::uses('InfinitasEventTestCase', 'Events.Test/Lib');
 
-	public function tearDown() {
-		parent::tearDown();
-	}
+class CmsEventsTest extends InfinitasEventTestCase {
 
-	public function testSomething() {
-
-	}
 }

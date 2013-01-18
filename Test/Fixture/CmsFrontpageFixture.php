@@ -5,8 +5,11 @@
  * @package Cms.Fixture
  * @since 0.9b1
  */
+
 class CmsFrontpageFixture extends CakeTestFixture {
+
 	public $name = 'CmsFrontpage';
+
 	public $table = 'cms_frontpages';
 
 	public $fields = array(

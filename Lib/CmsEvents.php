@@ -1,5 +1,6 @@
 <?php
 class CmsEvents extends AppEvents {
+
 /**
  * @brief get the plugin details
  *
@@ -101,12 +102,12 @@ class CmsEvents extends AppEvents {
 	public function onRouteParse(Event $Event, $data = null) {
 		$return = null;
 
-		if($data['action'] == 'comment') {
+		if ($data['action'] == 'comment') {
 			unset($data['category'], $data['slug']);
 			return $data;
 		}
 
-		if(!empty($data['category'])) {
+		if (!empty($data['category'])) {
 			$return = ClassRegistry::init('Cms.CmsContent')->GlobalContent->find(
 				'count',
 				array(
@@ -116,7 +117,7 @@ class CmsEvents extends AppEvents {
 				)
 			);
 
-			if($return > 0) {
+			if ($return > 0) {
 				return $data;
 			}
 

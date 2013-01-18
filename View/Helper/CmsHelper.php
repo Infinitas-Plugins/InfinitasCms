@@ -18,23 +18,28 @@
  */
 
 class CmsHelper extends AppHelper {
-	public $helpers = array(
-		//cake
-		'Html', 'Form',
 
-		// core helpers
+/**
+ * Helpers to load
+ *
+ * @var array
+ */
+	public $helpers = array(
+		'Html',
+		'Form',
 		'Libs.Wysiwyg',
 		'Libs.Design',
 		'Libs.Image'
 	);
 
-	/**
-		* generate icons for homepage items.
-		*
-		* @param array $record the row to check
-		* @param string $model the current model
-		* @return string some html for an icon
-		*/
+/**
+ * generate icons for homepage items.
+ *
+ * @param array $record the row to check
+ * @param string $model the current model
+ *
+ * @return string
+ */
 	public function homePageItem($record = array(), $model = 'Frontpage') {
 		if (empty($record)) {
 			$this->errors[] = 'cant check nothing.';
@@ -44,26 +49,18 @@ class CmsHelper extends AppHelper {
 		$record = array_filter($record[$model]);
 
 		if (!empty($record)) {
-			return $this->Image->image(
-				'status',
-				'home',
-				array(
-					'alt'   => __d('cms', 'Yes'),
-					'title' => __d('cms', 'Home page item'),
-					'width' => '16px'
-				)
-			);
+			return $this->Image->image('status', 'home', array(
+				'alt'   => __d('cms', 'Yes'),
+				'title' => __d('cms', 'Home page item'),
+				'width' => '16px'
+			));
 		}
 
-		return $this->Image->image(
-			'status',
-			'not-home',
-			array(
-				'alt'   => __d('cms', 'No'),
-				'title' => __d('cms', 'Not on home page'),
-				'width' => '16px'
-			)
-		);
+		return $this->Image->image('status', 'not-home', array(
+			'alt'   => __d('cms', 'No'),
+			'title' => __d('cms', 'Not on home page'),
+			'width' => '16px'
+		));
 	}
 
 /**
@@ -74,30 +71,22 @@ class CmsHelper extends AppHelper {
  * @param array $record the data from find
  * @param string $model the model alias
  *
- * @return string html of the icon.
+ * @return string
  */
 	public function featuredItem($record = array(), $model = 'Feature') {
 		$record = array_filter($record[$model]);
 		if (empty($record)) {
-			return $this->Image->image(
-				'status',
-				'not-featured',
-				array(
-					'alt'   => __d('cms', 'No'),
-					'title' => __d('cms', 'Not a featured item'),
-					'width' => '16px'
-				)
-			);
+			return $this->Image->image('status', 'not-featured', array(
+				'alt'   => __d('cms', 'No'),
+				'title' => __d('cms', 'Not a featured item'),
+				'width' => '16px'
+			));
 		}
 
-		return $this->Image->image(
-			'status',
-			'featured',
-			array(
-				'alt'   => __d('cms', 'Yes'),
-				'title' => __d('cms', 'Featured Item'),
-				'width' => '16px'
-			)
-		);
+		return $this->Image->image('status', 'featured', array(
+			'alt'   => __d('cms', 'Yes'),
+			'title' => __d('cms', 'Featured Item'),
+			'width' => '16px'
+		));
 	}
 }

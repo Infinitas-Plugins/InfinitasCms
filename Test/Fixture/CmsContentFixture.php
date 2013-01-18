@@ -5,8 +5,11 @@
  * @package Cms.Fixture
  * @since 0.9b1
  */
+
 class CmsContentFixture extends CakeTestFixture {
+
 	public $name = 'CmsContent';
+
 	public $table = 'cms_contents';
 
 	public $fields = array(
