@@ -26,14 +26,14 @@ class CmsContentsController extends CmsAppController {
 		);
 		$url = array();
 
-		if (!empty($this->request->params['category'])) {
-			$this->Paginator->settings['conditions']['GlobalCategoryContent.slug'] = $this->request->params['category'];
-			$titleForLayout = sprintf(__d('cms', 'Filed under %s'), $this->request->params['category']);
+		if (!empty($this->request->params['infinitas']['GlobalCategoryContent.slug'])) {
+			$this->Paginator->settings['conditions']['GlobalCategoryContent.slug'] = $this->request->params['infinitas']['GlobalCategoryContent.slug'];
+			$titleForLayout = __d('cms', 'Filed under :category');
 			$url['category'] = $this->request->params['category'];
 		}
 
 		if (!empty($this->request->params['tag'])) {
-			$titleForLayout = sprintf(__d('cms', '%s :: %s'), $titleForLayout, $this->request->params['tag']);
+			$titleForLayout = implode(' :: ', array($titleForLayout, $this->request->params['tag']));
 
 			$this->Paginator->settings['joins'][] = array(
 				'table' => 'global_tagged',
@@ -56,12 +56,11 @@ class CmsContentsController extends CmsAppController {
 			$url['tag'] = $this->request->params['tag'];
 		}
 
-		$this->CmsContent->order = $this->CmsContent->_order;
 		$contents = $this->Paginator->paginate();
 
-		if (count($contents) == 1 && Configure::read('Cms.auto_redirect')) {
-			$this->request->params['slug'] = $contents[0]['CmsContent']['slug'];
-			$this->view();
+		if (count($contents) == 1 && true){ //Configure::read('Cms.auto_redirect')) {
+			$this->request->params['infintias']['CmsContent.id'] = $contents[0]['CmsContent']['id'];
+			return $this->setAction('view');
 		}
 
 		$contents = $this->Paginator->paginate();
@@ -86,14 +85,15 @@ class CmsContentsController extends CmsAppController {
  * @return void
  */
 	public function view() {
-		if (!isset($this->request->params['slug'])) {
+		$id = !empty($this->request->params['infinitas'][$this->modelClass . '.id']) ? $this->request->params['infinitas'][$this->modelClass . '.id'] : null;
+		if (!$id) {
 			$this->notice('invalid');
 			$this->redirect($this->referer());
 		}
 
 		$content = $this->CmsContent->getViewData(array(
-			'GlobalContent.slug' => $this->request->params['slug'],
-			$this->modelClass . '.active' => 1
+			$this->modelClass . '.active' => 1,
+			$this->modelClass . '.id' => $id
 		));
 
 		if (empty($content)) {

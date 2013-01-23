@@ -48,7 +48,8 @@ class CmsContent extends CmsAppModel {
  * @var array
  */
 	public $findMethods = array(
-		'latest' => true
+		'latest' => true,
+		'routingInfo' => true
 	);
 
 /**
@@ -154,6 +155,59 @@ class CmsContent extends CmsAppModel {
 		));
 
 		return $content;
+	}
+
+	protected function _findRoutingInfo($state, array $query, array $results = array()) {
+		if ($state == 'before') {
+			$request = array_merge(array(
+				'category' => null,
+				'slug' => null,
+				'tag' => null,
+				'pass' => array()
+			), $query['request']);
+			unset($query['request']);
+
+			$conditions = array();
+			if ($request['category']) {
+				$conditions['GlobalCategoryContent.slug'] = $request['category'];
+			}
+			if ($request['slug']) {
+				$conditions[$this->GlobalContent->fullFieldName('slug')] = $request['slug'];
+			}
+			if ($request['pass']) {
+				$id = $this->field('id', array(
+					$this->alias . '.' . $this->primaryKey => $request['pass']
+				));
+				if ($id) {
+					$conditions['or'] = array(
+						$this->alias . '.' . $this->primaryKey => $id
+					);
+				}
+			}
+			if ($request['tag']) {
+				//$conditions[$this->GlobalContent->GlobalTaggged->fullFieldName('keyname')] = $request['tag'];
+			}
+
+			if (empty($conditions)) {
+				throw new InvalidArgumentException(__d('cms', 'unable to find the content'));
+			}
+			$query['conditions'] = $conditions;
+
+			$query['limit'] = 1;
+
+			return $query;
+		}
+		
+		if (empty($results)) {
+			return false;
+		}
+		$results = $results[0];
+
+		return array(
+			$this->alias . '.' . $this->primaryKey => $results[$this->alias][$this->primaryKey],
+			$this->alias . '.slug' => $results[$this->alias]['slug'],
+			'GlobalCategoryContent.slug' => $results['GlobalCategoryContent']['slug'],
+		);
 	}
 
 /**

@@ -77,16 +77,13 @@ class CmsEvents extends AppEvents {
  * @param Event $event
  */
 	public function onSetupRoutes(Event $Event) {
-		InfinitasRouter::connect(
-			'/admin/cms',
-			array(
-				'admin' => true,
-				'prefix' => 'admin',
-				'plugin' => 'cms',
-				'controller' => 'cms_contents',
-				'action' => 'dashboard'
-			)
-		);
+		InfinitasRouter::connect('/admin/cms', array(
+			'admin' => true,
+			'prefix' => 'admin',
+			'plugin' => 'cms',
+			'controller' => 'cms_contents',
+			'action' => 'dashboard'
+		));
 	}
 
 /**
@@ -99,32 +96,31 @@ class CmsEvents extends AppEvents {
  *
  * @return boolean|array
  */
-	public function onRouteParse(Event $Event, $data = null) {
+	public function onRouteParse(Event $Event, $requestData = null) {
 		$return = null;
 
-		if ($data['action'] == 'comment') {
-			unset($data['category'], $data['slug']);
-			return $data;
+		if ($requestData['action'] == 'comment') {
+			unset($requestData['category'], $requestData['slug']);
+			return $requestData;
 		}
 
-		if (!empty($data['category'])) {
-			$return = ClassRegistry::init('Cms.CmsContent')->GlobalContent->find(
-				'count',
-				array(
-					'conditions' => array(
-						'GlobalContent.slug' => $data['category']
-					)
-				)
-			);
-
-			if ($return > 0) {
-				return $data;
-			}
-
+		$return = ClassRegistry::init('Cms.CmsContent')->find('routingInfo', array(
+			'request' => $this->_requestParams((array)$requestData)
+		));
+		if (!$return) {
 			return false;
 		}
+		$requestData['infinitas'] = $return;
+		return $requestData;
+	}
 
-		return $data;
+	protected function _requestParams(array $requestData) {
+		$_keys = array_diff(
+			array_keys($requestData),
+			array('plugin', 'controller', 'action', 'named')
+		);
+		extract($requestData);
+		return compact($_keys);
 	}
 
 }
