@@ -105,7 +105,7 @@ class CmsEvents extends AppEvents {
 		}
 
 		$return = ClassRegistry::init('Cms.CmsContent')->find('routingInfo', array(
-			'request' => $this->_requestParams((array)$requestData)
+			'request' => InfinitasRouter::requestParams((array)$requestData)
 		));
 		if (!$return) {
 			return false;
@@ -113,14 +113,4 @@ class CmsEvents extends AppEvents {
 		$requestData['infinitas'] = $return;
 		return $requestData;
 	}
-
-	protected function _requestParams(array $requestData) {
-		$_keys = array_diff(
-			array_keys($requestData),
-			array('plugin', 'controller', 'action', 'named')
-		);
-		extract($requestData);
-		return compact($_keys);
-	}
-
 }
