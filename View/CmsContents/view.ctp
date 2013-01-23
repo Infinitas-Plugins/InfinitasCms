@@ -32,11 +32,13 @@
 
 	$content['CmsContent']['module_tags_list'] = $this->ModuleLoader->loadDirect('Contents.tag_cloud', array(
 		'tags' => $content['GlobalTagged'],
-		'box' => false
+		'box' => false,
+		'category' => $content['GlobalCategory']['slug']
 	));
 	$content['CmsContent']['module_tags'] = $this->ModuleLoader->loadDirect('Contents.tag_cloud', array(
 		'tags' => $content['GlobalTagged'],
-		'title' => 'Tags'
+		'title' => 'Tags',
+		'category' => $content['GlobalCategory']['slug']
 	));
 
 	$eventData = $this->Event->trigger(
