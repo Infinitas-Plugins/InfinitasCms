@@ -186,5 +186,14 @@ class CmsContentsController extends CmsAppController {
 		}
 
 		parent::admin_add();
+		$contentTags = ClassRegistry::init('Contents.GlobalTag')->find('all');
+		$this->set(compact('contentTags'));
+	}
+
+	public function admin_edit($id = null) {
+		parent::admin_edit($id);
+
+		$contentTags = ClassRegistry::init('Contents.GlobalTag')->find('all');
+		$this->set(compact('contentTags'));
 	}
 }
