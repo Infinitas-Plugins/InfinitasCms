@@ -22,7 +22,7 @@
 		$content = $cmsContent;
 	}
 
-	$eventData = $this->Event->trigger('cmsBeforeContentRender', array('_this' => $this, 'content' => $content));
+	$eventData = $this->Event->trigger('cmsBeforeContentRender', array('content' => $content));
 	foreach((array)$eventData['cmsBeforeContentRender'] as $_plugin => $_data) {
 		echo '<div class="before '.$_plugin.'">'.$_data.'</div>';
 	}
@@ -81,7 +81,7 @@
 	echo $content['Layout']['html'];
 
 
-	$eventData = $this->Event->trigger('cmsAfterContentRender', array('_this' => $this, 'content' => $content));
+	$eventData = $this->Event->trigger('cmsAfterContentRender', array('content' => $content));
 	foreach((array)$eventData['cmsAfterContentRender'] as $_plugin => $_data) {
 		echo '<div class="after '.$_plugin.'">'.$_data.'</div>';
 	}
